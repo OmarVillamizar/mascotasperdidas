@@ -1,0 +1,94 @@
+build:
+  maxIssues: 0
+
+config:
+  validation: true
+  warningsAsErrors: false
+
+complexity:
+  active: true
+  LongMethod:
+    threshold: 60
+  LongParameterList:
+    functionThreshold: 6
+    constructorThreshold: 7
+    ignoreDataClasses: true
+  LargeClass:
+    threshold: 600
+  CyclomaticComplexMethod:
+    threshold: 15
+  TooManyFunctions:
+    thresholdInFiles: 12
+    thresholdInClasses: 12
+    thresholdInInterfaces: 12
+
+coroutines:
+  active: true
+  RedundantSuspendModifier:
+    active: true
+  SleepInsteadOfDelay:
+    active: true
+  SuspendFunWithFlowReturnType:
+    active: true
+
+empty-blocks:
+  active: true
+
+exceptions:
+  active: true
+  PrintStackTrace:
+    active: true
+  SwallowedException:
+    active: true
+  TooGenericExceptionCaught:
+    active: true
+    excludes: ['**/test/**', '**/androidTest/**']
+
+formatting:
+  active: true
+  android: true
+  autoCorrect: true
+  Indentation:
+    active: true
+    indentSize: 4
+  MaximumLineLength:
+    active: true
+    maxLineLength: 120
+  NoWildcardImports:
+    active: true
+  ImportOrdering:
+    active: true
+  NoUnusedImports:
+    active: true
+  NoTrailingSpaces:
+    active: true
+  NoSemicolons:
+    active: true
+  SpacingAroundColon:
+    active: true
+  SpacingAroundComma:
+    active: true
+  SpacingAroundCurly:
+    active: true
+
+naming:
+  active: true
+  FunctionNaming:
+    ignoreAnnotated: ['Composable']
+
+potential-bugs:
+  active: true
+
+style:
+  active: true
+  MagicNumber:
+    active: false
+  WildcardImport:
+    active: true
+
+# Exclude generated / build files
+input:
+  excludes:
+    - '**/build/**'
+    - '**/.gradle/**'
+    - '**/androidTest/**'

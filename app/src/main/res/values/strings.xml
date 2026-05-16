@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MascotasPerdidas</string>
+
+    <!-- Splash -->
+    <string name="splash_title">Mascotas Perdidas</string>
+    <string name="splash_subtitle">Reporta desapariciones o hallazgos de mascotas perdidas</string>
+    <string name="splash_btn_google">Continuar con Google</string>
+    <string name="splash_terms">Al continuar, aceptas los términos y condiciones</string>
+
+    <!-- Profile -->
+    <string name="profile_title">Perfil</string>
+    <string name="profile_card_title">Mis datos</string>
+    <string name="profile_label_name">Nombre</string>
+    <string name="profile_label_phone">Teléfono</string>
+    <string name="profile_btn_save">Guardar</string>
+    <string name="profile_btn_change_phone">Cambiar número telefónico</string>
+
+    <!-- OTP -->
+    <string name="otp_title">Verificación de Teléfono Celular</string>
+    <string name="otp_subtitle">Enviamos un código de 6 dígitos por SMS al teléfono que digitaste</string>
+    <string name="otp_btn_confirm">Confirmar</string>
+
+    <!-- Permissions -->
+    <string name="permissions_title">Permisos</string>
+    <string name="permissions_card_title">Gestionar mis permisos</string>
+    <string name="permissions_card_desc">La app necesita los siguientes permisos para funcionar correctamente</string>
+    <string name="permissions_camera">Cámara</string>
+    <string name="permissions_notifications">Notificaciones</string>
+    <string name="permissions_storage">Almacenamiento</string>
+    <string name="permissions_location">Ubicación</string>
+    <string name="permissions_btn_continue">Continuar</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Configuración</string>
+    <string name="settings_section_notifications">Notificaciones</string>
+    <string name="settings_notif_lost_nearby">Mascotas perdidas cerca de mi ubicación</string>
+    <string name="settings_notif_found_nearby">Mascotas halladas cerca de mi ubicación</string>
+    <string name="settings_notif_sightings">Avistamientos recibidos de mis reportes de mascota perdida</string>
+    <string name="settings_section_permissions">Permisos</string>
+    <string name="settings_btn_manage_permissions">Gestionar Permisos</string>
+    <string name="settings_section_account">Mi cuenta</string>
+    <string name="settings_btn_sign_out">Cerrar Sesión</string>
+    <string name="settings_btn_delete_account">Eliminar cuenta</string>
+    <string name="settings_dialog_delete_title">Eliminar cuenta</string>
+    <string name="settings_dialog_delete_msg">¿Estás seguro de que deseas eliminar tu cuenta? Esta acción no se puede deshacer.</string>
+    <string name="settings_dialog_confirm">Confirmar</string>
+    <string name="settings_dialog_cancel">Cancelar</string>
+
+    <!-- Feed -->
+    <string name="feed_title">MascotasPerdidas</string>
+    <string name="feed_tab_lost">Perdidas</string>
+    <string name="feed_tab_found">Avistadas</string>
+    <string name="feed_search_hint">Nombre, raza, descripción, etc...</string>
+    <string name="feed_filter_banner">Filtrando por: Hallazgos</string>
+    <string name="feed_btn_more_info">Mas Información</string>
+    <string name="feed_btn_contact">CONTACTAR</string>
+
+    <!-- Drawer -->
+    <string name="drawer_feed">Feed</string>
+    <string name="drawer_profile">Perfil</string>
+    <string name="drawer_settings">Configuración</string>
+    <string name="drawer_permissions">Permisos</string>
+    <string name="drawer_sign_out">Cerrar sesión</string>
+
+    <!-- Chips -->
+    <string name="chip_lost">PERDIDO</string>
+    <string name="chip_found">HALLAZGO</string>
+    <string name="chip_recent">RECIENTE</string>
+
+    <!-- Generic -->
+    <string name="error_generic">Ocurrió un error. Inténtalo de nuevo.</string>
+    <string name="content_desc_avatar">Avatar de usuario</string>
+    <string name="content_desc_menu">Abrir menú</string>
+    <string name="content_desc_pet_image">Imagen de la mascota</string>
+</resources>

@@ -1,3 +1,0 @@
-pydantic==2.13.4
-copier==9.15.1
-pyyaml-include<3

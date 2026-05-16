@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Remove-Item -Recurse -Force src -ErrorAction SilentlyContinue)",
+      "Bash(Remove-Item -Force settings.gradle.kts.jinja -ErrorAction SilentlyContinue)",
+      "Bash(Remove-Item -Force docker-compose.yml -ErrorAction SilentlyContinue)",
+      "Bash(Remove-Item -Force copier.yaml -ErrorAction SilentlyContinue)",
+      "Bash(Remove-Item -Force requirements.txt -ErrorAction SilentlyContinue)",
+      "PowerShell(Get-ChildItem -Recurse \"D:\\\\MOVILES\\\\hexagonal-architecture-kotlin-template\\\\app\" -Exclude \".gradle\",\"build\" | Where-Object { -not $_.FullName.Contains\\(\"\\\\.git\\\\\"\\) } | Select-Object FullName | Sort-Object FullName)",
+      "PowerShell(Get-ChildItem -Recurse -File \"D:\\\\MOVILES\\\\hexagonal-architecture-kotlin-template\\\\app\" | ForEach-Object { $_.FullName.Replace\\(\"D:\\\\MOVILES\\\\hexagonal-architecture-kotlin-template\\\\\", \"\"\\) } | Sort-Object)"
+    ]
+  }
+}
