@@ -4,12 +4,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.mascotasperdidas.app.app.ui.components.AppDrawerContent
+import com.mascotasperdidas.app.app.ui.components.DrawerShell
 import com.mascotasperdidas.app.app.ui.screens.feed.FeedScreen
 import com.mascotasperdidas.app.app.ui.screens.feed.FeedViewModel
 import com.mascotasperdidas.app.app.ui.screens.otp.OtpScreen
@@ -29,10 +32,21 @@ fun AppNavHost(navController: NavHostController) {
         navController = navController,
         startDestination = Routes.Splash.route,
     ) {
-        // ── Splash ──────────────────────────────────────────────────
+        // ── Splash (sin drawer) ─────────────────────────────────────
         composable(Routes.Splash.route) {
             val viewModel: SplashViewModel = hiltViewModel()
             val state by viewModel.uiState.collectAsState()
+
+            LaunchedEffect(state.navigateTo) {
+                when (state.navigateTo) {
+                    "feed" -> navController.navigate(Routes.Feed.route) {
+                        popUpTo(Routes.Splash.route) { inclusive = true }
+                    }
+                    "profile" -> navController.navigate(Routes.Profile.route) {
+                        popUpTo(Routes.Splash.route) { inclusive = true }
+                    }
+                }
+            }
 
             SplashScreen(
                 state = state,
@@ -45,19 +59,35 @@ fun AppNavHost(navController: NavHostController) {
             )
         }
 
-        // ── Profile ─────────────────────────────────────────────────
+        // ── Profile (con drawer) ────────────────────────────────────
         composable(Routes.Profile.route) {
-            val viewModel: ProfileViewModel = hiltViewModel()
-            val state by viewModel.uiState.collectAsState()
+            DrawerShell(
+                drawerContent = { closeDrawer ->
+                    AppDrawerContent(
+                        onFeedClick = { navController.navigate(Routes.Feed.route) },
+                        onProfileClick = { closeDrawer() },
+                        onSettingsClick = { navController.navigate(Routes.Settings.route) },
+                        onPermissionsClick = { navController.navigate(Routes.Permissions.route) },
+                        onSignOutClick = {
+                            navController.navigate(Routes.Splash.route) {
+                                popUpTo(0) { inclusive = true }
+                            }
+                        },
+                    )
+                },
+            ) {
+                val viewModel: ProfileViewModel = hiltViewModel()
+                val state by viewModel.uiState.collectAsState()
 
-            ProfileScreen(
-                state = state,
-                onEvent = viewModel::onEvent,
-                onNavigateToOtp = { navController.navigate(Routes.Otp.route) },
-            )
+                ProfileScreen(
+                    state = state,
+                    onEvent = viewModel::onEvent,
+                    onNavigateToOtp = { navController.navigate(Routes.Otp.route) },
+                )
+            }
         }
 
-        // ── OTP ─────────────────────────────────────────────────────
+        // ── OTP (sin drawer) ────────────────────────────────────────
         composable(Routes.Otp.route) {
             val viewModel: OtpViewModel = hiltViewModel()
             val state by viewModel.uiState.collectAsState()
@@ -77,56 +107,104 @@ fun AppNavHost(navController: NavHostController) {
             )
         }
 
-        // ── Permissions ─────────────────────────────────────────────
+        // ── Permissions (con drawer) ────────────────────────────────
         composable(Routes.Permissions.route) {
-            PermissionsScreen(
-                onContinueToFeed = {
-                    navController.navigate(Routes.Feed.route) {
-                        popUpTo(Routes.Splash.route) { inclusive = false }
-                    }
+            DrawerShell(
+                drawerContent = { closeDrawer ->
+                    AppDrawerContent(
+                        onFeedClick = { navController.navigate(Routes.Feed.route) },
+                        onProfileClick = { navController.navigate(Routes.Profile.route) },
+                        onSettingsClick = { navController.navigate(Routes.Settings.route) },
+                        onPermissionsClick = { closeDrawer() },
+                        onSignOutClick = {
+                            navController.navigate(Routes.Splash.route) {
+                                popUpTo(0) { inclusive = true }
+                            }
+                        },
+                    )
                 },
-            )
+            ) {
+                PermissionsScreen(
+                    onContinueToFeed = {
+                        navController.navigate(Routes.Feed.route) {
+                            popUpTo(Routes.Splash.route) { inclusive = false }
+                        }
+                    },
+                )
+            }
         }
 
-        // ── Feed ────────────────────────────────────────────────────
+        // ── Feed (con drawer) ───────────────────────────────────────
         composable(Routes.Feed.route) {
-            val viewModel: FeedViewModel = hiltViewModel()
-            val state by viewModel.uiState.collectAsState()
+            DrawerShell(
+                drawerContent = { closeDrawer ->
+                    AppDrawerContent(
+                        onFeedClick = { closeDrawer() },
+                        onProfileClick = { navController.navigate(Routes.Profile.route) },
+                        onSettingsClick = { navController.navigate(Routes.Settings.route) },
+                        onPermissionsClick = { navController.navigate(Routes.Permissions.route) },
+                        onSignOutClick = {
+                            navController.navigate(Routes.Splash.route) {
+                                popUpTo(0) { inclusive = true }
+                            }
+                        },
+                    )
+                },
+            ) {
+                val viewModel: FeedViewModel = hiltViewModel()
+                val state by viewModel.uiState.collectAsState()
 
-            FeedScreen(
-                state = state,
-                onEvent = viewModel::onEvent,
-            )
+                FeedScreen(
+                    state = state,
+                    onEvent = viewModel::onEvent,
+                )
+            }
         }
 
-        // ── Settings ────────────────────────────────────────────────
+        // ── Settings (con drawer) ───────────────────────────────────
         composable(Routes.Settings.route) {
-            val viewModel: SettingsViewModel = hiltViewModel()
-            val state by viewModel.uiState.collectAsState()
-
-            LaunchedEffect(state.isSignedOut) {
-                if (state.isSignedOut) {
-                    navController.navigate(Routes.Splash.route) {
-                        popUpTo(0) { inclusive = true }
-                    }
-                }
-            }
-
-            LaunchedEffect(state.isAccountDeleted) {
-                if (state.isAccountDeleted) {
-                    navController.navigate(Routes.Splash.route) {
-                        popUpTo(0) { inclusive = true }
-                    }
-                }
-            }
-
-            SettingsScreen(
-                state = state,
-                onEvent = viewModel::onEvent,
-                onNavigateToPermissions = {
-                    navController.navigate(Routes.Permissions.route)
+            DrawerShell(
+                drawerContent = { closeDrawer ->
+                    AppDrawerContent(
+                        onFeedClick = { navController.navigate(Routes.Feed.route) },
+                        onProfileClick = { navController.navigate(Routes.Profile.route) },
+                        onSettingsClick = { closeDrawer() },
+                        onPermissionsClick = { navController.navigate(Routes.Permissions.route) },
+                        onSignOutClick = {
+                            navController.navigate(Routes.Splash.route) {
+                                popUpTo(0) { inclusive = true }
+                            }
+                        },
+                    )
                 },
-            )
+            ) {
+                val viewModel: SettingsViewModel = hiltViewModel()
+                val state by viewModel.uiState.collectAsState()
+
+                LaunchedEffect(state.isSignedOut) {
+                    if (state.isSignedOut) {
+                        navController.navigate(Routes.Splash.route) {
+                            popUpTo(0) { inclusive = true }
+                        }
+                    }
+                }
+
+                LaunchedEffect(state.isAccountDeleted) {
+                    if (state.isAccountDeleted) {
+                        navController.navigate(Routes.Splash.route) {
+                            popUpTo(0) { inclusive = true }
+                        }
+                    }
+                }
+
+                SettingsScreen(
+                    state = state,
+                    onEvent = viewModel::onEvent,
+                    onNavigateToPermissions = {
+                        navController.navigate(Routes.Permissions.route)
+                    },
+                )
+            }
         }
     }
 }

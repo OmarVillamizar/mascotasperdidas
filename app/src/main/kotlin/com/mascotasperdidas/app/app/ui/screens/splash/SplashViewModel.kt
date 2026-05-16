@@ -22,11 +22,18 @@ class SplashViewModel @Inject constructor(
         viewModelScope.launch {
             try {
                 observeCurrentUser().collect { user ->
-                    // Fase 13: si user != null y phoneVerified, navegar directo a Feed
-                    _uiState.value = _uiState.value.copy(isCheckingAuth = false)
+                    val destination = when {
+                        user == null -> null                      // mostrar botón Google
+                        user.phoneVerified -> "feed"              // saltar directo a Feed
+                        else -> "profile"                          // completar perfil + OTP
+                    }
+                    _uiState.value = SplashUiState(
+                        isCheckingAuth = false,
+                        navigateTo = destination,
+                    )
                 }
             } catch (e: Exception) {
-                _uiState.value = _uiState.value.copy(isCheckingAuth = false)
+                _uiState.value = SplashUiState(isCheckingAuth = false)
             }
         }
     }

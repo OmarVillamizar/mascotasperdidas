@@ -26,6 +26,7 @@ import androidx.compose.ui.unit.dp
 import com.mascotasperdidas.app.R
 import com.mascotasperdidas.app.app.theme.MascotasPerdidasTheme
 import com.mascotasperdidas.app.app.ui.components.AppTopBar
+import com.mascotasperdidas.app.app.ui.components.LocalDrawerOpener
 
 @Composable
 fun ProfileScreen(
@@ -34,11 +35,12 @@ fun ProfileScreen(
     onNavigateToOtp: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
+    val openDrawer = LocalDrawerOpener.current
     Scaffold(
         topBar = {
             AppTopBar(
                 title = stringResource(R.string.profile_title),
-                onMenuClick = { /* Fase 13: drawer */ },
+                onMenuClick = openDrawer ?: {},
                 userInitial = state.userInitial,
                 photoUrl = state.photoUrl,
                 onAvatarClick = { /* Fase 13 */ },

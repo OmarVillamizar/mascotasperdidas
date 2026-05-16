@@ -579,3 +579,132 @@ En `app/di/RepositoryModule.kt`, **solo cambian las líneas de `@Binds`**:
 - Cada fase termina con un commit limpio y la app compilando.
 - Si una fase requiere romper una regla de `CLAUDE.md` (especialmente §4.2 dependencias hexagonales), **detenerse y consultar** antes de continuar.
 - **Verificación clave después de cada fase:** ningún archivo en `domain/` importa de `androidx.*`, `com.google.firebase.*`, ni `com.mascotasperdidas.app.data.*` ni `com.mascotasperdidas.app.app.*`. Si esto se rompe, la arquitectura está comprometida.
+
+---
+
+## 🔧 Notas de implementación por fase
+
+> Decisiones técnicas, bugs encontrados, parches aplicados, y lecciones aprendidas durante la ejecución real de cada fase.
+
+---
+
+### Fase 0 — Bootstrap
+
+- **AGP 8.4.2 + compileSdk 35:** genera warning `UnsupportedCompileSdk`. No bloquea. Se suprime agregando `android.suppressUnsupportedCompileSdk=35` en `gradle.properties`.
+- **KSP** en vez de KAPT para Hilt: más rápido. El plugin `ksp` ya está en `libs.versions.toml`.
+- **Firebase BOM y dependencias comentadas:** se descomentarán en Fase 14. Mientras tanto no rompen compilación porque el plugin `google.services` también está comentado.
+- `@HiltAndroidApp` en `MascotasPerdidasApp.kt` es obligatorio para que Hilt funcione. Sin él, los `@AndroidEntryPoint` y `@HiltViewModel` fallan en runtime.
+
+---
+
+### Fase 1 — Dominio
+
+- **`AuthState` es sealed class en `domain/model/`, no en `port/out/`.** Así lo consumen tanto `AuthRepository` como `ObserveCurrentUser` sin crear dependencias innecesarias.
+- **`DeleteAccountImpl` orden:** primero `userRepository.deleteCurrentUserDocument()`, luego `authRepository.deleteCurrentUser()`. Si falla el segundo, al menos el documento Firestore ya se borró (no datos huérfanos). En la implementación Firebase esto es crítico.
+- Todos los use cases reciben `@Inject constructor` con `javax.inject.Inject` (JSR-330), sin acoplar a Hilt.
+- 11 puertos in, 3 puertos out, 11 implementaciones de use cases. Total dominio: 30 archivos.
+
+---
+
+### Fase 2 — Tema M3
+
+- **Tokens de color extraídos a `Color.kt`** como vals de package-level (no `object`). Más limpio para usar en `lightColorScheme(...)`.
+- **`secondary` es el amarillo (#F6E27A)** para el chip RECIENTE, no `secondaryContainer`. La diferencia es semántica: `secondary` es un color de acento, `secondaryContainer` es fondo de contenedor.
+- **`surface` (#FFFBFE blanco)** es para cards. **`background` (#F3E8F7 lila)** es el fondo de la app. En la fase 2 original se confundieron, corregido en parche.
+- `ic_logo.xml` es una huella vectorial placeholder. Reemplazar con el logo final del cliente.
+- `ic_google.xml` es el logo multicolor de Google. Usado en el botón de Sign-In.
+- `Typography` es la por defecto de M3 (`AppTypography`). Tipografía personalizada se agregaría aquí.
+
+---
+
+### Fase 3 — Fakes + DI
+
+- **`FakePetReportRepository` tiene 3 reportes** (no 2 como decía el roadmap original): Max (Golden, LOST), Luna (Siamés, FOUND), Rocky (Bulldog, LOST). Imágenes de `placedog.net` y `placekitten.com`.
+- **`FakeUserRepository` auto-crea usuario demo** al primer `observeCurrentUser()`. En Fase 12 esto migró a DataStore: primero intenta cargar del almacenamiento, si no hay nada crea el demo y lo persiste.
+- **`FakeAuthRepository` acepta cualquier código OTP de 6 dígitos.**
+- **Hilt wiring:** `RepositoryModule` (bindea 3 puertos out → Fakes) + `UseCaseModule` (bindea 11 puertos in → use cases). Ambos en `SingletonComponent`.
+- **Cambiar a Firebase = cambiar 3 líneas en `RepositoryModule`.** Nada más. Esta es la prueba de fuego de la arquitectura hexagonal.
+
+---
+
+### Fase 4 — Navegación esqueleto
+
+- **`Routes` es sealed class con `route: String`.** No se usan argumentos de navegación en este MVP.
+- Placeholder inicial: cada pantalla era un `NavPlaceholder` con botón "Continuar" para encadenar manualmente. Se reemplazó progresivamente en fases 6–11.
+- `rememberNavController()` en `AppRoot()` (MainActivity). Es importante que el NavController se cree en el nivel raíz, no dentro de `NavHost`.
+
+---
+
+### Fase 5 — Componentes reutilizables
+
+- **`AppTopBar` usa `Icons.Filled.Menu`** (no `AutoMirrored`). El ícono `AutoMirrored.Filled.Menu` no existe en la versión de material-icons-extended usada.
+- **`UserAvatar` usa `LocalInspectionMode.current`** para evitar que Coil intente cargar URLs durante las previews de Android Studio. Sin esto, las previews fallan o muestran placeholders rotos.
+- **`PetCard`:** la imagen usa `AsyncImage` con `clip(RoundedCornerShape(12.dp))`. El `MoreVert` icon está cableado pero sin acciones (futuro: reportar, compartir).
+- **`AppDrawerContent`:** "Cerrar sesión" usa `Icons.AutoMirrored.Filled.ExitToApp` (el `Filled.ExitToApp` está deprecado en M3 1.3+).
+
+---
+
+### Fases 6+7 — Splash + Profile
+
+- **Splash auto-navegación:** inicialmente solo mostraba el botón Google. En Fase 13 se agregó `navigateTo` al `SplashUiState` para decidir si saltar a Profile o Feed automáticamente.
+- **ProfileViewModel** inyecta `ObserveCurrentUser` y `UpdateUserProfile`. No inyecta repositorios. Guarda el `currentPhone` localmente para pasarlo a `updateProfile` cuando el usuario edita el nombre.
+- **`ProfileUiState.userInitial`** es derivado: `name.firstOrNull()?.uppercase() ?: "?"`. Usado por el `UserAvatar` en el `AppTopBar`.
+- **`ProfileUiState.canChangePhone`** = `phone.isBlank()`. Determina si se muestra el botón "Cambiar número telefónico".
+
+---
+
+### Fases 8+9 — OTP + Permissions
+
+- **OTP tiene DOS pasos:** 1) entrada de teléfono, 2) verificación de 6 dígitos. El roadmap original solo mencionaba el paso 2, pero el teléfono debe ingresarse en algún momento. Se implementó el flujo completo.
+- **`OtpViewModel` usa `firstOrNull()` (no `first { it != null }`):** bug corregido. `first { it != null }` cuelga indefinidamente si el Flow nunca emite no-nulo.
+- **`verificationId!!` reemplazado por `?: throw IllegalStateException`:** bug corregido. Evita NPE si el estado es inconsistente.
+- **`POST_NOTIFICATIONS` envuelto en guardia API 33+:** bug corregido. En APIs < 33 el permiso no existe.
+- **Strings hardcodeados en OtpScreen corregidos:** `otp_phone_hint`, `otp_phone_label`, `otp_btn_send` agregados a `strings.xml`.
+- **`PermissionsViewModel` es una clase vacía** con `@HiltViewModel`. El roadmap dice que no necesita puertos in. Existe para que Hilt la inyecte, pero la pantalla no usa su estado.
+- **`PermissionUtils`** maneja la diferencia API 33+ vs API < 33 para `READ_MEDIA_IMAGES` / `READ_EXTERNAL_STORAGE`.
+
+---
+
+### Fases 10+11 — Settings + Feed
+
+- **Settings persiste cada toggle inmediatamente** vía `persistPrefs()` que llama `updateNotificationPrefs` con los 3 valores actuales. No hay botón "Guardar" — es estilo Android moderno.
+- **`SettingsUiState` incluye `isSignedOut` e `isAccountDeleted`** para navegación reactiva desde `AppNavHost` vía `LaunchedEffect`.
+- **FeedViewModel usa `combine` + `flatMapLatest`:** cuando el query está vacío, usa `observeReports()` (Flow reactivo). Cuando tiene texto, usa `searchReports()` (suspend). `flatMapLatest` cancela la búsqueda anterior si el query o tab cambian.
+- **El banner de filtro** (`Surface` con `secondaryContainer`) aparece cuando `query` no está vacío. El texto usa `stringResource(R.string.feed_filter_banner)`.
+- **`FeedUiEvent.ReportClicked` y `ContactClicked`** están definidos pero no implementados (stubs para fases futuras o Fase 14 con detalle de reporte).
+- **La búsqueda es case-insensitive** (`lowercase()`). En Fase 14 con Firestore esto migrará a filtrado client-side (Firestore no soporta full-text search nativo).
+
+---
+
+### Fase 12 — DataStore
+
+- **`PrefsDataStore` usa `preferencesDataStore` delegate** de `androidx.datastore`. Se almacenan 11 claves: uid, displayName, email, phoneNumber, phoneVerified, photoUrl, 3 notificationPrefs, createdAtEpochMs, y un flag `is_logged_in`.
+- **`FakeUserRepository` carga asíncrono en init** vía `CoroutineScope(SupervisorJob() + Dispatchers.IO)`. Si no hay usuario persistido, crea el demo y lo guarda.
+- **`updateProfile` ahora setea `phoneVerified = true`** si el teléfono no está vacío. Esto cierra el ciclo: OTP verifica → updateProfile guarda teléfono → phoneVerified = true → Splash auto-navega a Feed en el próximo inicio.
+- **`deleteCurrentUserDocument` llama a `prefsDataStore.clearUser()`** que borra todas las preferencias.
+- **El DataStore se llama `"user_prefs"`** y usa `preferencesDataStore` como delegate de extensión sobre `Context`.
+
+---
+
+### Fase 13 — Drawer + Navegación final
+
+- **`DrawerShell` es un wrapper que proporciona `LocalDrawerOpener` y `LocalDrawerCloser`** via `CompositionLocal`. Cada pantalla autenticada lee `LocalDrawerOpener.current` para el `onMenuClick` de su `AppTopBar`.
+- **Cada ruta autenticada tiene su propio `DrawerShell` con su propio `DrawerState`.** Esto significa que el drawer se cierra automáticamente al navegar a otra pantalla (el `DrawerShell` se destruye y recrea).
+- **Same-screen items** (ej: "Perfil" estando en Perfil) reciben `closeDrawer()` desde el `drawerContent` del `DrawerShell`.
+- **Splash auto-navegación implementada:** `LaunchedEffect(state.navigateTo)` redirige a "profile" o "feed" limpiando el back stack con `popUpTo(Splash) { inclusive = true }`.
+- **"Cerrar sesión"** en el drawer y en Settings ejecuta `navController.navigate(Splash) { popUpTo(0) { inclusive = true } }` para limpiar TODO el back stack.
+- **`AppNavHost` ya no tiene placeholders.** Las 6 rutas usan pantallas reales.
+- **El flujo end-to-end completo es:** Splash → (auto-nav si ya logueado) → Profile → OTP → Permissions → Feed. Drawer en las 4 pantallas autenticadas permite moverse libremente entre Feed, Profile, Settings y Permissions. Cerrar sesión / Eliminar cuenta desde Settings → Splash.
+
+---
+
+### Fase 14 — Firebase (pendiente de ejecución)
+
+> Ver `FIREBASE.md` para instrucciones paso a paso en español.
+
+- **Solo 3 líneas cambian en `RepositoryModule.kt`** para pasar de Fakes a Firebase. Dominio, ViewModels y UI no se tocan.
+- **La app compila y funciona 100% con Fakes** sin Firebase. Se puede desarrollar, testear y mostrar el UI completo sin credenciales de Firebase.
+- **Pendiente por crear:** `FirebaseAuthRepository`, `FirestoreUserRepository`, `FirestorePetReportRepository`, DTOs, Mappers.
+- **La Credential Manager API** es la recomendada para Google Sign-In en 2025+ (reemplaza a `GoogleSignInClient`).
+- **Phone Auth OTP** usa `PhoneAuthProvider.verifyPhoneNumber()` con callback `onCodeSent` para obtener el `verificationId`.
+- **Firestore no soporta full-text search.** La búsqueda en `FirestorePetReportRepository` debe ser client-side (filtrar resultados de la query).
