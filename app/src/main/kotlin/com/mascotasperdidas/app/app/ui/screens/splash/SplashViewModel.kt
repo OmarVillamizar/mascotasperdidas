@@ -3,6 +3,7 @@ package com.mascotasperdidas.app.app.ui.screens.splash
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mascotasperdidas.app.domain.port.`in`.ObserveCurrentUser
+import com.mascotasperdidas.app.domain.port.`in`.SignInWithGoogle
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -13,6 +14,7 @@ import javax.inject.Inject
 @HiltViewModel
 class SplashViewModel @Inject constructor(
     private val observeCurrentUser: ObserveCurrentUser,
+    private val signInWithGoogle: SignInWithGoogle,
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(SplashUiState())
@@ -41,7 +43,25 @@ class SplashViewModel @Inject constructor(
     fun onEvent(event: SplashUiEvent) {
         when (event) {
             SplashUiEvent.ContinueWithGoogle -> {
-                // Fase 14: aquí se llamará signInWithGoogle use case
+                // El GoogleSignInClient se lanza desde AppNavHost.
+                // El ViewModel marca isSigningIn = true mientras espera el resultado.
+                _uiState.value = _uiState.value.copy(isSigningIn = true)
+            }
+        }
+    }
+
+    fun onGoogleSignInResult(idToken: String) {
+        viewModelScope.launch {
+            try {
+                signInWithGoogle(idToken)
+                // No navegamos aquí — observeCurrentUser emitirá el nuevo usuario
+                // y el init lo detectará, seteando navigateTo = "profile"
+                _uiState.value = _uiState.value.copy(isSigningIn = false)
+            } catch (e: Exception) {
+                _uiState.value = _uiState.value.copy(
+                    isSigningIn = false,
+                    isCheckingAuth = false,
+                )
             }
         }
     }

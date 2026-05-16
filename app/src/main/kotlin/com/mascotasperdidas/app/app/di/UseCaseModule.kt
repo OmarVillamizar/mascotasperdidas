@@ -2,6 +2,7 @@ package com.mascotasperdidas.app.app.di
 
 import com.mascotasperdidas.app.domain.port.`in`.CreateReport
 import com.mascotasperdidas.app.domain.port.`in`.DeleteAccount
+import com.mascotasperdidas.app.domain.port.`in`.DeleteReport
 import com.mascotasperdidas.app.domain.port.`in`.ObserveCurrentUser
 import com.mascotasperdidas.app.domain.port.`in`.ObserveReports
 import com.mascotasperdidas.app.domain.port.`in`.RequestPhoneOtp
@@ -13,6 +14,7 @@ import com.mascotasperdidas.app.domain.port.`in`.UpdateUserProfile
 import com.mascotasperdidas.app.domain.port.`in`.VerifyPhoneOtp
 import com.mascotasperdidas.app.domain.usecase.CreateReportImpl
 import com.mascotasperdidas.app.domain.usecase.DeleteAccountImpl
+import com.mascotasperdidas.app.domain.usecase.DeleteReportImpl
 import com.mascotasperdidas.app.domain.usecase.ObserveCurrentUserImpl
 import com.mascotasperdidas.app.domain.usecase.ObserveReportsImpl
 import com.mascotasperdidas.app.domain.usecase.RequestPhoneOtpImpl
@@ -63,4 +65,7 @@ abstract class UseCaseModule {
 
     @Binds
     abstract fun bindSearchReports(impl: SearchReportsImpl): SearchReports
+
+    @Binds
+    abstract fun bindDeleteReport(impl: DeleteReportImpl): DeleteReport
 }

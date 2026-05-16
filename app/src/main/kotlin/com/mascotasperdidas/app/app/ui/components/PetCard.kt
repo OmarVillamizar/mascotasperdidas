@@ -1,6 +1,7 @@
 package com.mascotasperdidas.app.app.ui.components
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -11,10 +12,13 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.MoreVert
+import androidx.compose.material.icons.outlined.Delete
 import androidx.compose.material3.AssistChip
 import androidx.compose.material3.AssistChipDefaults
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Icon
@@ -22,6 +26,10 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -42,7 +50,11 @@ fun PetCard(
     onMoreInfoClick: () -> Unit,
     onContactClick: () -> Unit,
     modifier: Modifier = Modifier,
+    isOwner: Boolean = false,
+    onDeleteClick: () -> Unit = {},
 ) {
+    var menuExpanded by remember { mutableStateOf(false) }
+
     ElevatedCard(
         shape = RoundedCornerShape(20.dp),
         modifier = modifier.fillMaxWidth(),
@@ -73,11 +85,39 @@ fun PetCard(
                         overflow = TextOverflow.Ellipsis,
                     )
                 }
-                IconButton(onClick = { /* TODO: menu actions */ }) {
-                    Icon(
-                        imageVector = Icons.Filled.MoreVert,
-                        contentDescription = null,
-                    )
+                if (isOwner) {
+                    Box {
+                        IconButton(onClick = { menuExpanded = true }) {
+                            Icon(
+                                imageVector = Icons.Filled.MoreVert,
+                                contentDescription = null,
+                            )
+                        }
+                        DropdownMenu(
+                            expanded = menuExpanded,
+                            onDismissRequest = { menuExpanded = false },
+                        ) {
+                            DropdownMenuItem(
+                                text = {
+                                    Text(
+                                        text = "Eliminar",
+                                        color = MaterialTheme.colorScheme.error,
+                                    )
+                                },
+                                leadingIcon = {
+                                    Icon(
+                                        imageVector = Icons.Outlined.Delete,
+                                        contentDescription = null,
+                                        tint = MaterialTheme.colorScheme.error,
+                                    )
+                                },
+                                onClick = {
+                                    menuExpanded = false
+                                    onDeleteClick()
+                                },
+                            )
+                        }
+                    }
                 }
             }
 
@@ -172,7 +212,6 @@ fun PetCard(
     }
 }
 
-// ── Mock data para previews ────────────────────────────────────────
 private val sampleReport = PetReport(
     id = "preview-001",
     ownerUid = "user-001",
@@ -190,12 +229,14 @@ private val sampleReport = PetReport(
 
 @Preview(showBackground = true)
 @Composable
-private fun PetCardLostPreview() {
+private fun PetCardOwnerPreview() {
     MascotasPerdidasTheme {
         PetCard(
             report = sampleReport,
+            isOwner = true,
             onMoreInfoClick = {},
             onContactClick = {},
+            onDeleteClick = {},
             modifier = Modifier.padding(16.dp),
         )
     }
@@ -210,8 +251,9 @@ private fun PetCardFoundPreview() {
                 type = ReportType.FOUND,
                 petName = "Luna",
                 breed = "Siamés",
-                imageUrl = "https://placekitten.com/400/300",
+                imageUrl = "https://picsum.photos/seed/luna-cat/400/300",
             ),
+            isOwner = false,
             onMoreInfoClick = {},
             onContactClick = {},
             modifier = Modifier.padding(16.dp),

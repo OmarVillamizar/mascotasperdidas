@@ -1,16 +1,25 @@
 package com.mascotasperdidas.app.app.navigation
 
+import android.app.Activity
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
+import com.mascotasperdidas.app.R
 import com.mascotasperdidas.app.app.ui.components.AppDrawerContent
 import com.mascotasperdidas.app.app.ui.components.DrawerShell
 import com.mascotasperdidas.app.app.ui.screens.feed.FeedScreen
@@ -21,6 +30,7 @@ import com.mascotasperdidas.app.app.ui.screens.permissions.PermissionsScreen
 import com.mascotasperdidas.app.app.ui.screens.profile.ProfileScreen
 import com.mascotasperdidas.app.app.ui.screens.profile.ProfileViewModel
 import com.mascotasperdidas.app.app.ui.screens.settings.SettingsScreen
+import com.mascotasperdidas.app.app.ui.screens.settings.SettingsUiEvent
 import com.mascotasperdidas.app.app.ui.screens.settings.SettingsViewModel
 import com.mascotasperdidas.app.app.ui.screens.splash.SplashScreen
 import com.mascotasperdidas.app.app.ui.screens.splash.SplashUiEvent
@@ -36,6 +46,37 @@ fun AppNavHost(navController: NavHostController) {
         composable(Routes.Splash.route) {
             val viewModel: SplashViewModel = hiltViewModel()
             val state by viewModel.uiState.collectAsState()
+            val context = LocalContext.current
+
+            // Google Sign-In client
+            val signInOptions = remember {
+                GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                    .requestIdToken(context.getString(R.string.default_web_client_id))
+                    .requestEmail()
+                    .build()
+            }
+            val googleSignInClient = remember { GoogleSignIn.getClient(context, signInOptions) }
+
+            val launcher = rememberLauncherForActivityResult(
+                contract = ActivityResultContracts.StartActivityForResult(),
+            ) { result ->
+                if (result.resultCode != Activity.RESULT_OK) {
+                    viewModel.onEvent(
+                        SplashUiEvent.ContinueWithGoogle // fallback, no cambia nada real
+                    )
+                    return@rememberLauncherForActivityResult
+                }
+                try {
+                    val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
+                    val account = task.getResult(ApiException::class.java)
+                    val idToken = account.idToken ?: return@rememberLauncherForActivityResult
+                    viewModel.onGoogleSignInResult(idToken)
+                } catch (_: ApiException) {
+                    viewModel.onEvent(
+                        SplashUiEvent.ContinueWithGoogle // fallback
+                    )
+                }
+            }
 
             LaunchedEffect(state.navigateTo) {
                 when (state.navigateTo) {
@@ -51,9 +92,11 @@ fun AppNavHost(navController: NavHostController) {
             SplashScreen(
                 state = state,
                 onEvent = { event ->
-                    viewModel.onEvent(event)
-                    if (event is SplashUiEvent.ContinueWithGoogle) {
-                        navController.navigate(Routes.Profile.route)
+                    when (event) {
+                        SplashUiEvent.ContinueWithGoogle -> {
+                            viewModel.onEvent(event)
+                            launcher.launch(googleSignInClient.signInIntent)
+                        }
                     }
                 },
             )
@@ -68,11 +111,7 @@ fun AppNavHost(navController: NavHostController) {
                         onProfileClick = { closeDrawer() },
                         onSettingsClick = { navController.navigate(Routes.Settings.route) },
                         onPermissionsClick = { navController.navigate(Routes.Permissions.route) },
-                        onSignOutClick = {
-                            navController.navigate(Routes.Splash.route) {
-                                popUpTo(0) { inclusive = true }
-                            }
-                        },
+                        onSignOutClick = { navController.navigate(Routes.Settings.route) },
                     )
                 },
             ) {
@@ -116,11 +155,7 @@ fun AppNavHost(navController: NavHostController) {
                         onProfileClick = { navController.navigate(Routes.Profile.route) },
                         onSettingsClick = { navController.navigate(Routes.Settings.route) },
                         onPermissionsClick = { closeDrawer() },
-                        onSignOutClick = {
-                            navController.navigate(Routes.Splash.route) {
-                                popUpTo(0) { inclusive = true }
-                            }
-                        },
+                        onSignOutClick = { navController.navigate(Routes.Settings.route) },
                     )
                 },
             ) {
@@ -143,11 +178,7 @@ fun AppNavHost(navController: NavHostController) {
                         onProfileClick = { navController.navigate(Routes.Profile.route) },
                         onSettingsClick = { navController.navigate(Routes.Settings.route) },
                         onPermissionsClick = { navController.navigate(Routes.Permissions.route) },
-                        onSignOutClick = {
-                            navController.navigate(Routes.Splash.route) {
-                                popUpTo(0) { inclusive = true }
-                            }
-                        },
+                        onSignOutClick = { navController.navigate(Routes.Settings.route) },
                     )
                 },
             ) {
@@ -163,6 +194,25 @@ fun AppNavHost(navController: NavHostController) {
 
         // ── Settings (con drawer) ───────────────────────────────────
         composable(Routes.Settings.route) {
+            val viewModel: SettingsViewModel = hiltViewModel()
+            val state by viewModel.uiState.collectAsState()
+
+            LaunchedEffect(state.isSignedOut) {
+                if (state.isSignedOut) {
+                    navController.navigate(Routes.Splash.route) {
+                        popUpTo(Routes.Splash.route) { inclusive = true }
+                    }
+                }
+            }
+
+            LaunchedEffect(state.isAccountDeleted) {
+                if (state.isAccountDeleted) {
+                    navController.navigate(Routes.Splash.route) {
+                        popUpTo(Routes.Splash.route) { inclusive = true }
+                    }
+                }
+            }
+
             DrawerShell(
                 drawerContent = { closeDrawer ->
                     AppDrawerContent(
@@ -171,32 +221,11 @@ fun AppNavHost(navController: NavHostController) {
                         onSettingsClick = { closeDrawer() },
                         onPermissionsClick = { navController.navigate(Routes.Permissions.route) },
                         onSignOutClick = {
-                            navController.navigate(Routes.Splash.route) {
-                                popUpTo(0) { inclusive = true }
-                            }
+                            viewModel.onEvent(SettingsUiEvent.SignOut)
                         },
                     )
                 },
             ) {
-                val viewModel: SettingsViewModel = hiltViewModel()
-                val state by viewModel.uiState.collectAsState()
-
-                LaunchedEffect(state.isSignedOut) {
-                    if (state.isSignedOut) {
-                        navController.navigate(Routes.Splash.route) {
-                            popUpTo(0) { inclusive = true }
-                        }
-                    }
-                }
-
-                LaunchedEffect(state.isAccountDeleted) {
-                    if (state.isAccountDeleted) {
-                        navController.navigate(Routes.Splash.route) {
-                            popUpTo(0) { inclusive = true }
-                        }
-                    }
-                }
-
                 SettingsScreen(
                     state = state,
                     onEvent = viewModel::onEvent,

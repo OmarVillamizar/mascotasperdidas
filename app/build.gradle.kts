@@ -5,7 +5,7 @@ plugins {
     alias(libs.plugins.hilt)
     alias(libs.plugins.ksp)
     alias(libs.plugins.detekt)
-    // alias(libs.plugins.google.services)  // uncomment in Phase 14 when google-services.json is added
+    alias(libs.plugins.google.services)
 }
 
 android {
@@ -80,12 +80,12 @@ dependencies {
     ksp(libs.hilt.android.compiler)
     implementation(libs.hilt.navigation.compose)
 
-    // Firebase (uncomment in Phase 14)
-    // implementation(platform(libs.firebase.bom))
-    // implementation(libs.firebase.auth.ktx)
-    // implementation(libs.firebase.firestore.ktx)
-    // implementation(libs.firebase.storage.ktx)
-    // implementation(libs.play.services.auth)
+    // Firebase
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.auth.ktx)
+    implementation(libs.firebase.firestore.ktx)
+    implementation(libs.firebase.storage.ktx)
+    implementation(libs.play.services.auth)
 
     // Coil
     implementation(libs.coil.compose)

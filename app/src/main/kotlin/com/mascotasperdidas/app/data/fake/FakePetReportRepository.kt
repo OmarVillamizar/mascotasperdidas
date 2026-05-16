@@ -68,6 +68,10 @@ class FakePetReportRepository @Inject constructor() : PetReportRepository {
 
     override fun observeReports(type: ReportType): Flow<List<PetReport>> = _reports.asStateFlow()
 
+    override suspend fun deleteReport(id: String) {
+        _reports.value = _reports.value.filter { it.id != id }
+    }
+
     override suspend fun createReport(report: PetReport, imageBytes: ByteArray?) {
         val newReport = report.copy(
             id = "report-${UUID.randomUUID()}",
