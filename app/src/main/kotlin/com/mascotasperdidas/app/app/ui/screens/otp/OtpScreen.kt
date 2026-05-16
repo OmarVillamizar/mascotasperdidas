@@ -7,13 +7,11 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
@@ -24,7 +22,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
@@ -94,7 +91,7 @@ private fun PhoneStep(
     onSendCode: () -> Unit,
 ) {
     Text(
-        text = "Ingresa tu número de teléfono",
+        text = stringResource(R.string.otp_phone_hint),
         style = MaterialTheme.typography.bodyLarge,
         color = MaterialTheme.colorScheme.onBackground,
         modifier = Modifier.padding(bottom = 24.dp),
@@ -107,7 +104,7 @@ private fun PhoneStep(
             val filtered = newValue.filter { it.isDigit() || it in "+() -" }
             onPhoneChanged(filtered)
         },
-        label = { Text("Teléfono") },
+        label = { Text(stringResource(R.string.otp_phone_label)) },
         singleLine = true,
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Phone),
         enabled = !isVerifying,
@@ -120,7 +117,7 @@ private fun PhoneStep(
             .fillMaxWidth()
             .padding(top = 16.dp),
     ) {
-        Text("Enviar código")
+        Text(stringResource(R.string.otp_btn_send))
     }
 }
 

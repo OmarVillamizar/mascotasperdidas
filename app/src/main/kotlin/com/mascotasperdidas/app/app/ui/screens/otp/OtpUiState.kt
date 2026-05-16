@@ -9,6 +9,6 @@ data class OtpUiState(
     val error: String? = null,
 ) {
     val isPhoneStep: Boolean get() = verificationId == null
-    val canSendCode: Boolean get() = phoneInput.length >= 10
+    val canSendCode: Boolean get() = phoneInput.filter { it.isDigit() }.length >= 10
     val canConfirm: Boolean get() = digits.all { it.isNotEmpty() }
 }

@@ -10,7 +10,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -31,11 +31,11 @@ class OtpViewModel @Inject constructor(
     init {
         viewModelScope.launch {
             try {
-                val user = observeCurrentUser().first { it != null }
-                user?.let { u ->
-                    currentName = u.displayName
-                    if (u.phoneNumber.isNotBlank()) {
-                        _uiState.update { it.copy(phoneInput = u.phoneNumber) }
+                val user = observeCurrentUser().firstOrNull()
+                if (user != null) {
+                    currentName = user.displayName
+                    if (user.phoneNumber.isNotBlank()) {
+                        _uiState.update { it.copy(phoneInput = user.phoneNumber) }
                     }
                 }
             } catch (_: Exception) {
@@ -81,7 +81,8 @@ class OtpViewModel @Inject constructor(
             _uiState.update { it.copy(isVerifying = true, error = null) }
             try {
                 val code = _uiState.value.digits.joinToString("")
-                val vid = _uiState.value.verificationId!!
+                val vid = _uiState.value.verificationId
+                    ?: throw IllegalStateException("Verification ID missing")
                 verifyPhoneOtp(vid, code)
                 // Actualizar teléfono del usuario tras verificación exitosa
                 val phone = _uiState.value.phoneInput.trim()

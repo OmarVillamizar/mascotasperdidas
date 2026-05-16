@@ -14,7 +14,9 @@ object PermissionUtils {
 
     fun getRequiredPermissions(): List<PermissionDef> = buildList {
         add(PermissionDef(com.mascotasperdidas.app.R.string.permissions_camera, Manifest.permission.CAMERA))
-        add(PermissionDef(com.mascotasperdidas.app.R.string.permissions_notifications, Manifest.permission.POST_NOTIFICATIONS))
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            add(PermissionDef(com.mascotasperdidas.app.R.string.permissions_notifications, Manifest.permission.POST_NOTIFICATIONS))
+        }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             add(PermissionDef(com.mascotasperdidas.app.R.string.permissions_storage, Manifest.permission.READ_MEDIA_IMAGES))
         } else {

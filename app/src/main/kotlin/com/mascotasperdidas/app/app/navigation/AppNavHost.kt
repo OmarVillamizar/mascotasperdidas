@@ -1,29 +1,24 @@
 package com.mascotasperdidas.app.app.navigation
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Button
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.mascotasperdidas.app.app.ui.screens.feed.FeedScreen
+import com.mascotasperdidas.app.app.ui.screens.feed.FeedViewModel
 import com.mascotasperdidas.app.app.ui.screens.otp.OtpScreen
 import com.mascotasperdidas.app.app.ui.screens.otp.OtpViewModel
 import com.mascotasperdidas.app.app.ui.screens.permissions.PermissionsScreen
-import com.mascotasperdidas.app.app.ui.screens.permissions.PermissionsViewModel
 import com.mascotasperdidas.app.app.ui.screens.profile.ProfileScreen
 import com.mascotasperdidas.app.app.ui.screens.profile.ProfileViewModel
+import com.mascotasperdidas.app.app.ui.screens.settings.SettingsScreen
+import com.mascotasperdidas.app.app.ui.screens.settings.SettingsViewModel
 import com.mascotasperdidas.app.app.ui.screens.splash.SplashScreen
 import com.mascotasperdidas.app.app.ui.screens.splash.SplashUiEvent
 import com.mascotasperdidas.app.app.ui.screens.splash.SplashViewModel
@@ -84,9 +79,6 @@ fun AppNavHost(navController: NavHostController) {
 
         // ── Permissions ─────────────────────────────────────────────
         composable(Routes.Permissions.route) {
-            // PermissionsViewModel se inyecta via hiltViewModel pero no se usa state
-            hiltViewModel<PermissionsViewModel>()
-
             PermissionsScreen(
                 onContinueToFeed = {
                     navController.navigate(Routes.Feed.route) {
@@ -96,39 +88,45 @@ fun AppNavHost(navController: NavHostController) {
             )
         }
 
-        // ── Placeholders (Fase 10–11) ───────────────────────────────
+        // ── Feed ────────────────────────────────────────────────────
         composable(Routes.Feed.route) {
-            NavPlaceholder("Feed → Settings", Routes.Settings.route, navController)
-        }
-        composable(Routes.Settings.route) {
-            NavPlaceholder("Settings → Splash", Routes.Splash.route, navController)
-        }
-    }
-}
+            val viewModel: FeedViewModel = hiltViewModel()
+            val state by viewModel.uiState.collectAsState()
 
-@Composable
-private fun NavPlaceholder(
-    label: String,
-    nextRoute: String,
-    navController: NavHostController,
-) {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(32.dp),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally,
-    ) {
-        Text(
-            text = label,
-            style = MaterialTheme.typography.headlineSmall,
-            color = MaterialTheme.colorScheme.primary,
-        )
-        Button(
-            onClick = { navController.navigate(nextRoute) },
-            modifier = Modifier.padding(top = 24.dp),
-        ) {
-            Text("Continuar")
+            FeedScreen(
+                state = state,
+                onEvent = viewModel::onEvent,
+            )
+        }
+
+        // ── Settings ────────────────────────────────────────────────
+        composable(Routes.Settings.route) {
+            val viewModel: SettingsViewModel = hiltViewModel()
+            val state by viewModel.uiState.collectAsState()
+
+            LaunchedEffect(state.isSignedOut) {
+                if (state.isSignedOut) {
+                    navController.navigate(Routes.Splash.route) {
+                        popUpTo(0) { inclusive = true }
+                    }
+                }
+            }
+
+            LaunchedEffect(state.isAccountDeleted) {
+                if (state.isAccountDeleted) {
+                    navController.navigate(Routes.Splash.route) {
+                        popUpTo(0) { inclusive = true }
+                    }
+                }
+            }
+
+            SettingsScreen(
+                state = state,
+                onEvent = viewModel::onEvent,
+                onNavigateToPermissions = {
+                    navController.navigate(Routes.Permissions.route)
+                },
+            )
         }
     }
 }

@@ -19,6 +19,9 @@
     <!-- OTP -->
     <string name="otp_title">Verificación de Teléfono Celular</string>
     <string name="otp_subtitle">Enviamos un código de 6 dígitos por SMS al teléfono que digitaste</string>
+    <string name="otp_phone_hint">Ingresa tu número de teléfono</string>
+    <string name="otp_phone_label">Teléfono</string>
+    <string name="otp_btn_send">Enviar código</string>
     <string name="otp_btn_confirm">Confirmar</string>
 
     <!-- Permissions -->
