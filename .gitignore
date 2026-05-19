@@ -18,13 +18,6 @@ app/build/
 .DS_Store
 Thumbs.db
 
-## IDEs
-*.iws
-*.ipr
-out/
-.vscode/
-*.swp
-
 ## Kotlin DSL
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
