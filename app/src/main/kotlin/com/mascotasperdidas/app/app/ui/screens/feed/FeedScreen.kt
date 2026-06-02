@@ -179,7 +179,9 @@ fun FeedScreen(
                                 report = report,
                                 isOwner = state.currentUserUid != null &&
                                     state.currentUserUid == report.ownerUid,
-                                onMoreInfoClick = { onEvent(FeedUiEvent.ReportClicked(report.id)) },
+                                onMoreInfoClick = {
+                                    onNavigateToReportDetail(report.id, report.type.name)
+                                },
                                 onContactClick = { onEvent(FeedUiEvent.ContactClicked(report.id)) },
                                 onDeleteClick = { onEvent(FeedUiEvent.DeleteReport(report.id)) },
                             )

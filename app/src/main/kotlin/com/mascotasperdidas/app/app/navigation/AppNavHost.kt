@@ -34,6 +34,8 @@ import com.mascotasperdidas.app.app.ui.screens.profile.ProfileViewModel
 import com.mascotasperdidas.app.app.ui.screens.settings.SettingsScreen
 import com.mascotasperdidas.app.app.ui.screens.settings.SettingsUiEvent
 import com.mascotasperdidas.app.app.ui.screens.settings.SettingsViewModel
+import com.mascotasperdidas.app.app.ui.screens.report.detail.ReportDetailScreen
+import com.mascotasperdidas.app.app.ui.screens.report.detail.ReportDetailViewModel
 import com.mascotasperdidas.app.app.ui.screens.splash.SplashScreen
 import com.mascotasperdidas.app.app.ui.screens.splash.SplashUiEvent
 import com.mascotasperdidas.app.app.ui.screens.splash.SplashViewModel
@@ -208,7 +210,7 @@ fun AppNavHost(navController: NavHostController) {
             PlaceholderScreen(label = "Formulario Bajo Cuidado")
         }
 
-        // ── Report Detail (impl in Phase 2D-1) ──────────────────────────
+        // ── Report Detail ────────────────────────────────────────────────
         composable(
             route = Routes.ReportDetail.route,
             arguments = listOf(
@@ -216,7 +218,18 @@ fun AppNavHost(navController: NavHostController) {
                 navArgument(Routes.ReportDetail.ARG_REPORT_TYPE) { type = NavType.StringType },
             ),
         ) {
-            PlaceholderScreen(label = "Detalle de Reporte")
+            val viewModel: ReportDetailViewModel = hiltViewModel()
+            val state by viewModel.uiState.collectAsState()
+
+            LaunchedEffect(Unit) {
+                viewModel.navigateBack.collect { navController.popBackStack() }
+            }
+
+            ReportDetailScreen(
+                state = state,
+                onEvent = viewModel::onEvent,
+                onNavigateBack = { navController.popBackStack() },
+            )
         }
 
         // ── Report Confirmed (impl in Phase 2D-3) ────────────────────────
