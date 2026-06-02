@@ -22,10 +22,10 @@ import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExposedDropdownMenuBox
 import androidx.compose.material3.ExposedDropdownMenuDefaults
-import androidx.compose.material3.MenuAnchorType
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.MenuAnchorType
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
@@ -50,7 +50,7 @@ import com.mascotasperdidas.app.app.ui.components.LocalDrawerOpener
 import com.mascotasperdidas.app.app.ui.components.PetCard
 import com.mascotasperdidas.app.domain.model.PetReport
 import com.mascotasperdidas.app.domain.model.ReportType
-import com.mascotasperdidas.app.domain.model.ReportType.FOUND
+import com.mascotasperdidas.app.domain.model.ReportType.FOUND_SIGHTING
 import com.mascotasperdidas.app.domain.model.ReportType.LOST
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -139,8 +139,8 @@ fun FeedScreen(
                     text = { Text(stringResource(R.string.feed_tab_lost)) },
                 )
                 Tab(
-                    selected = state.selectedTab == FOUND,
-                    onClick = { onEvent(FeedUiEvent.TabSelected(FOUND)) },
+                    selected = state.selectedTab != LOST,
+                    onClick = { onEvent(FeedUiEvent.TabSelected(FOUND_SIGHTING)) },
                     text = { Text(stringResource(R.string.feed_tab_found)) },
                 )
             }
@@ -224,13 +224,12 @@ private fun CreateReportDialog(
                     modifier = Modifier.fillMaxWidth(),
                 )
 
-                // ── Tipo (Perdido / Hallazgo) ──────────────────────────
                 ExposedDropdownMenuBox(
                     expanded = typeExpanded,
                     onExpandedChange = { typeExpanded = it },
                 ) {
                     OutlinedTextField(
-                        value = if (state.newReportType == ReportType.LOST) "Perdido" else "Hallazgo",
+                        value = if (state.newReportType == ReportType.LOST) "Perdido" else "Avistamiento",
                         onValueChange = {},
                         readOnly = true,
                         label = { Text("Tipo") },
@@ -253,16 +252,15 @@ private fun CreateReportDialog(
                             },
                         )
                         DropdownMenuItem(
-                            text = { Text("Hallazgo") },
+                            text = { Text("Avistamiento") },
                             onClick = {
-                                onEvent(FeedUiEvent.NewReportTypeChanged(ReportType.FOUND))
+                                onEvent(FeedUiEvent.NewReportTypeChanged(ReportType.FOUND_SIGHTING))
                                 typeExpanded = false
                             },
                         )
                     }
                 }
 
-                // ── Imagen ────────────────────────────────────────────
                 ExposedDropdownMenuBox(
                     expanded = imageExpanded,
                     onExpandedChange = { imageExpanded = it },
@@ -339,15 +337,15 @@ private val sampleReports = listOf(
         id = "pv-001", ownerUid = "u1", ownerInitial = "M", petName = "Max",
         type = LOST, breed = "Golden Retriever",
         description = "Max se escapó de casa el lunes por la tarde. Lleva collar rojo.",
-        location = "Parque Simón Bolívar, Bogotá",
+        location = "Parque Simón Bolívar, Cúcuta",
         imageUrl = "https://placedog.net/400/300?id=1",
         recencyLabel = "RECIENTE", createdAtEpochMs = System.currentTimeMillis(),
     ),
     PetReport(
         id = "pv-002", ownerUid = "u2", ownerInitial = "A", petName = "Luna",
-        type = FOUND, breed = "Siamés",
+        type = FOUND_SIGHTING, breed = "Siamés",
         description = "Encontrada cerca del centro comercial. Collar azul sin placa.",
-        location = "Centro Comercial Andino, Bogotá",
+        location = "Centro Comercial Ventura Plaza, Cúcuta",
         imageUrl = "https://picsum.photos/seed/luna-cat/400/300",
         recencyLabel = "RECIENTE", createdAtEpochMs = System.currentTimeMillis(),
     ),

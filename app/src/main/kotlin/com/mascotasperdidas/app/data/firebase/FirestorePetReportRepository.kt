@@ -56,7 +56,6 @@ class FirestorePetReportRepository @Inject constructor(
         awaitClose { listener.remove() }
     }
 
-    // Seeds demo data once; checks by sentinel petName so user reports don't block seeding.
     private suspend fun seedIfEmpty(ownerUid: String) {
         val alreadySeeded = firestore.collection("pet_reports")
             .whereEqualTo("petName", "Max")
@@ -75,37 +74,59 @@ class FirestorePetReportRepository @Inject constructor(
             PetReportDto(
                 ownerUid = ownerUid,
                 ownerInitial = "M",
+                ownerName = "María García",
                 petName = "Max",
                 type = "LOST",
                 breed = "Golden Retriever",
+                species = "Perro",
+                gender = "Macho",
+                color = "Dorado",
                 description = "Se escapó de casa el lunes por la tarde. Lleva collar rojo con placa.",
-                location = "Parque Simón Bolívar, Bogotá",
+                location = "Parque Simón Bolívar, Cúcuta",
                 imageUrl = "https://placedog.net/400/300?id=1",
                 recencyLabel = "RECIENTE",
+                latitude = 7.8939,
+                longitude = -72.5078,
+                statuses = listOf("RECIENTE"),
                 createdAt = Timestamp(now.seconds - 86400, 0),
             ),
             PetReportDto(
                 ownerUid = ownerUid,
                 ownerInitial = "L",
+                ownerName = "Luis Morales",
                 petName = "Luna",
-                type = "FOUND",
+                type = "FOUND_SIGHTING",
                 breed = "Siamés",
+                species = "Gato",
+                gender = "Hembra",
+                color = "Crema",
                 description = "Encontrada cerca del centro comercial. Collar azul sin placa.",
-                location = "Centro Comercial Andino, Bogotá",
+                location = "Centro Comercial Ventura Plaza, Cúcuta",
                 imageUrl = "https://picsum.photos/seed/luna-cat/400/300",
                 recencyLabel = "RECIENTE",
+                latitude = 7.8820,
+                longitude = -72.4960,
+                statuses = listOf("RECIENTE"),
                 createdAt = Timestamp(now.seconds - 7200, 0),
             ),
             PetReportDto(
                 ownerUid = ownerUid,
                 ownerInitial = "R",
+                ownerName = "Rosa Quintero",
                 petName = "Rocky",
-                type = "LOST",
+                type = "FOUND_IN_CARE",
                 breed = "Bulldog Francés",
-                description = "Salió corriendo por la puerta del jardín. Color gris atigrado, arnés azul.",
-                location = "Zona Rosa, Bogotá",
+                species = "Perro",
+                gender = "Macho",
+                color = "Gris atigrado",
+                description = "Lo encontré deambulando. Está bajo mi cuidado temporal hasta encontrar a su dueño.",
+                location = "Zona Rosa, Cúcuta",
                 imageUrl = "https://placedog.net/400/300?id=3",
                 recencyLabel = "RECIENTE",
+                urgency = "ALTA",
+                latitude = 7.9015,
+                longitude = -72.5120,
+                statuses = listOf("RECIENTE"),
                 createdAt = Timestamp(now.seconds - 21600, 0),
             ),
         )
@@ -118,19 +139,23 @@ class FirestorePetReportRepository @Inject constructor(
         firestore.collection("pet_reports").document(id).delete().await()
     }
 
-    override suspend fun createReport(report: PetReport, imageBytes: ByteArray?) {
+    override suspend fun createReport(report: PetReport, imageBytesList: List<ByteArray>) {
         val uid = currentUid ?: return
 
-        var imageUrl = report.imageUrl
-        if (imageBytes != null && imageBytes.isNotEmpty()) {
-            val storageRef = storage.reference
-                .child("pet_reports/$uid/${UUID.randomUUID()}.jpg")
-            storageRef.putBytes(imageBytes).await()
-            imageUrl = storageRef.downloadUrl.await().toString()
+        val uploadedUrls = imageBytesList.map { bytes ->
+            val ref = storage.reference.child("pet_reports/$uid/${UUID.randomUUID()}.jpg")
+            ref.putBytes(bytes).await()
+            ref.downloadUrl.await().toString()
         }
 
+        val primaryUrl = uploadedUrls.firstOrNull() ?: report.imageUrl
+        val extraUrls = if (uploadedUrls.size > 1) uploadedUrls.drop(1) else report.additionalPhotos
+
         val docRef = firestore.collection("pet_reports").document()
-        val dto = report.toDto().copy(imageUrl = imageUrl)
+        val dto = report.toDto().copy(
+            imageUrl = primaryUrl,
+            additionalPhotos = extraUrls,
+        )
         docRef.set(dto).await()
     }
 

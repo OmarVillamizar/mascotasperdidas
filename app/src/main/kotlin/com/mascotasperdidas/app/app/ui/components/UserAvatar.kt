@@ -10,6 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.text.style.TextAlign
@@ -25,6 +26,7 @@ fun UserAvatar(
     photoUrl: String?,
     modifier: Modifier = Modifier,
     size: Dp = 40.dp,
+    containerColor: Color = MaterialTheme.colorScheme.primaryContainer,
 ) {
     val firstChar = initial.firstOrNull()?.uppercase() ?: "?"
 
@@ -42,7 +44,7 @@ fun UserAvatar(
             modifier = modifier
                 .size(size)
                 .clip(CircleShape)
-                .background(MaterialTheme.colorScheme.primaryContainer),
+                .background(containerColor),
             contentAlignment = Alignment.Center,
         ) {
             Text(
@@ -65,8 +67,13 @@ private fun UserAvatarInitialPreview() {
 
 @Preview(showBackground = true)
 @Composable
-private fun UserAvatarPhotoPreview() {
+private fun UserAvatarCustomColorPreview() {
     MascotasPerdidasTheme {
-        UserAvatar(initial = "A", photoUrl = "https://placekitten.com/100/100", size = 48.dp)
+        UserAvatar(
+            initial = "R",
+            photoUrl = null,
+            size = 48.dp,
+            containerColor = MaterialTheme.colorScheme.tertiaryContainer,
+        )
     }
 }

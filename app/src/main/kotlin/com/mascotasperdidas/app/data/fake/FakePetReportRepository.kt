@@ -5,7 +5,7 @@ import com.mascotasperdidas.app.domain.model.ReportType
 import com.mascotasperdidas.app.domain.port.out.PetReportRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.map
 import java.util.UUID
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -15,64 +15,79 @@ class FakePetReportRepository @Inject constructor() : PetReportRepository {
 
     private val now = System.currentTimeMillis()
 
-    // ── Datos hardcodeados de los mockups ─────────────────────────
     private val seed = mutableListOf(
         PetReport(
             id = "report-001",
             ownerUid = "fake-uid-001",
             ownerInitial = "M",
+            ownerName = "María García",
             petName = "Max",
             type = ReportType.LOST,
             breed = "Golden Retriever",
+            species = "Perro",
+            gender = "Macho",
+            color = "Dorado",
             description = "Max se escapó de casa el lunes por la tarde. Lleva collar " +
-                "rojo con placa de identificación. Es muy amigable pero puede estar asustado. " +
-                "Responde a su nombre y le encantan los premios.",
-            location = "Parque Simón Bolívar, Bogotá",
+                "rojo con placa de identificación. Es muy amigable pero puede estar asustado.",
+            location = "Parque Simón Bolívar, Cúcuta",
             imageUrl = "https://placedog.net/400/300?id=1",
             recencyLabel = "RECIENTE",
-            createdAtEpochMs = now - 24 * 60 * 60 * 1000L, // hace 1 día
+            latitude = 7.8939,
+            longitude = -72.5078,
+            createdAtEpochMs = now - 24 * 60 * 60 * 1000L,
         ),
         PetReport(
             id = "report-002",
             ownerUid = "fake-uid-002",
-            ownerInitial = "A",
+            ownerInitial = "L",
+            ownerName = "Luis Morales",
             petName = "Luna",
-            type = ReportType.FOUND,
+            type = ReportType.FOUND_SIGHTING,
             breed = "Siamés",
+            species = "Gato",
+            gender = "Hembra",
+            color = "Crema",
             description = "Encontrada cerca del centro comercial. Parece tener dueño, " +
-                "lleva collar azul sin placa. Es muy cariñosa y se deja cargar. " +
-                "Está bien alimentada, parece perdida hace poco.",
-            location = "Centro Comercial Andino, Bogotá",
-            imageUrl = "https://placekitten.com/400/300",
+                "lleva collar azul sin placa. Es muy cariñosa y se deja cargar.",
+            location = "Centro Comercial Ventura Plaza, Cúcuta",
+            imageUrl = "https://picsum.photos/seed/luna-cat/400/300",
             recencyLabel = "RECIENTE",
-            createdAtEpochMs = now - 2 * 60 * 60 * 1000L, // hace 2 horas
+            latitude = 7.8820,
+            longitude = -72.4960,
+            createdAtEpochMs = now - 2 * 60 * 60 * 1000L,
         ),
         PetReport(
             id = "report-003",
             ownerUid = "fake-uid-003",
-            ownerInitial = "C",
+            ownerInitial = "R",
+            ownerName = "Rosa Quintero",
             petName = "Rocky",
-            type = ReportType.LOST,
+            type = ReportType.FOUND_IN_CARE,
             breed = "Bulldog Francés",
-            description = "Rocky salió corriendo por la puerta del jardín esta mañana. " +
-                "Es de color gris atigrado, lleva arnés azul. Es juguetón pero " +
-                "desconfía de extraños. Tiene microchip.",
-            location = "Zona Rosa, Bogotá",
+            species = "Perro",
+            gender = "Macho",
+            color = "Gris atigrado",
+            description = "Lo encontré deambulando. Está bajo mi cuidado temporal hasta encontrar a su dueño.",
+            location = "Zona Rosa, Cúcuta",
             imageUrl = "https://placedog.net/400/300?id=3",
             recencyLabel = "RECIENTE",
-            createdAtEpochMs = now - 6 * 60 * 60 * 1000L, // hace 6 horas
+            urgency = "ALTA",
+            latitude = 7.9015,
+            longitude = -72.5120,
+            createdAtEpochMs = now - 6 * 60 * 60 * 1000L,
         ),
     )
 
     private val _reports = MutableStateFlow(seed.toList())
 
-    override fun observeReports(type: ReportType): Flow<List<PetReport>> = _reports.asStateFlow()
+    override fun observeReports(type: ReportType): Flow<List<PetReport>> =
+        _reports.map { list -> list.filter { it.type == type } }
 
     override suspend fun deleteReport(id: String) {
         _reports.value = _reports.value.filter { it.id != id }
     }
 
-    override suspend fun createReport(report: PetReport, imageBytes: ByteArray?) {
+    override suspend fun createReport(report: PetReport, imageBytesList: List<ByteArray>) {
         val newReport = report.copy(
             id = "report-${UUID.randomUUID()}",
             createdAtEpochMs = System.currentTimeMillis(),

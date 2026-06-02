@@ -8,6 +8,6 @@ import javax.inject.Inject
 class CreateReportImpl @Inject constructor(
     private val petReportRepository: PetReportRepository,
 ) : CreateReport {
-    override suspend fun invoke(report: PetReport, imageBytes: ByteArray?) =
-        petReportRepository.createReport(report, imageBytes)
+    override suspend fun invoke(report: PetReport, imageBytesList: List<ByteArray>) =
+        petReportRepository.createReport(report, imageBytesList)
 }

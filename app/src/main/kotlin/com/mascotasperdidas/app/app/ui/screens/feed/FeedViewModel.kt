@@ -11,6 +11,7 @@ import com.mascotasperdidas.app.domain.port.`in`.ObserveReports
 import com.mascotasperdidas.app.domain.port.`in`.SearchReports
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -18,6 +19,7 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -49,13 +51,26 @@ class FeedViewModel @Inject constructor(
         )
     }
 
+    // Avistadas tab merges FOUND_SIGHTING + FOUND_IN_CARE into one flow.
+    private fun observeForTab(tab: ReportType): Flow<List<PetReport>> =
+        if (tab == ReportType.FOUND_SIGHTING) {
+            combine(
+                observeReports(ReportType.FOUND_SIGHTING),
+                observeReports(ReportType.FOUND_IN_CARE),
+            ) { sightings, inCare ->
+                (sightings + inCare).sortedByDescending { it.createdAtEpochMs }
+            }
+        } else {
+            observeReports(tab)
+        }
+
     init {
         viewModelScope.launch {
             combine(_selectedTab, _query) { tab, q -> Pair(tab, q) }
                 .flatMapLatest { (tab, q) ->
                     _uiState.update { it.copy(isLoading = true) }
                     if (q.isBlank()) {
-                        observeReports(tab)
+                        observeForTab(tab)
                     } else {
                         flow {
                             try {
@@ -105,8 +120,8 @@ class FeedViewModel @Inject constructor(
             is FeedUiEvent.NewReportImageChanged -> _uiState.update { it.copy(newReportImageKey = event.key) }
             FeedUiEvent.CreateReport -> createNewReport()
             is FeedUiEvent.DeleteReport -> deleteReportById(event.id)
-            is FeedUiEvent.ReportClicked -> { /* future */ }
-            is FeedUiEvent.ContactClicked -> { /* future */ }
+            is FeedUiEvent.ReportClicked -> { /* wired in Phase 2D-1 */ }
+            is FeedUiEvent.ContactClicked -> { /* wired in Phase 2D-1 */ }
         }
     }
 
@@ -137,6 +152,7 @@ class FeedViewModel @Inject constructor(
                     id = "",
                     ownerUid = ownerUid,
                     ownerInitial = ownerInitial,
+                    ownerName = currentUser?.displayName ?: "",
                     petName = state.newReportName.trim(),
                     type = state.newReportType,
                     breed = state.newReportBreed.trim(),
@@ -146,7 +162,7 @@ class FeedViewModel @Inject constructor(
                     recencyLabel = "RECIENTE",
                     createdAtEpochMs = System.currentTimeMillis(),
                 )
-                createReport(report, null)
+                createReport(report, emptyList())
 
                 _uiState.update { it.copy(isCreating = false, showCreateDialog = false) }
                 resetCreateForm()

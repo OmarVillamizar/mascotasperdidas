@@ -248,7 +248,7 @@ private fun PetCardFoundPreview() {
     MascotasPerdidasTheme {
         PetCard(
             report = sampleReport.copy(
-                type = ReportType.FOUND,
+                type = ReportType.FOUND_SIGHTING,
                 petName = "Luna",
                 breed = "Siamés",
                 imageUrl = "https://picsum.photos/seed/luna-cat/400/300",

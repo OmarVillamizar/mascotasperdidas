@@ -69,6 +69,8 @@
     <!-- Chips -->
     <string name="chip_lost">PERDIDO</string>
     <string name="chip_found">HALLAZGO</string>
+    <string name="chip_found_sighting">AVISTADO</string>
+    <string name="chip_in_care">BAJO MI CUIDADO</string>
     <string name="chip_recent">RECIENTE</string>
 
     <!-- Generic -->

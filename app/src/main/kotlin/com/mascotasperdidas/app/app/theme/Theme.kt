@@ -1,9 +1,17 @@
 package com.mascotasperdidas.app.app.theme
 
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.lightColorScheme
 import androidx.compose.material3.darkColorScheme
+import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.staticCompositionLocalOf
+import androidx.compose.ui.graphics.Color
+
+val LocalCareColor = staticCompositionLocalOf<Color> { Care }
+val LocalCareContainerColor = staticCompositionLocalOf<Color> { CareContainer }
+val LocalOnCareColor = staticCompositionLocalOf<Color> { OnCare }
+val LocalOnCareContainerColor = staticCompositionLocalOf<Color> { OnCareContainer }
 
 private val LightColors = lightColorScheme(
     primary = Primary,
@@ -45,12 +53,19 @@ private val DarkColors = darkColorScheme(
 
 @Composable
 fun MascotasPerdidasTheme(
-    darkTheme: Boolean = false,        // placeholder — tema oscuro real en fase futura
+    darkTheme: Boolean = false,
     content: @Composable () -> Unit,
 ) {
-    MaterialTheme(
-        colorScheme = if (darkTheme) DarkColors else LightColors,
-        typography = AppTypography,
-        content = content,
-    )
+    CompositionLocalProvider(
+        LocalCareColor provides Care,
+        LocalCareContainerColor provides CareContainer,
+        LocalOnCareColor provides OnCare,
+        LocalOnCareContainerColor provides OnCareContainer,
+    ) {
+        MaterialTheme(
+            colorScheme = if (darkTheme) DarkColors else LightColors,
+            typography = AppTypography,
+            content = content,
+        )
+    }
 }

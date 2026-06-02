@@ -20,6 +20,12 @@ val OnTertiary = Color(0xFFFFFFFF)
 val Error = Color(0xFFE57373)
 val OnError = Color(0xFFFFFFFF)
 
+// ── Token "care" (naranja — bajo mi cuidado) ─────────────────────
+val Care = androidx.compose.ui.graphics.Color(0xFFE65100)
+val CareContainer = androidx.compose.ui.graphics.Color(0xFFFFE0B2)
+val OnCare = androidx.compose.ui.graphics.Color(0xFFFFFFFF)
+val OnCareContainer = androidx.compose.ui.graphics.Color(0xFF4E2600)
+
 // ── Superficies ──────────────────────────────────────────────────
 val Background = Color(0xFFF3E8F7)   // lila muy claro — fondo app
 val OnBackground = Color(0xFF1C1B1F)
