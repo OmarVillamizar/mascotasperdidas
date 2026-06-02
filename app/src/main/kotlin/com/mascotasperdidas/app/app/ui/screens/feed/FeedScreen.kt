@@ -5,39 +5,26 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Search
-import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.ExposedDropdownMenuBox
-import androidx.compose.material3.ExposedDropdownMenuDefaults
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.MenuAnchorType
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -76,12 +63,12 @@ fun FeedScreen(
         },
         floatingActionButton = {
             FloatingActionButton(
-                onClick = { onEvent(FeedUiEvent.OpenCreateDialog) },
+                onClick = { onNavigateToNewReport() },
                 containerColor = MaterialTheme.colorScheme.primary,
             ) {
                 Icon(
                     imageVector = Icons.Filled.Add,
-                    contentDescription = "Crear publicación",
+                    contentDescription = stringResource(R.string.nuevo_reporte),
                     tint = MaterialTheme.colorScheme.onPrimary,
                 )
             }
@@ -153,9 +140,7 @@ fun FeedScreen(
                     Box(
                         modifier = Modifier.fillMaxSize(),
                         contentAlignment = Alignment.Center,
-                    ) {
-                        CircularProgressIndicator()
-                    }
+                    ) { CircularProgressIndicator() }
                 }
                 state.reports.isEmpty() -> {
                     Box(
@@ -200,141 +185,6 @@ fun FeedScreen(
             }
         }
     }
-
-    if (state.showCreateDialog) {
-        CreateReportDialog(state = state, onEvent = onEvent)
-    }
-}
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-private fun CreateReportDialog(
-    state: FeedUiState,
-    onEvent: (FeedUiEvent) -> Unit,
-) {
-    var typeExpanded by remember { mutableStateOf(false) }
-    var imageExpanded by remember { mutableStateOf(false) }
-    val imageOptions = FeedViewModel.PRESET_IMAGES.keys.toList()
-
-    AlertDialog(
-        onDismissRequest = { onEvent(FeedUiEvent.DismissCreateDialog) },
-        title = { Text("Crear publicación") },
-        text = {
-            Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                OutlinedTextField(
-                    value = state.newReportName,
-                    onValueChange = { onEvent(FeedUiEvent.NewReportNameChanged(it)) },
-                    label = { Text("Nombre de la mascota") },
-                    singleLine = true,
-                    modifier = Modifier.fillMaxWidth(),
-                )
-
-                ExposedDropdownMenuBox(
-                    expanded = typeExpanded,
-                    onExpandedChange = { typeExpanded = it },
-                ) {
-                    OutlinedTextField(
-                        value = if (state.newReportType == ReportType.LOST) "Perdido" else "Avistamiento",
-                        onValueChange = {},
-                        readOnly = true,
-                        label = { Text("Tipo") },
-                        trailingIcon = {
-                            ExposedDropdownMenuDefaults.TrailingIcon(expanded = typeExpanded)
-                        },
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .menuAnchor(MenuAnchorType.PrimaryNotEditable),
-                    )
-                    ExposedDropdownMenu(
-                        expanded = typeExpanded,
-                        onDismissRequest = { typeExpanded = false },
-                    ) {
-                        DropdownMenuItem(
-                            text = { Text("Perdido") },
-                            onClick = {
-                                onEvent(FeedUiEvent.NewReportTypeChanged(ReportType.LOST))
-                                typeExpanded = false
-                            },
-                        )
-                        DropdownMenuItem(
-                            text = { Text("Avistamiento") },
-                            onClick = {
-                                onEvent(FeedUiEvent.NewReportTypeChanged(ReportType.FOUND_SIGHTING))
-                                typeExpanded = false
-                            },
-                        )
-                    }
-                }
-
-                ExposedDropdownMenuBox(
-                    expanded = imageExpanded,
-                    onExpandedChange = { imageExpanded = it },
-                ) {
-                    OutlinedTextField(
-                        value = state.newReportImageKey,
-                        onValueChange = {},
-                        readOnly = true,
-                        label = { Text("Imagen") },
-                        trailingIcon = {
-                            ExposedDropdownMenuDefaults.TrailingIcon(expanded = imageExpanded)
-                        },
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .menuAnchor(MenuAnchorType.PrimaryNotEditable),
-                    )
-                    ExposedDropdownMenu(
-                        expanded = imageExpanded,
-                        onDismissRequest = { imageExpanded = false },
-                    ) {
-                        imageOptions.forEach { key ->
-                            DropdownMenuItem(
-                                text = { Text(key) },
-                                onClick = {
-                                    onEvent(FeedUiEvent.NewReportImageChanged(key))
-                                    imageExpanded = false
-                                },
-                            )
-                        }
-                    }
-                }
-
-                OutlinedTextField(
-                    value = state.newReportBreed,
-                    onValueChange = { onEvent(FeedUiEvent.NewReportBreedChanged(it)) },
-                    label = { Text("Raza") },
-                    singleLine = true,
-                    modifier = Modifier.fillMaxWidth(),
-                )
-                OutlinedTextField(
-                    value = state.newReportLocation,
-                    onValueChange = { onEvent(FeedUiEvent.NewReportLocationChanged(it)) },
-                    label = { Text("Ubicación") },
-                    singleLine = true,
-                    modifier = Modifier.fillMaxWidth(),
-                )
-                OutlinedTextField(
-                    value = state.newReportDescription,
-                    onValueChange = { onEvent(FeedUiEvent.NewReportDescriptionChanged(it)) },
-                    label = { Text("Descripción") },
-                    minLines = 3,
-                    modifier = Modifier.fillMaxWidth(),
-                )
-            }
-        },
-        confirmButton = {
-            TextButton(
-                onClick = { onEvent(FeedUiEvent.CreateReport) },
-                enabled = state.canCreateReport && !state.isCreating,
-            ) {
-                Text(if (state.isCreating) "Guardando..." else "Publicar")
-            }
-        },
-        dismissButton = {
-            TextButton(onClick = { onEvent(FeedUiEvent.DismissCreateDialog) }) {
-                Text("Cancelar")
-            }
-        },
-    )
 }
 
 private val sampleReports = listOf(
@@ -361,11 +211,7 @@ private val sampleReports = listOf(
 private fun FeedScreenPreview() {
     MascotasPerdidasTheme {
         FeedScreen(
-            state = FeedUiState(
-                selectedTab = LOST,
-                reports = sampleReports,
-                currentUserUid = "u1",
-            ),
+            state = FeedUiState(selectedTab = LOST, reports = sampleReports, currentUserUid = "u1"),
             onEvent = {},
         )
     }

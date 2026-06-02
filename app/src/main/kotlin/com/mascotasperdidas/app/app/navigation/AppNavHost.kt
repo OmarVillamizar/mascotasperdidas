@@ -9,6 +9,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import kotlinx.coroutines.launch
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
@@ -34,6 +35,14 @@ import com.mascotasperdidas.app.app.ui.screens.profile.ProfileViewModel
 import com.mascotasperdidas.app.app.ui.screens.settings.SettingsScreen
 import com.mascotasperdidas.app.app.ui.screens.settings.SettingsUiEvent
 import com.mascotasperdidas.app.app.ui.screens.settings.SettingsViewModel
+import com.mascotasperdidas.app.app.ui.screens.report.creation.FoundSubTypeScreen
+import com.mascotasperdidas.app.app.ui.screens.report.creation.InCareReportFormScreen
+import com.mascotasperdidas.app.app.ui.screens.report.creation.InCareReportFormViewModel
+import com.mascotasperdidas.app.app.ui.screens.report.creation.LostReportFormScreen
+import com.mascotasperdidas.app.app.ui.screens.report.creation.LostReportFormViewModel
+import com.mascotasperdidas.app.app.ui.screens.report.creation.NewReportTypeScreen
+import com.mascotasperdidas.app.app.ui.screens.report.creation.SightingReportFormScreen
+import com.mascotasperdidas.app.app.ui.screens.report.creation.SightingReportFormViewModel
 import com.mascotasperdidas.app.app.ui.screens.report.detail.ReportDetailScreen
 import com.mascotasperdidas.app.app.ui.screens.report.detail.ReportDetailViewModel
 import com.mascotasperdidas.app.app.ui.screens.splash.SplashScreen
@@ -193,21 +202,65 @@ fun AppNavHost(navController: NavHostController) {
             PlaceholderScreen(label = "Mis Reportes")
         }
 
-        // ── Creation wizard (impl in Phase 2D-2) ─────────────────────────
+        // ── Creation wizard ───────────────────────────────────────────────
         composable(Routes.NewReport.route) {
-            PlaceholderScreen(label = "Nuevo Reporte")
+            NewReportTypeScreen(
+                onNavigateBack = { navController.popBackStack() },
+                onNavigateToLostForm = { navController.navigate(Routes.LostReportForm.route) },
+                onNavigateToFoundSubType = { navController.navigate(Routes.FoundSubType.route) },
+            )
         }
         composable(Routes.FoundSubType.route) {
-            PlaceholderScreen(label = "Tipo de Avistamiento")
+            FoundSubTypeScreen(
+                onNavigateBack = { navController.popBackStack() },
+                onNavigateToSightingForm = { navController.navigate(Routes.SightingReportForm.route) },
+                onNavigateToInCareForm = { navController.navigate(Routes.InCareReportForm.route) },
+            )
         }
         composable(Routes.LostReportForm.route) {
-            PlaceholderScreen(label = "Formulario Perdido")
+            val viewModel: LostReportFormViewModel = hiltViewModel()
+            val state by viewModel.uiState.collectAsState()
+            LaunchedEffect(viewModel) {
+                launch { viewModel.navigateBack.collect { navController.popBackStack() } }
+                launch {
+                    viewModel.navigateToConfirmed.collect {
+                        navController.navigate(Routes.ReportConfirmed.route("new")) {
+                            popUpTo(Routes.Main.route) { inclusive = false }
+                        }
+                    }
+                }
+            }
+            LostReportFormScreen(state = state, onEvent = viewModel::onEvent)
         }
         composable(Routes.SightingReportForm.route) {
-            PlaceholderScreen(label = "Formulario Avistamiento")
+            val viewModel: SightingReportFormViewModel = hiltViewModel()
+            val state by viewModel.uiState.collectAsState()
+            LaunchedEffect(viewModel) {
+                launch { viewModel.navigateBack.collect { navController.popBackStack() } }
+                launch {
+                    viewModel.navigateToConfirmed.collect {
+                        navController.navigate(Routes.ReportConfirmed.route("new")) {
+                            popUpTo(Routes.Main.route) { inclusive = false }
+                        }
+                    }
+                }
+            }
+            SightingReportFormScreen(state = state, onEvent = viewModel::onEvent)
         }
         composable(Routes.InCareReportForm.route) {
-            PlaceholderScreen(label = "Formulario Bajo Cuidado")
+            val viewModel: InCareReportFormViewModel = hiltViewModel()
+            val state by viewModel.uiState.collectAsState()
+            LaunchedEffect(viewModel) {
+                launch { viewModel.navigateBack.collect { navController.popBackStack() } }
+                launch {
+                    viewModel.navigateToConfirmed.collect {
+                        navController.navigate(Routes.ReportConfirmed.route("new")) {
+                            popUpTo(Routes.Main.route) { inclusive = false }
+                        }
+                    }
+                }
+            }
+            InCareReportFormScreen(state = state, onEvent = viewModel::onEvent)
         }
 
         // ── Report Detail ────────────────────────────────────────────────
