@@ -93,6 +93,10 @@ dependencies {
     // DataStore
     implementation(libs.datastore.preferences)
 
+    // OSMDroid (maps)
+    implementation(libs.osmdroid)
+    implementation(libs.preference.ktx)
+
     // Coroutines
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.kotlinx.coroutines.play.services)

@@ -14,6 +14,8 @@ coil = "2.7.0"
 datastore = "1.1.1"
 coroutines = "1.9.0"
 detekt = "1.23.7"
+osmdroid = "6.1.20"
+preferenceKtx = "1.2.1"
 googleServices = "4.4.2"
 junit = "4.13.2"
 androidxTestExtJunit = "1.2.1"
@@ -77,6 +79,10 @@ androidx-test-ext-junit = { group = "androidx.test.ext", name = "junit", version
 espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso" }
 mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
 turbine = { group = "app.cash.turbine", name = "turbine", version.ref = "turbine" }
+
+# OSMDroid + Preference
+osmdroid = { group = "org.osmdroid", name = "osmdroid-android", version.ref = "osmdroid" }
+preference-ktx = { group = "androidx.preference", name = "preference-ktx", version.ref = "preferenceKtx" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
