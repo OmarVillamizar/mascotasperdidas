@@ -90,9 +90,9 @@ class SightingReportFormViewModel @Inject constructor(
             _uiState.update { it.copy(isPublishing = true) }
             try {
                 val user = observeCurrentUser().firstOrNull()
-                val imageBytesList = state.photos.map { uri ->
+                val imageBytesList = state.photos.mapNotNull { uri ->
                     withContext(Dispatchers.IO) {
-                        appContext.contentResolver.openInputStream(uri)?.use { it.readBytes() } ?: byteArrayOf()
+                        appContext.contentResolver.openInputStream(uri)?.use { it.readBytes() }
                     }
                 }
                 val report = PetReport(

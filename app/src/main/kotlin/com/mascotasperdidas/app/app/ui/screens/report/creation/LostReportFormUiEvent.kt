@@ -13,6 +13,7 @@ sealed class LostReportFormUiEvent {
     data class ColorChanged(val value: String) : LostReportFormUiEvent()
     data class DescriptionChanged(val value: String) : LostReportFormUiEvent()
     data class LocationChanged(val value: String) : LostReportFormUiEvent()
+    data class LocationPicked(val lat: Double, val lng: Double) : LostReportFormUiEvent()
     object PublishReport : LostReportFormUiEvent()
     object ShowDiscardDialog : LostReportFormUiEvent()
     object DismissDiscardDialog : LostReportFormUiEvent()

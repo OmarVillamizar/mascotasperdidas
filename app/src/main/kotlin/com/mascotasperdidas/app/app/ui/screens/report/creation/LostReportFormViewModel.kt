@@ -59,6 +59,7 @@ class LostReportFormViewModel @Inject constructor(
             is LostReportFormUiEvent.ColorChanged -> _uiState.update { it.copy(color = event.value) }
             is LostReportFormUiEvent.DescriptionChanged -> _uiState.update { it.copy(description = event.value) }
             is LostReportFormUiEvent.LocationChanged -> _uiState.update { it.copy(locationRef = event.value) }
+            is LostReportFormUiEvent.LocationPicked -> _uiState.update { it.copy(latitude = event.lat, longitude = event.lng) }
             LostReportFormUiEvent.PublishReport -> publishReport()
             LostReportFormUiEvent.ShowDiscardDialog -> _uiState.update { it.copy(showDiscardDialog = true) }
             LostReportFormUiEvent.DismissDiscardDialog -> _uiState.update { it.copy(showDiscardDialog = false) }
@@ -84,9 +85,9 @@ class LostReportFormViewModel @Inject constructor(
             _uiState.update { it.copy(isPublishing = true) }
             try {
                 val user = observeCurrentUser().firstOrNull()
-                val imageBytesList = state.photos.map { uri ->
+                val imageBytesList = state.photos.mapNotNull { uri ->
                     withContext(Dispatchers.IO) {
-                        appContext.contentResolver.openInputStream(uri)?.use { it.readBytes() } ?: byteArrayOf()
+                        appContext.contentResolver.openInputStream(uri)?.use { it.readBytes() }
                     }
                 }
                 val report = PetReport(
@@ -104,6 +105,8 @@ class LostReportFormViewModel @Inject constructor(
                     description = state.description.trim(),
                     location = state.locationRef.trim(),
                     imageUrl = "",
+                    latitude = state.latitude,
+                    longitude = state.longitude,
                     recencyLabel = "RECIENTE",
                     createdAtEpochMs = System.currentTimeMillis(),
                 )

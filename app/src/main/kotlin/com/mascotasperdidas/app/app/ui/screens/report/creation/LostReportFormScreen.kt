@@ -37,8 +37,10 @@ import androidx.compose.ui.unit.dp
 import com.mascotasperdidas.app.R
 import com.mascotasperdidas.app.app.theme.MascotasPerdidasTheme
 import com.mascotasperdidas.app.app.ui.components.FormSectionHeader
+import com.mascotasperdidas.app.app.ui.components.LocationMapPicker
 import com.mascotasperdidas.app.app.ui.components.PhotoPickerRow
 import com.mascotasperdidas.app.app.ui.components.SingleSelectChipGroup
+import org.osmdroid.util.GeoPoint
 
 private val speciesOptions = listOf("Perro", "Gato", "Otro")
 private val genderOptions = listOf("Macho", "Hembra", "No sé")
@@ -226,6 +228,17 @@ fun LostReportFormScreen(
                     placeholder = { Text("Ej: Cerca del Parque Simón Bolívar") },
                     singleLine = true,
                     modifier = Modifier.fillMaxWidth(),
+                )
+                Spacer(Modifier.height(12.dp))
+                LocationMapPicker(
+                    selectedLocation = if (state.latitude != null && state.longitude != null) {
+                        GeoPoint(state.latitude!!, state.longitude!!)
+                    } else {
+                        null
+                    },
+                    onLocationPicked = { geo ->
+                        onEvent(LostReportFormUiEvent.LocationPicked(geo.latitude, geo.longitude))
+                    },
                 )
                 Spacer(Modifier.height(24.dp))
             }

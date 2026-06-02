@@ -12,6 +12,8 @@ data class LostReportFormUiState(
     val color: String = "",
     val description: String = "",
     val locationRef: String = "",
+    val latitude: Double? = null,
+    val longitude: Double? = null,
     val isPublishing: Boolean = false,
     val publishSuccess: Boolean = false,
     val showDiscardDialog: Boolean = false,
