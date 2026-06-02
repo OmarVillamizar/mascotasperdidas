@@ -35,6 +35,8 @@ import com.mascotasperdidas.app.app.ui.screens.report.confirmed.ReportConfirmedS
 import com.mascotasperdidas.app.app.ui.screens.report.creation.FoundSubTypeScreen
 import com.mascotasperdidas.app.app.ui.screens.myreports.MyReportsScreen
 import com.mascotasperdidas.app.app.ui.screens.myreports.MyReportsViewModel
+import com.mascotasperdidas.app.app.ui.screens.sightings.SightingsForPetScreen
+import com.mascotasperdidas.app.app.ui.screens.sightings.SightingsForPetViewModel
 import com.mascotasperdidas.app.app.ui.screens.report.creation.InCareReportFormScreen
 import com.mascotasperdidas.app.app.ui.screens.report.creation.InCareReportFormViewModel
 import com.mascotasperdidas.app.app.ui.screens.report.creation.LostReportFormScreen
@@ -311,14 +313,28 @@ fun AppNavHost(navController: NavHostController) {
             )
         }
 
-        // ── Sightings For Pet (impl in Phase 2D-6) ──────────────────────
+        // ── Sightings For Pet ──────────────────────────────────────────
         composable(
             route = Routes.SightingsForPet.route,
             arguments = listOf(
                 navArgument(Routes.SightingsForPet.ARG_PET_REPORT_ID) { type = NavType.StringType },
             ),
         ) {
-            PlaceholderScreen(label = "Avistamientos")
+            val viewModel: SightingsForPetViewModel = hiltViewModel()
+            val state by viewModel.uiState.collectAsState()
+            SightingsForPetScreen(
+                state = state,
+                onEvent = viewModel::onEvent,
+                onNavigateBack = { navController.popBackStack() },
+                onNavigateToMap = {
+                    navController.navigate(Routes.Main.route) {
+                        popUpTo(Routes.Main.route) { inclusive = false }
+                    }
+                },
+                onNavigateToReportDetail = { id, type ->
+                    navController.navigate(Routes.ReportDetail.route(id, type))
+                },
+            )
         }
     }
 }
