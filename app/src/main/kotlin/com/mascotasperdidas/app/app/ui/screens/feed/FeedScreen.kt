@@ -58,6 +58,9 @@ import com.mascotasperdidas.app.domain.model.ReportType.LOST
 fun FeedScreen(
     state: FeedUiState,
     onEvent: (FeedUiEvent) -> Unit,
+    onNavigateToNewReport: () -> Unit = {},
+    onNavigateToReportDetail: (reportId: String, reportType: String) -> Unit = { _, _ -> },
+    onNavigateToSettings: () -> Unit = {},
     modifier: Modifier = Modifier,
 ) {
     val openDrawer = LocalDrawerOpener.current

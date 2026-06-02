@@ -59,6 +59,12 @@
     <string name="feed_btn_more_info">Mas Información</string>
     <string name="feed_btn_contact">CONTACTAR</string>
 
+    <!-- Bottom navigation tabs -->
+    <string name="tab_feed">Inicio</string>
+    <string name="tab_map">Mapa</string>
+    <string name="tab_notifications">Avisos</string>
+    <string name="tab_profile">Perfil</string>
+
     <!-- Drawer -->
     <string name="drawer_feed">Feed</string>
     <string name="drawer_profile">Perfil</string>

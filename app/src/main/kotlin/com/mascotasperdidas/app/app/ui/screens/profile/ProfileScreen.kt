@@ -33,6 +33,8 @@ fun ProfileScreen(
     state: ProfileUiState,
     onEvent: (ProfileUiEvent) -> Unit,
     onNavigateToOtp: () -> Unit,
+    onNavigateToMyReports: () -> Unit = {},
+    onNavigateToSettings: () -> Unit = {},
     modifier: Modifier = Modifier,
 ) {
     val openDrawer = LocalDrawerOpener.current
