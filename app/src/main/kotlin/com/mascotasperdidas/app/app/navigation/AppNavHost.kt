@@ -33,6 +33,8 @@ import com.mascotasperdidas.app.app.ui.screens.profile.ProfileScreen
 import com.mascotasperdidas.app.app.ui.screens.profile.ProfileViewModel
 import com.mascotasperdidas.app.app.ui.screens.report.confirmed.ReportConfirmedScreen
 import com.mascotasperdidas.app.app.ui.screens.report.creation.FoundSubTypeScreen
+import com.mascotasperdidas.app.app.ui.screens.myreports.MyReportsScreen
+import com.mascotasperdidas.app.app.ui.screens.myreports.MyReportsViewModel
 import com.mascotasperdidas.app.app.ui.screens.report.creation.InCareReportFormScreen
 import com.mascotasperdidas.app.app.ui.screens.report.creation.InCareReportFormViewModel
 import com.mascotasperdidas.app.app.ui.screens.report.creation.LostReportFormScreen
@@ -198,7 +200,16 @@ fun AppNavHost(navController: NavHostController) {
 
         // ── My Reports (impl in Phase 2D-5) ─────────────────────────────
         composable(Routes.MyReports.route) {
-            PlaceholderScreen(label = "Mis Reportes")
+            val viewModel: MyReportsViewModel = hiltViewModel()
+            val state by viewModel.uiState.collectAsState()
+            MyReportsScreen(
+                state = state,
+                onEvent = viewModel::onEvent,
+                onNavigateBack = { navController.popBackStack() },
+                onNavigateToReportDetail = { id, type ->
+                    navController.navigate(Routes.ReportDetail.route(id, type))
+                },
+            )
         }
 
         // ── Creation wizard ───────────────────────────────────────────────

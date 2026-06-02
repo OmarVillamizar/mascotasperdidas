@@ -123,6 +123,16 @@ fun ProfileScreen(
                 )
             }
 
+            Spacer(Modifier.height(16.dp))
+
+            // ── Ver mis reportes ─────────────────────────────────────
+            OutlinedButton(
+                onClick = onNavigateToMyReports,
+                modifier = Modifier.fillMaxWidth(),
+            ) {
+                Text(stringResource(R.string.ver_mis_reportes))
+            }
+
             Spacer(Modifier.height(24.dp))
         }
     }
