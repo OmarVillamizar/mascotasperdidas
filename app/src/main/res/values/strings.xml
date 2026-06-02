@@ -84,4 +84,84 @@
     <string name="content_desc_avatar">Avatar de usuario</string>
     <string name="content_desc_menu">Abrir menú</string>
     <string name="content_desc_pet_image">Imagen de la mascota</string>
+
+    <!-- Report types -->
+    <string name="tipo_perdida">Mascota Perdida</string>
+    <string name="tipo_hallazgo">Mascota Hallada</string>
+    <string name="tipo_avistamiento">Avistamiento en calle</string>
+    <string name="tipo_resguardo">Bajo mi cuidado</string>
+
+    <!-- Form labels -->
+    <string name="especie">Especie</string>
+    <string name="tamano">Tamaño</string>
+    <string name="sexo">Sexo</string>
+    <string name="edad_aprox">Edad aprox.</string>
+    <string name="color_predominante">Color predominante</string>
+    <string name="raza">Raza</string>
+    <string name="descripcion_detallada">Descripción detallada</string>
+    <string name="ultima_ubicacion">ÚLTIMA UBICACIÓN</string>
+    <string name="reportado_por">REPORTADO POR</string>
+    <string name="estado_fisico">ESTADO FÍSICO</string>
+    <string name="notas">NOTAS</string>
+    <string name="fotos_del_animal">Fotos del animal</string>
+    <string name="sube_fotos">Sube entre 1 y 6 fotos para ayudar a identificar tu mascota</string>
+    <string name="toca_para_ajustar_ubicacion">Toca el mapa para ajustar la ubicación</string>
+    <string name="nombre_mascota">Nombre de la mascota</string>
+    <string name="aun_en_zona">¿El animal sigue en la zona?</string>
+    <string name="tiene_collar">¿Tiene collar con placa?</string>
+    <string name="tiene_microchip">¿Tiene microchip?</string>
+
+    <!-- Actions / buttons -->
+    <string name="publicar_reporte">PUBLICAR REPORTE</string>
+    <string name="publicar_avistamiento">Publicar avistamiento</string>
+    <string name="publicar_resguardo">Publicar reporte de resguardo</string>
+    <string name="reporte_confirmado">¡Reporte Confirmado!</string>
+    <string name="ver_mis_reportes">Ver mis reportes</string>
+    <string name="mis_reportes">Mis reportes</string>
+    <string name="hallazgos">Hallazgos</string>
+    <string name="desapariciones">Desapariciones</string>
+    <string name="ver_mapa_completo">Ver mapa completo</string>
+    <string name="ver_mas_avistamientos">Ver más avistamientos</string>
+    <string name="mas_reciente_primero">Más reciente primero</string>
+    <string name="filtrar">Filtrar</string>
+    <string name="nuevo_reporte">Nuevo Reporte</string>
+    <string name="reportar_hallazgo">Reportar hallazgo</string>
+    <string name="generar_reporte">Generar Reporte</string>
+    <string name="mascota_perdida">Mascota perdida</string>
+    <string name="avistamiento_en_calle">Avistamiento en calle</string>
+    <string name="bajo_mi_cuidado">Bajo mi cuidado</string>
+    <string name="mas_informacion">Más Información</string>
+    <string name="contactar">CONTACTAR</string>
+    <string name="aplicar_filtros">Aplicar Filtros</string>
+    <string name="radio_busqueda">Radio de búsqueda (km)</string>
+    <string name="perdidos_label">Perdidos</string>
+    <string name="hallazgos_label">Hallazgos</string>
+    <string name="eliminar">Eliminar</string>
+    <string name="ir_al_feed">Ir al feed</string>
+    <string name="avistamientos_de">Avistamientos de</string>
+    <string name="selecciona_tipo">Selecciona el tipo de reporte</string>
+    <string name="selecciona_subtipo">¿Cómo encontraste al animal?</string>
+
+    <!-- Urgency options (P19) -->
+    <string name="urgency_indefinite_title">Indefinido</string>
+    <string name="urgency_indefinite_subtitle">Puedo cuidarlo el tiempo necesario</string>
+    <string name="urgency_few_days_title">Pocos días</string>
+    <string name="urgency_few_days_subtitle">Solo puedo tenerlo unos días</string>
+    <string name="urgency_today_title">Solo hoy (urgente)</string>
+    <string name="urgency_today_subtitle">Necesito entregarlo hoy mismo</string>
+    <string name="urgency_now_title">Necesito entregarlo ya</string>
+    <string name="urgency_now_subtitle">Situación muy urgente</string>
+
+    <!-- Errors / dialogs -->
+    <string name="error_campo_requerido">Este campo es requerido</string>
+    <string name="error_selecciona_especie">Selecciona al menos la especie</string>
+    <string name="error_publicar">Error al publicar. Intenta de nuevo.</string>
+    <string name="descartar_reporte">¿Descartar reporte?</string>
+    <string name="descartar_confirmacion">Perderás toda la información ingresada.</string>
+    <string name="descartar">Descartar</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="confirmar">Confirmar</string>
+    <string name="cargando">Cargando…</string>
+    <string name="sin_reportes">Sin reportes aún</string>
+    <string name="sin_avistamientos">Sin avistamientos encontrados</string>
 </resources>
