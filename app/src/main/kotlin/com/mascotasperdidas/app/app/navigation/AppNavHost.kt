@@ -43,6 +43,7 @@ import com.mascotasperdidas.app.app.ui.screens.report.creation.LostReportFormVie
 import com.mascotasperdidas.app.app.ui.screens.report.creation.NewReportTypeScreen
 import com.mascotasperdidas.app.app.ui.screens.report.creation.SightingReportFormScreen
 import com.mascotasperdidas.app.app.ui.screens.report.creation.SightingReportFormViewModel
+import com.mascotasperdidas.app.app.ui.screens.report.confirmed.ReportConfirmedScreen
 import com.mascotasperdidas.app.app.ui.screens.report.detail.ReportDetailScreen
 import com.mascotasperdidas.app.app.ui.screens.report.detail.ReportDetailViewModel
 import com.mascotasperdidas.app.app.ui.screens.splash.SplashScreen
@@ -285,14 +286,20 @@ fun AppNavHost(navController: NavHostController) {
             )
         }
 
-        // ── Report Confirmed (impl in Phase 2D-3) ────────────────────────
+        // ── Report Confirmed ─────────────────────────────────────────────
         composable(
             route = Routes.ReportConfirmed.route,
             arguments = listOf(
                 navArgument(Routes.ReportConfirmed.ARG_REPORT_ID) { type = NavType.StringType },
             ),
         ) {
-            PlaceholderScreen(label = "Publicación Confirmada")
+            ReportConfirmedScreen(
+                onNavigateToFeed = {
+                    navController.navigate(Routes.Main.route) {
+                        popUpTo(Routes.Main.route) { inclusive = false }
+                    }
+                },
+            )
         }
 
         // ── Sightings For Pet (impl in Phase 2D-6) ──────────────────────
