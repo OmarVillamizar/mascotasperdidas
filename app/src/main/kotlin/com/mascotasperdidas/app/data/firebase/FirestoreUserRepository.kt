@@ -51,7 +51,7 @@ class FirestoreUserRepository @Inject constructor(
                         displayName = user.displayName ?: "",
                         email = user.email ?: "",
                         phoneNumber = user.phoneNumber ?: "",
-                        phoneVerified = true,  // sin OTP en MVP
+                        phoneVerified = true, // sin OTP en MVP
                         photoUrl = user.photoUrl?.toString(),
                         createdAt = Timestamp.now(),
                     )

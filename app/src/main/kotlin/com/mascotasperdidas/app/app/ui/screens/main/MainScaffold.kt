@@ -16,7 +16,8 @@ import com.mascotasperdidas.app.app.navigation.Routes
 import com.mascotasperdidas.app.app.ui.components.AppBottomNavigationBar
 import com.mascotasperdidas.app.app.ui.screens.feed.FeedScreen
 import com.mascotasperdidas.app.app.ui.screens.feed.FeedViewModel
-import com.mascotasperdidas.app.app.ui.screens.map.MapPlaceholderScreen
+import com.mascotasperdidas.app.app.ui.screens.map.MapScreen
+import com.mascotasperdidas.app.app.ui.screens.map.MapViewModel
 import com.mascotasperdidas.app.app.ui.screens.notifications.NotificationsPlaceholderScreen
 import com.mascotasperdidas.app.app.ui.screens.profile.ProfileScreen
 import com.mascotasperdidas.app.app.ui.screens.profile.ProfileViewModel
@@ -71,7 +72,14 @@ fun MainScaffold(
                 )
             }
             composable(Routes.Map.route) {
-                MapPlaceholderScreen()
+                val viewModel: MapViewModel = hiltViewModel()
+                val state by viewModel.uiState.collectAsState()
+                MapScreen(
+                    state = state,
+                    onEvent = viewModel::onEvent,
+                    onNavigateToNewReport = onNavigateToNewReport,
+                    onNavigateToReportDetail = onNavigateToReportDetail,
+                )
             }
             composable(Routes.Notifications.route) {
                 NotificationsPlaceholderScreen()

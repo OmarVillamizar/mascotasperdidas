@@ -1,8 +1,8 @@
 package com.mascotasperdidas.app.app.ui.screens.report.creation
 
 import androidx.activity.compose.BackHandler
+import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -34,7 +34,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.activity.compose.rememberLauncherForActivityResult
 import com.mascotasperdidas.app.R
 import com.mascotasperdidas.app.app.theme.MascotasPerdidasTheme
 import com.mascotasperdidas.app.app.ui.components.FormSectionHeader
@@ -76,8 +75,11 @@ fun LostReportFormScreen(
                 title = { Text(stringResource(R.string.generar_reporte)) },
                 navigationIcon = {
                     IconButton(onClick = {
-                        if (state.hasData) onEvent(LostReportFormUiEvent.ShowDiscardDialog)
-                        else onEvent(LostReportFormUiEvent.DiscardConfirmed)
+                        if (state.hasData) {
+                            onEvent(LostReportFormUiEvent.ShowDiscardDialog)
+                        } else {
+                            onEvent(LostReportFormUiEvent.DiscardConfirmed)
+                        }
                     }) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = null)
                     }
@@ -142,7 +144,9 @@ fun LostReportFormScreen(
                     isError = state.nameError,
                     supportingText = if (state.nameError) {
                         { Text(stringResource(R.string.error_campo_requerido)) }
-                    } else null,
+                    } else {
+                        null
+                    },
                     singleLine = true,
                     modifier = Modifier.fillMaxWidth(),
                 )

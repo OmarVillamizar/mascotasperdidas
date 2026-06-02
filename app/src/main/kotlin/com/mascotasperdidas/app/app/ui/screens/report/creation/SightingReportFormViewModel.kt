@@ -40,7 +40,12 @@ class SightingReportFormViewModel @Inject constructor(
 
     fun onEvent(event: SightingReportFormUiEvent) {
         when (event) {
-            is SightingReportFormUiEvent.SpeciesSelected -> _uiState.update { it.copy(species = event.value, speciesError = false) }
+            is SightingReportFormUiEvent.SpeciesSelected -> _uiState.update {
+                it.copy(
+                    species = event.value,
+                    speciesError = false
+                )
+            }
             is SightingReportFormUiEvent.SizeSelected -> _uiState.update { it.copy(size = event.value) }
             is SightingReportFormUiEvent.ColorSelected -> _uiState.update { it.copy(color = event.value) }
             is SightingReportFormUiEvent.StatusToggled -> {
@@ -51,7 +56,11 @@ class SightingReportFormViewModel @Inject constructor(
             }
             is SightingReportFormUiEvent.CollarSelected -> _uiState.update { it.copy(hasCollar = event.value) }
             is SightingReportFormUiEvent.StillInAreaChanged -> _uiState.update { it.copy(stillInArea = event.value) }
-            is SightingReportFormUiEvent.LocationPicked -> _uiState.update { it.copy(selectedLocation = event.geoPoint) }
+            is SightingReportFormUiEvent.LocationPicked -> _uiState.update {
+                it.copy(
+                    selectedLocation = event.geoPoint
+                )
+            }
             is SightingReportFormUiEvent.LocationRefChanged -> _uiState.update { it.copy(locationRef = event.value) }
             is SightingReportFormUiEvent.DescriptionChanged -> _uiState.update { it.copy(description = event.value) }
             is SightingReportFormUiEvent.PhotoAdded -> {

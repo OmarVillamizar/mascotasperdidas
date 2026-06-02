@@ -3,7 +3,6 @@ package com.mascotasperdidas.app.app.ui.screens.report.creation
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.mascotasperdidas.app.app.ui.components.CareUrgency
 import com.mascotasperdidas.app.domain.model.PetReport
 import com.mascotasperdidas.app.domain.model.ReportType
 import com.mascotasperdidas.app.domain.port.`in`.CreateReport
@@ -50,7 +49,10 @@ class InCareReportFormViewModel @Inject constructor(
                 val updated = _uiState.value.photos.toMutableList().also { it.removeAt(event.index) }
                 _uiState.update { it.copy(photos = updated) }
             }
-            is InCareReportFormUiEvent.SpeciesSelected -> _uiState.update { it.copy(species = event.value, speciesError = false) }
+            is InCareReportFormUiEvent.SpeciesSelected -> _uiState.update { it.copy(
+                species = event.value,
+                speciesError = false
+            ) }
             is InCareReportFormUiEvent.SizeSelected -> _uiState.update { it.copy(size = event.value) }
             is InCareReportFormUiEvent.BreedChanged -> _uiState.update { it.copy(breed = event.value) }
             is InCareReportFormUiEvent.GenderSelected -> _uiState.update { it.copy(gender = event.value) }
@@ -83,7 +85,10 @@ class InCareReportFormViewModel @Inject constructor(
 
     private fun publishReport() {
         val state = _uiState.value
-        if (state.species.isBlank()) { _uiState.update { it.copy(speciesError = true) }; return }
+        if (state.species.isBlank()) {
+            _uiState.update { it.copy(speciesError = true) }
+            return
+        }
 
         viewModelScope.launch {
             _uiState.update { it.copy(isPublishing = true) }

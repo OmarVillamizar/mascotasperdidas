@@ -4,7 +4,7 @@ sealed class Routes(val route: String) {
 
     // ── Auth / first-time setup ───────────────────────────────────────
     object Splash : Routes("splash")
-    object Profile : Routes("profile")          // first-time setup only
+    object Profile : Routes("profile") // first-time setup only
     object Otp : Routes("otp")
     object Permissions : Routes("permissions")
 
@@ -13,7 +13,7 @@ sealed class Routes(val route: String) {
     object Feed : Routes("main/feed")
     object Map : Routes("main/map")
     object Notifications : Routes("main/notifications")
-    object ProfileTab : Routes("main/profile")  // profile inside main tabs
+    object ProfileTab : Routes("main/profile") // profile inside main tabs
 
     // ── Stack from Main ───────────────────────────────────────────────
     object Settings : Routes("settings")

@@ -87,8 +87,11 @@ fun InCareReportFormScreen(
                 title = { Text(stringResource(R.string.bajo_mi_cuidado)) },
                 navigationIcon = {
                     IconButton(onClick = {
-                        if (state.hasData) onEvent(InCareReportFormUiEvent.ShowDiscardDialog)
-                        else onEvent(InCareReportFormUiEvent.DiscardConfirmed)
+                        if (state.hasData) {
+                            onEvent(InCareReportFormUiEvent.ShowDiscardDialog)
+                        } else {
+                            onEvent(InCareReportFormUiEvent.DiscardConfirmed)
+                        }
                     }) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = null)
                     }
@@ -140,15 +143,22 @@ fun InCareReportFormScreen(
             }
             item {
                 FormSectionHeader(title = "¿Cómo es?")
-                Text(stringResource(R.string.especie) + " *", style = MaterialTheme.typography.labelMedium,
-                    color = if (state.speciesError) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.onSurfaceVariant)
+                Text(
+                    stringResource(R.string.especie) + " *",
+                    style = MaterialTheme.typography.labelMedium,
+                    color = if (state.speciesError) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.onSurfaceVariant
+                )
                 SingleSelectChipGroup(
                     options = speciesOptions,
                     selected = state.species.ifBlank { null },
                     onSelect = { onEvent(InCareReportFormUiEvent.SpeciesSelected(it)) },
                 )
                 Spacer(Modifier.height(8.dp))
-                Text(stringResource(R.string.tamano), style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                Text(
+                    stringResource(R.string.tamano),
+                    style = MaterialTheme.typography.labelMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
                 SingleSelectChipGroup(
                     options = sizeOptions,
                     selected = state.size.ifBlank { null },
@@ -164,14 +174,22 @@ fun InCareReportFormScreen(
                     modifier = Modifier.fillMaxWidth(),
                 )
                 Spacer(Modifier.height(8.dp))
-                Text(stringResource(R.string.sexo), style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                Text(
+                    stringResource(R.string.sexo),
+                    style = MaterialTheme.typography.labelMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
                 SingleSelectChipGroup(
                     options = genderOptions,
                     selected = state.gender.ifBlank { null },
                     onSelect = { onEvent(InCareReportFormUiEvent.GenderSelected(it)) },
                 )
                 Spacer(Modifier.height(8.dp))
-                Text(stringResource(R.string.edad_aprox), style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                Text(
+                    stringResource(R.string.edad_aprox),
+                    style = MaterialTheme.typography.labelMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
                 SingleSelectChipGroup(
                     options = ageOptions,
                     selected = state.ageRange.ifBlank { null },
@@ -181,24 +199,46 @@ fun InCareReportFormScreen(
             item {
                 FormSectionHeader(title = "Identificación")
                 Row(modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
-                    Text(stringResource(R.string.tiene_collar), style = MaterialTheme.typography.bodyLarge, modifier = Modifier.weight(1f))
-                    Switch(checked = state.hasCollarPlate, onCheckedChange = { onEvent(InCareReportFormUiEvent.CollarPlateChanged(it)) })
+                    Text(
+                        stringResource(R.string.tiene_collar),
+                        style = MaterialTheme.typography.bodyLarge,
+                        modifier = Modifier.weight(1f)
+                    )
+                    Switch(
+                        checked = state.hasCollarPlate,
+                        onCheckedChange = { onEvent(InCareReportFormUiEvent.CollarPlateChanged(it)) }
+                    )
                 }
                 Row(modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
-                    Text(stringResource(R.string.tiene_microchip), style = MaterialTheme.typography.bodyLarge, modifier = Modifier.weight(1f))
-                    Switch(checked = state.hasMicrochip, onCheckedChange = { onEvent(InCareReportFormUiEvent.MicrochipChanged(it)) })
+                    Text(
+                        stringResource(R.string.tiene_microchip),
+                        style = MaterialTheme.typography.bodyLarge,
+                        modifier = Modifier.weight(1f)
+                    )
+                    Switch(
+                        checked = state.hasMicrochip,
+                        onCheckedChange = { onEvent(InCareReportFormUiEvent.MicrochipChanged(it)) }
+                    )
                 }
             }
             item {
                 FormSectionHeader(title = "Estado y comportamiento")
-                Text(stringResource(R.string.estado_fisico), style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                Text(
+                    stringResource(R.string.estado_fisico),
+                    style = MaterialTheme.typography.labelMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
                 MultiSelectChipGroup(
                     options = physicalStatusOptions,
                     selected = state.physicalStatus,
                     onToggle = { onEvent(InCareReportFormUiEvent.PhysicalStatusToggled(it)) },
                 )
                 Spacer(Modifier.height(8.dp))
-                Text("Comportamiento", style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                Text(
+                    "Comportamiento",
+                    style = MaterialTheme.typography.labelMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
                 MultiSelectChipGroup(
                     options = behaviorOptions,
                     selected = state.behaviors,

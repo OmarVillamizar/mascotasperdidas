@@ -3,7 +3,6 @@ package com.mascotasperdidas.app.app.ui.screens.report.creation
 import androidx.activity.compose.BackHandler
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -94,8 +93,11 @@ fun SightingReportFormScreen(
                 title = { Text(stringResource(R.string.avistamiento_en_calle)) },
                 navigationIcon = {
                     IconButton(onClick = {
-                        if (state.hasData) onEvent(SightingReportFormUiEvent.ShowDiscardDialog)
-                        else onEvent(SightingReportFormUiEvent.DiscardConfirmed)
+                        if (state.hasData) {
+                            onEvent(SightingReportFormUiEvent.ShowDiscardDialog)
+                        } else {
+                            onEvent(SightingReportFormUiEvent.DiscardConfirmed)
+                        }
                     }) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = null)
                     }
@@ -147,14 +149,22 @@ fun SightingReportFormScreen(
                     onSelect = { onEvent(SightingReportFormUiEvent.SpeciesSelected(it)) },
                 )
                 Spacer(Modifier.height(8.dp))
-                Text(stringResource(R.string.tamano), style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                Text(
+                    stringResource(R.string.tamano),
+                    style = MaterialTheme.typography.labelMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
                 SingleSelectChipGroup(
                     options = sizeOptions,
                     selected = state.size.ifBlank { null },
                     onSelect = { onEvent(SightingReportFormUiEvent.SizeSelected(it)) },
                 )
                 Spacer(Modifier.height(8.dp))
-                Text(stringResource(R.string.color_predominante), style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                Text(
+                    stringResource(R.string.color_predominante),
+                    style = MaterialTheme.typography.labelMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
                 ColorSwatchSelector(
                     options = petColorSwatches,
                     selected = state.color.ifBlank { null },
@@ -163,14 +173,22 @@ fun SightingReportFormScreen(
             }
             item {
                 FormSectionHeader(title = "¿Cómo estaba?")
-                Text("Estado (puedes seleccionar varios)", style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                Text(
+                    "Estado (puedes seleccionar varios)",
+                    style = MaterialTheme.typography.labelMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
                 MultiSelectChipGroup(
                     options = statusOptions,
                     selected = state.statuses,
                     onToggle = { onEvent(SightingReportFormUiEvent.StatusToggled(it)) },
                 )
                 Spacer(Modifier.height(8.dp))
-                Text("¿Tenía collar?", style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                Text(
+                    "¿Tenía collar?",
+                    style = MaterialTheme.typography.labelMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
                 SingleSelectChipGroup(
                     options = collarOptions,
                     selected = state.hasCollar.ifBlank { null },

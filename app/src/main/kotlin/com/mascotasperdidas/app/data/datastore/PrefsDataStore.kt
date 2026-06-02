@@ -12,7 +12,6 @@ import com.mascotasperdidas.app.domain.model.NotificationPrefs
 import com.mascotasperdidas.app.domain.model.User
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 import javax.inject.Singleton
 

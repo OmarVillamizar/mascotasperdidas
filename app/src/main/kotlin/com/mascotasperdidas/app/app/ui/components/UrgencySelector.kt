@@ -50,7 +50,9 @@ fun UrgencySelector(
                                 color = careColor,
                                 shape = RoundedCornerShape(12.dp),
                             )
-                        } else Modifier
+                        } else {
+                            Modifier
+                        }
                     ),
             ) {
                 Row(

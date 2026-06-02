@@ -49,7 +49,10 @@ class LostReportFormViewModel @Inject constructor(
                 _uiState.update { it.copy(photos = updated) }
             }
             is LostReportFormUiEvent.NameChanged -> _uiState.update { it.copy(name = event.value, nameError = false) }
-            is LostReportFormUiEvent.SpeciesSelected -> _uiState.update { it.copy(species = event.value, speciesError = false) }
+            is LostReportFormUiEvent.SpeciesSelected -> _uiState.update { it.copy(
+                species = event.value,
+                speciesError = false
+            ) }
             is LostReportFormUiEvent.BreedChanged -> _uiState.update { it.copy(breed = event.value) }
             is LostReportFormUiEvent.GenderSelected -> _uiState.update { it.copy(gender = event.value) }
             is LostReportFormUiEvent.AgeChanged -> _uiState.update { it.copy(ageApprox = event.value) }
@@ -67,8 +70,14 @@ class LostReportFormViewModel @Inject constructor(
     private fun publishReport() {
         val state = _uiState.value
         var hasError = false
-        if (state.name.isBlank()) { _uiState.update { it.copy(nameError = true) }; hasError = true }
-        if (state.species.isBlank()) { _uiState.update { it.copy(speciesError = true) }; hasError = true }
+        if (state.name.isBlank()) {
+            _uiState.update { it.copy(nameError = true) };
+            hasError = true
+        }
+        if (state.species.isBlank()) {
+            _uiState.update { it.copy(speciesError = true) };
+            hasError = true
+        }
         if (hasError) return
 
         viewModelScope.launch {

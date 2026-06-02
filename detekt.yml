@@ -87,8 +87,4 @@ style:
     active: true
 
 # Exclude generated / build files
-input:
-  excludes:
-    - '**/build/**'
-    - '**/.gradle/**'
-    - '**/androidTest/**'
+# Note: input exclusions configured in app/build.gradle.kts detekt block

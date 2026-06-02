@@ -25,9 +25,9 @@ class SplashViewModel @Inject constructor(
             try {
                 observeCurrentUser().collect { user ->
                     val destination = when {
-                        user == null -> null                      // mostrar botón Google
-                        user.phoneVerified -> "feed"              // saltar directo a Feed
-                        else -> "profile"                          // completar perfil + OTP
+                        user == null -> null // mostrar botón Google
+                        user.phoneVerified -> "feed" // saltar directo a Feed
+                        else -> "profile" // completar perfil + OTP
                     }
                     _uiState.value = SplashUiState(
                         isCheckingAuth = false,

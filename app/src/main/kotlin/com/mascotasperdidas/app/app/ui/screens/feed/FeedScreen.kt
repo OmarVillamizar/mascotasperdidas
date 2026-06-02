@@ -36,7 +36,6 @@ import com.mascotasperdidas.app.app.ui.components.AppTopBar
 import com.mascotasperdidas.app.app.ui.components.LocalDrawerOpener
 import com.mascotasperdidas.app.app.ui.components.PetCard
 import com.mascotasperdidas.app.domain.model.PetReport
-import com.mascotasperdidas.app.domain.model.ReportType
 import com.mascotasperdidas.app.domain.model.ReportType.FOUND_SIGHTING
 import com.mascotasperdidas.app.domain.model.ReportType.LOST
 

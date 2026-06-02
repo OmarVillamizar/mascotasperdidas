@@ -27,9 +27,9 @@ val OnCare = androidx.compose.ui.graphics.Color(0xFFFFFFFF)
 val OnCareContainer = androidx.compose.ui.graphics.Color(0xFF4E2600)
 
 // ── Superficies ──────────────────────────────────────────────────
-val Background = Color(0xFFF3E8F7)   // lila muy claro — fondo app
+val Background = Color(0xFFF3E8F7) // lila muy claro — fondo app
 val OnBackground = Color(0xFF1C1B1F)
-val Surface = Color(0xFFFFFBFE)      // blanco — cards
+val Surface = Color(0xFFFFFBFE) // blanco — cards
 val OnSurface = Color(0xFF1C1B1F)
 val SurfaceVariant = Color(0xFFE7E0EC)
 val OnSurfaceVariant = Color(0xFF49454F)

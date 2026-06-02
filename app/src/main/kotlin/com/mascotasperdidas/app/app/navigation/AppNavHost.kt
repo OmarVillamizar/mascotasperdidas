@@ -9,7 +9,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import kotlinx.coroutines.launch
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
@@ -32,9 +31,7 @@ import com.mascotasperdidas.app.app.ui.screens.otp.OtpViewModel
 import com.mascotasperdidas.app.app.ui.screens.permissions.PermissionsScreen
 import com.mascotasperdidas.app.app.ui.screens.profile.ProfileScreen
 import com.mascotasperdidas.app.app.ui.screens.profile.ProfileViewModel
-import com.mascotasperdidas.app.app.ui.screens.settings.SettingsScreen
-import com.mascotasperdidas.app.app.ui.screens.settings.SettingsUiEvent
-import com.mascotasperdidas.app.app.ui.screens.settings.SettingsViewModel
+import com.mascotasperdidas.app.app.ui.screens.report.confirmed.ReportConfirmedScreen
 import com.mascotasperdidas.app.app.ui.screens.report.creation.FoundSubTypeScreen
 import com.mascotasperdidas.app.app.ui.screens.report.creation.InCareReportFormScreen
 import com.mascotasperdidas.app.app.ui.screens.report.creation.InCareReportFormViewModel
@@ -43,12 +40,14 @@ import com.mascotasperdidas.app.app.ui.screens.report.creation.LostReportFormVie
 import com.mascotasperdidas.app.app.ui.screens.report.creation.NewReportTypeScreen
 import com.mascotasperdidas.app.app.ui.screens.report.creation.SightingReportFormScreen
 import com.mascotasperdidas.app.app.ui.screens.report.creation.SightingReportFormViewModel
-import com.mascotasperdidas.app.app.ui.screens.report.confirmed.ReportConfirmedScreen
 import com.mascotasperdidas.app.app.ui.screens.report.detail.ReportDetailScreen
 import com.mascotasperdidas.app.app.ui.screens.report.detail.ReportDetailViewModel
+import com.mascotasperdidas.app.app.ui.screens.settings.SettingsScreen
+import com.mascotasperdidas.app.app.ui.screens.settings.SettingsViewModel
 import com.mascotasperdidas.app.app.ui.screens.splash.SplashScreen
 import com.mascotasperdidas.app.app.ui.screens.splash.SplashUiEvent
 import com.mascotasperdidas.app.app.ui.screens.splash.SplashViewModel
+import kotlinx.coroutines.launch
 
 @Composable
 fun AppNavHost(navController: NavHostController) {
@@ -56,7 +55,6 @@ fun AppNavHost(navController: NavHostController) {
         navController = navController,
         startDestination = Routes.Splash.route,
     ) {
-
         // ── Splash ──────────────────────────────────────────────────────
         composable(Routes.Splash.route) {
             val viewModel: SplashViewModel = hiltViewModel()
