@@ -140,9 +140,10 @@ class FirestorePetReportRepository @Inject constructor(
     }
 
     override suspend fun createReport(report: PetReport, imageBytesList: List<ByteArray>) {
-        val uid = currentUid ?: return
+        val uid = currentUid ?: throw IllegalStateException("Usuario no autenticado")
 
-        val uploadedUrls = imageBytesList.map { bytes ->
+        val uploadedUrls = imageBytesList.mapNotNull { bytes ->
+            if (bytes.isEmpty()) return@mapNotNull null
             val ref = storage.reference.child("pet_reports/$uid/${UUID.randomUUID()}.jpg")
             ref.putBytes(bytes).await()
             ref.downloadUrl.await().toString()

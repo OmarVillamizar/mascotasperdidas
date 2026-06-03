@@ -1,6 +1,7 @@
 package com.mascotasperdidas.app.app.ui.components
 
 import android.graphics.drawable.Drawable
+import android.view.MotionEvent
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.remember
@@ -42,6 +43,14 @@ fun OsmMapView(
         MapView(context).apply {
             setTileSource(TileSourceFactory.MAPNIK)
             setMultiTouchControls(true)
+            setOnTouchListener { _, event ->
+                when (event.actionMasked) {
+                    MotionEvent.ACTION_DOWN -> parent?.requestDisallowInterceptTouchEvent(true)
+                    MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL ->
+                        parent?.requestDisallowInterceptTouchEvent(false)
+                }
+                false
+            }
         }
     }
 
