@@ -10,17 +10,23 @@ import com.mascotasperdidas.app.data.mapper.toDto
 import com.mascotasperdidas.app.domain.model.PetReport
 import com.mascotasperdidas.app.domain.model.ReportType
 import com.mascotasperdidas.app.domain.port.out.PetReportRepository
+import dagger.hilt.android.qualifiers.ApplicationContext
+import android.content.Context
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
+import java.io.ByteArrayInputStream
 import java.util.UUID
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
 class FirestorePetReportRepository @Inject constructor(
+    @ApplicationContext private val appContext: Context,
     private val firestore: FirebaseFirestore,
     private val storage: FirebaseStorage,
     private val auth: FirebaseAuth,
@@ -142,12 +148,20 @@ class FirestorePetReportRepository @Inject constructor(
     override suspend fun createReport(report: PetReport, imageBytesList: List<ByteArray>) {
         val uid = currentUid ?: throw IllegalStateException("Usuario no autenticado")
 
-        val uploadedUrls = imageBytesList.mapNotNull { bytes ->
-            if (bytes.isEmpty()) return@mapNotNull null
-            val ref = storage.reference.child("pet_reports/$uid/${UUID.randomUUID()}.jpg")
-            ref.putBytes(bytes).await()
-            ref.downloadUrl.await().toString()
-        }
+        val uploadedUrls = imageBytesList
+            .filter { it.isNotEmpty() }
+            .mapNotNull { bytes ->
+                try {
+                    withContext(Dispatchers.IO) {
+                        val stream = ByteArrayInputStream(bytes)
+                        val ref = storage.reference.child("pet_reports/$uid/${UUID.randomUUID()}.jpg")
+                        ref.putStream(stream).await()
+                        ref.downloadUrl.await().toString()
+                    }
+                } catch (e: Exception) {
+                    null // skip failed upload; report still gets created
+                }
+            }
 
         val primaryUrl = uploadedUrls.firstOrNull() ?: report.imageUrl
         val extraUrls = if (uploadedUrls.size > 1) uploadedUrls.drop(1) else report.additionalPhotos
