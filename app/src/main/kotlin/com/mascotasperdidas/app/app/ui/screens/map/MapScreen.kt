@@ -116,6 +116,7 @@ fun MapScreen(
                     if (sheet.report.ownerPhone.isBlank()) {
                         Toast.makeText(context, noPhoneMsg, Toast.LENGTH_SHORT).show()
                     } else {
+                        onEvent(MapUiEvent.CloseSheet)
                         contactTarget = sheet.report
                     }
                 },
