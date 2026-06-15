@@ -3,33 +3,28 @@ package com.mascotasperdidas.app.data.firebase
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.storage.FirebaseStorage
 import com.mascotasperdidas.app.data.dto.PetReportDto
+import com.mascotasperdidas.app.data.image.Base64ImageCodec
+import com.mascotasperdidas.app.data.image.ImageCompressor
+import com.mascotasperdidas.app.data.image.ImageTooLargeException
 import com.mascotasperdidas.app.data.mapper.toDomain
 import com.mascotasperdidas.app.data.mapper.toDto
 import com.mascotasperdidas.app.domain.model.PetReport
 import com.mascotasperdidas.app.domain.model.ReportType
 import com.mascotasperdidas.app.domain.port.out.PetReportRepository
-import dagger.hilt.android.qualifiers.ApplicationContext
-import android.content.Context
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
-import kotlinx.coroutines.withContext
-import java.io.ByteArrayInputStream
-import java.util.UUID
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
 class FirestorePetReportRepository @Inject constructor(
-    @ApplicationContext private val appContext: Context,
     private val firestore: FirebaseFirestore,
-    private val storage: FirebaseStorage,
     private val auth: FirebaseAuth,
+    private val imageCompressor: ImageCompressor,
 ) : PetReportRepository {
 
     private val currentUid: String?
@@ -148,28 +143,21 @@ class FirestorePetReportRepository @Inject constructor(
     override suspend fun createReport(report: PetReport, imageBytesList: List<ByteArray>) {
         val uid = currentUid ?: throw IllegalStateException("Usuario no autenticado")
 
-        val uploadedUrls = imageBytesList
-            .filter { it.isNotEmpty() }
-            .mapNotNull { bytes ->
-                try {
-                    withContext(Dispatchers.IO) {
-                        val stream = ByteArrayInputStream(bytes)
-                        val ref = storage.reference.child("pet_reports/$uid/${UUID.randomUUID()}.jpg")
-                        ref.putStream(stream).await()
-                        ref.downloadUrl.await().toString()
-                    }
-                } catch (e: Exception) {
-                    null // skip failed upload; report still gets created
-                }
+        val primaryBase64 = imageBytesList.firstOrNull { it.isNotEmpty() }?.let { raw ->
+            val jpeg = imageCompressor.compressToJpeg(raw)
+            val b64 = Base64ImageCodec.encode(jpeg)
+            if (Base64ImageCodec.exceedsBudget(b64)) {
+                throw ImageTooLargeException("La imagen es demasiado grande. Por favor, elegí una foto más pequeña.")
             }
-
-        val primaryUrl = uploadedUrls.firstOrNull() ?: report.imageUrl
-        val extraUrls = if (uploadedUrls.size > 1) uploadedUrls.drop(1) else report.additionalPhotos
+            b64
+        } ?: report.imageUrl
+        // TODO(multi-photo): additional photos deferred — one image per doc for MVP
 
         val docRef = firestore.collection("pet_reports").document()
         val dto = report.toDto().copy(
-            imageUrl = primaryUrl,
-            additionalPhotos = extraUrls,
+            ownerUid = uid,
+            imageUrl = primaryBase64,
+            additionalPhotos = emptyList(),
         )
         docRef.set(dto).await()
     }
@@ -183,10 +171,10 @@ class FirestorePetReportRepository @Inject constructor(
         val q = query.trim().lowercase()
         return snapshot.documents.mapNotNull { doc ->
             doc.toObject(PetReportDto::class.java)?.toDomain(doc.id)
-        }.filter { report ->
-            report.petName.lowercase().contains(q) ||
-                report.breed.lowercase().contains(q) ||
-                report.description.lowercase().contains(q)
+        }.filter { r ->
+            r.petName.lowercase().contains(q) ||
+                r.breed.lowercase().contains(q) ||
+                r.description.lowercase().contains(q)
         }
     }
 }

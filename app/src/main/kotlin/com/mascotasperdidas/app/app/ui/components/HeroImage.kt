@@ -11,6 +11,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.mascotasperdidas.app.app.theme.MascotasPerdidasTheme
+import com.mascotasperdidas.app.app.util.petImageModel
 
 @Composable
 fun HeroImage(
@@ -18,7 +19,7 @@ fun HeroImage(
     modifier: Modifier = Modifier,
 ) {
     AsyncImage(
-        model = url,
+        model = petImageModel(url),
         contentDescription = null,
         contentScale = ContentScale.Crop,
         modifier = modifier

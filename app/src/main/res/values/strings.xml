@@ -153,6 +153,7 @@
     <string name="urgency_now_subtitle">Situación muy urgente</string>
 
     <!-- Errors / dialogs -->
+    <string name="error_image_too_large">La imagen es demasiado grande. Por favor, elegí una foto más pequeña.</string>
     <string name="error_campo_requerido">Este campo es requerido</string>
     <string name="error_selecciona_especie">Selecciona al menos la especie</string>
     <string name="error_publicar">Error al publicar. Intenta de nuevo.</string>

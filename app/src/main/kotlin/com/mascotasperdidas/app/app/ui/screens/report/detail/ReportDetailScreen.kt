@@ -46,6 +46,7 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.mascotasperdidas.app.R
 import com.mascotasperdidas.app.app.theme.MascotasPerdidasTheme
+import com.mascotasperdidas.app.app.util.petImageModel
 import com.mascotasperdidas.app.app.ui.components.AttributesGrid
 import com.mascotasperdidas.app.app.ui.components.HeroImage
 import com.mascotasperdidas.app.app.ui.components.MiniMapView
@@ -189,7 +190,7 @@ private fun ReportDetailContent(
                 ) {
                     itemsIndexed(report.additionalPhotos) { index, url ->
                         AsyncImage(
-                            model = url,
+                            model = petImageModel(url),
                             contentDescription = "Foto adicional ${index + 1}",
                             contentScale = ContentScale.Crop,
                             modifier = Modifier

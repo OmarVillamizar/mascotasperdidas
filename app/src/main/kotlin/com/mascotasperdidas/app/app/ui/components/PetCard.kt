@@ -41,6 +41,7 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.mascotasperdidas.app.R
 import com.mascotasperdidas.app.app.theme.MascotasPerdidasTheme
+import com.mascotasperdidas.app.app.util.petImageModel
 import com.mascotasperdidas.app.domain.model.PetReport
 import com.mascotasperdidas.app.domain.model.ReportType
 
@@ -125,7 +126,7 @@ fun PetCard(
 
             // ── Pet image ─────────────────────────────────────────────
             AsyncImage(
-                model = report.imageUrl,
+                model = petImageModel(report.imageUrl),
                 contentDescription = stringResource(R.string.content_desc_pet_image),
                 contentScale = ContentScale.Crop,
                 modifier = Modifier

@@ -34,6 +34,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.mascotasperdidas.app.app.theme.MascotasPerdidasTheme
+import com.mascotasperdidas.app.app.util.petImageModel
 import com.mascotasperdidas.app.domain.model.PetReport
 import com.mascotasperdidas.app.domain.model.ReportType
 
@@ -56,7 +57,7 @@ fun MyReportItem(
             verticalAlignment = Alignment.CenterVertically,
         ) {
             AsyncImage(
-                model = report.imageUrl,
+                model = petImageModel(report.imageUrl),
                 contentDescription = null,
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
