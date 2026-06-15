@@ -9,5 +9,4 @@ sealed class MapUiEvent {
     data class FilterLostChanged(val checked: Boolean) : MapUiEvent()
     data class FilterFoundChanged(val checked: Boolean) : MapUiEvent()
     data class RadiusChanged(val km: Float) : MapUiEvent()
-    data class ContactClicked(val reportId: String) : MapUiEvent()
 }

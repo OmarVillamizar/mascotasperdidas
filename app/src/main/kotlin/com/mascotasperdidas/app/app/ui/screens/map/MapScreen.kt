@@ -1,5 +1,6 @@
 package com.mascotasperdidas.app.app.ui.screens.map
 
+import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -27,7 +28,10 @@ import androidx.compose.material3.Slider
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -39,14 +43,15 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
+import com.mascotasperdidas.app.R
 import com.mascotasperdidas.app.app.theme.MascotasPerdidasTheme
+import com.mascotasperdidas.app.app.ui.components.ContactOptionsDialog
 import com.mascotasperdidas.app.app.ui.components.MapBottomBar
 import com.mascotasperdidas.app.app.ui.components.OsmMapView
 import com.mascotasperdidas.app.app.ui.components.OsmMarker
 import com.mascotasperdidas.app.app.util.createPinDrawable
 import com.mascotasperdidas.app.domain.model.PetReport
 import com.mascotasperdidas.app.domain.model.ReportType
-import com.mascotasperdidas.app.R
 import org.osmdroid.util.GeoPoint
 
 private val CucutaCenter = GeoPoint(7.89705, -72.50809)
@@ -60,6 +65,8 @@ fun MapScreen(
     modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
+    var contactTarget by remember { mutableStateOf<PetReport?>(null) }
+    val noPhoneMsg = stringResource(R.string.contact_no_phone)
 
     val markers = remember(state.allReports, state.filterLost, state.filterFound) {
         state.filteredReports.map { report ->
@@ -105,9 +112,24 @@ fun MapScreen(
                 report = sheet.report,
                 onEvent = onEvent,
                 onNavigateToDetail = onNavigateToReportDetail,
+                onContactClick = {
+                    if (sheet.report.ownerPhone.isBlank()) {
+                        Toast.makeText(context, noPhoneMsg, Toast.LENGTH_SHORT).show()
+                    } else {
+                        contactTarget = sheet.report
+                    }
+                },
             )
         }
         MapBottomSheetState.None -> {}
+    }
+
+    contactTarget?.let { target ->
+        ContactOptionsDialog(
+            phone = target.ownerPhone,
+            contactName = target.ownerName.ifBlank { target.petName },
+            onDismiss = { contactTarget = null },
+        )
     }
 }
 
@@ -202,6 +224,7 @@ private fun PinPreviewSheet(
     report: PetReport,
     onEvent: (MapUiEvent) -> Unit,
     onNavigateToDetail: (String, String) -> Unit,
+    onContactClick: () -> Unit,
 ) {
     val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
 
@@ -257,7 +280,7 @@ private fun PinPreviewSheet(
                     Text(stringResource(R.string.mas_informacion))
                 }
                 Button(
-                    onClick = { onEvent(MapUiEvent.ContactClicked(report.id)) },
+                    onClick = onContactClick,
                     modifier = Modifier.weight(1f),
                     colors = ButtonDefaults.buttonColors(
                         containerColor = MaterialTheme.colorScheme.tertiary,
@@ -301,6 +324,7 @@ private fun PinPreviewSheetPreview() {
             ),
             onEvent = {},
             onNavigateToDetail = { _, _ -> },
+            onContactClick = {},
         )
     }
 }

@@ -64,7 +64,6 @@ class MapViewModel @Inject constructor(
             }
 
             MapUiEvent.OpenSearch -> { /* Search not yet implemented */ }
-            is MapUiEvent.ContactClicked -> { /* TODO: Intent.ACTION_DIAL */ }
         }
     }
 }
