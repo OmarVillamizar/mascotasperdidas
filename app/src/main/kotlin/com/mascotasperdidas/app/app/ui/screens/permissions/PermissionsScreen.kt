@@ -5,6 +5,7 @@ import android.net.Uri
 import android.provider.Settings
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -137,7 +138,11 @@ fun PermissionsScreen(
             Spacer(Modifier.height(8.dp))
 
             ElevatedCard(modifier = Modifier.fillMaxWidth()) {
-                Column(modifier = Modifier.padding(16.dp)) {
+                Column(
+                    modifier = Modifier
+                        .padding(16.dp)
+                        .animateContentSize(),
+                ) {
                     Text(
                         text = stringResource(R.string.permissions_card_title),
                         style = MaterialTheme.typography.titleMedium,
@@ -210,7 +215,9 @@ fun PermissionsScreen(
 
             TextButton(
                 onClick = { openAppSettings() },
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(48.dp),
             ) {
                 Text(stringResource(R.string.permissions_open_settings))
             }
@@ -219,7 +226,9 @@ fun PermissionsScreen(
 
             Button(
                 onClick = onContinueToFeed,
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(48.dp),
             ) {
                 Text(stringResource(R.string.permissions_btn_continue))
             }

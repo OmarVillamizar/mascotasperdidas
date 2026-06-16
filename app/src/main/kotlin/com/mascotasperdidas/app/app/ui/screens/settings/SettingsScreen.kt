@@ -1,5 +1,6 @@
 package com.mascotasperdidas.app.app.ui.screens.settings
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -12,10 +13,12 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.selection.toggleable
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Checkbox
+import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -82,11 +85,12 @@ fun SettingsScreen(
             // ── Sección: Permisos ────────────────────────────────────
             SectionHeader(stringResource(R.string.settings_section_permissions))
 
-            Button(
+            FilledTonalButton(
                 onClick = onNavigateToPermissions,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 16.dp),
+                    .padding(horizontal = 16.dp)
+                    .height(48.dp),
             ) {
                 Text(stringResource(R.string.settings_btn_manage_permissions))
             }
@@ -97,11 +101,16 @@ fun SettingsScreen(
             // ── Sección: Mi cuenta ───────────────────────────────────
             SectionHeader(stringResource(R.string.settings_section_account))
 
-            Button(
+            OutlinedButton(
                 onClick = { onEvent(SettingsUiEvent.SignOut) },
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 16.dp),
+                    .padding(horizontal = 16.dp)
+                    .height(48.dp),
+                colors = ButtonDefaults.outlinedButtonColors(
+                    contentColor = MaterialTheme.colorScheme.error,
+                ),
+                border = BorderStroke(1.dp, MaterialTheme.colorScheme.error),
             ) {
                 Text(stringResource(R.string.settings_btn_sign_out))
             }
@@ -110,7 +119,8 @@ fun SettingsScreen(
                 onClick = { onEvent(SettingsUiEvent.ShowDeleteDialog) },
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 16.dp),
+                    .padding(horizontal = 16.dp)
+                    .height(48.dp),
             ) {
                 Text(
                     text = stringResource(R.string.settings_btn_delete_account),
@@ -178,12 +188,13 @@ private fun CheckboxItem(
     Row(
         modifier = Modifier
             .fillMaxWidth()
+            .height(48.dp)
             .toggleable(
                 value = checked,
                 role = Role.Checkbox,
                 onValueChange = { onToggle() },
             )
-            .padding(horizontal = 16.dp, vertical = 4.dp),
+            .padding(horizontal = 16.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Checkbox(checked = checked, onCheckedChange = null)
