@@ -25,3 +25,4 @@ class MascotasPerdidasApp : Application() {
         Configuration.getInstance().userAgentValue = packageName
     }
 }
+
