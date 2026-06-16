@@ -14,6 +14,8 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.mascotasperdidas.app.app.navigation.Routes
 import com.mascotasperdidas.app.app.ui.components.AppBottomNavigationBar
+import com.mascotasperdidas.app.app.ui.components.AppDrawerContent
+import com.mascotasperdidas.app.app.ui.components.DrawerShell
 import com.mascotasperdidas.app.app.ui.screens.feed.FeedScreen
 import com.mascotasperdidas.app.app.ui.screens.feed.FeedViewModel
 import com.mascotasperdidas.app.app.ui.screens.map.MapScreen
@@ -29,71 +31,99 @@ fun MainScaffold(
     onNavigateToReportDetail: (reportId: String, reportType: String) -> Unit,
     onNavigateToMyReports: () -> Unit,
     onNavigateToSightingsForPet: (petReportId: String) -> Unit,
-    onNavigateToOtp: () -> Unit,
+    onNavigateToPermissions: () -> Unit,
+    onSignOut: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val bottomNavController = rememberNavController()
     val navBackStackEntry by bottomNavController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
 
-    Scaffold(
-        bottomBar = {
-            AppBottomNavigationBar(
-                currentRoute = currentRoute,
-                onTabSelected = { route ->
-                    bottomNavController.navigate(route) {
-                        popUpTo(bottomNavController.graph.startDestinationId) {
-                            saveState = true
-                        }
-                        launchSingleTop = true
-                        restoreState = true
-                    }
+    fun switchTab(route: String) {
+        bottomNavController.navigate(route) {
+            popUpTo(bottomNavController.graph.startDestinationId) { saveState = true }
+            launchSingleTop = true
+            restoreState = true
+        }
+    }
+
+    DrawerShell(
+        drawerContent = { closeDrawer ->
+            AppDrawerContent(
+                onFeedClick = {
+                    closeDrawer()
+                    switchTab(Routes.Feed.route)
+                },
+                onProfileClick = {
+                    closeDrawer()
+                    switchTab(Routes.ProfileTab.route)
+                },
+                onSettingsClick = {
+                    closeDrawer()
+                    onNavigateToSettings()
+                },
+                onPermissionsClick = {
+                    closeDrawer()
+                    onNavigateToPermissions()
+                },
+                onSignOutClick = {
+                    closeDrawer()
+                    onSignOut()
                 },
             )
         },
-        modifier = modifier,
-    ) { innerPadding ->
-        NavHost(
-            navController = bottomNavController,
-            startDestination = Routes.Feed.route,
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(innerPadding),
-        ) {
-            composable(Routes.Feed.route) {
-                val viewModel: FeedViewModel = hiltViewModel()
-                val state by viewModel.uiState.collectAsState()
-                FeedScreen(
-                    state = state,
-                    onEvent = viewModel::onEvent,
-                    onNavigateToNewReport = onNavigateToNewReport,
-                    onNavigateToReportDetail = onNavigateToReportDetail,
-                    onNavigateToSettings = onNavigateToSettings,
+    ) {
+        Scaffold(
+            bottomBar = {
+                AppBottomNavigationBar(
+                    currentRoute = currentRoute,
+                    onTabSelected = { route -> switchTab(route) },
                 )
-            }
-            composable(Routes.Map.route) {
-                val viewModel: MapViewModel = hiltViewModel()
-                val state by viewModel.uiState.collectAsState()
-                MapScreen(
-                    state = state,
-                    onEvent = viewModel::onEvent,
-                    onNavigateToNewReport = onNavigateToNewReport,
-                    onNavigateToReportDetail = onNavigateToReportDetail,
-                )
-            }
-            composable(Routes.Notifications.route) {
-                NotificationsPlaceholderScreen()
-            }
-            composable(Routes.ProfileTab.route) {
-                val viewModel: ProfileViewModel = hiltViewModel()
-                val state by viewModel.uiState.collectAsState()
-                ProfileScreen(
-                    state = state,
-                    onEvent = viewModel::onEvent,
-                    onNavigateToOtp = onNavigateToOtp,
-                    onNavigateToMyReports = onNavigateToMyReports,
-                    onNavigateToSettings = onNavigateToSettings,
-                )
+            },
+            modifier = modifier,
+        ) { innerPadding ->
+            NavHost(
+                navController = bottomNavController,
+                startDestination = Routes.Feed.route,
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(innerPadding),
+            ) {
+                composable(Routes.Feed.route) {
+                    val viewModel: FeedViewModel = hiltViewModel()
+                    val state by viewModel.uiState.collectAsState()
+                    FeedScreen(
+                        state = state,
+                        onEvent = viewModel::onEvent,
+                        onNavigateToNewReport = onNavigateToNewReport,
+                        onNavigateToReportDetail = onNavigateToReportDetail,
+                        onNavigateToSettings = onNavigateToSettings,
+                    )
+                }
+                composable(Routes.Map.route) {
+                    val viewModel: MapViewModel = hiltViewModel()
+                    val state by viewModel.uiState.collectAsState()
+                    MapScreen(
+                        state = state,
+                        onEvent = viewModel::onEvent,
+                        onNavigateToNewReport = onNavigateToNewReport,
+                        onNavigateToReportDetail = onNavigateToReportDetail,
+                    )
+                }
+                composable(Routes.Notifications.route) {
+                    NotificationsPlaceholderScreen()
+                }
+                composable(Routes.ProfileTab.route) {
+                    val viewModel: ProfileViewModel = hiltViewModel()
+                    val state by viewModel.uiState.collectAsState()
+                    ProfileScreen(
+                        state = state,
+                        onEvent = viewModel::onEvent,
+                        onNavigateToMyReports = onNavigateToMyReports,
+                        onNavigateToSettings = onNavigateToSettings,
+                        onSignOut = onSignOut,
+                    )
+                }
             }
         }
     }

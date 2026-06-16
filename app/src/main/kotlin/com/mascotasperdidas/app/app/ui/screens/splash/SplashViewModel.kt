@@ -26,8 +26,7 @@ class SplashViewModel @Inject constructor(
                 observeCurrentUser().collect { user ->
                     val destination = when {
                         user == null -> null // mostrar botón Google
-                        user.phoneVerified -> "feed" // saltar directo a Feed
-                        else -> "profile" // completar perfil + OTP
+                        else -> "feed" // usuario autenticado → directo a Feed
                     }
                     _uiState.value = SplashUiState(
                         isCheckingAuth = false,
@@ -55,7 +54,7 @@ class SplashViewModel @Inject constructor(
             try {
                 signInWithGoogle(idToken)
                 // No navegamos aquí — observeCurrentUser emitirá el nuevo usuario
-                // y el init lo detectará, seteando navigateTo = "profile"
+                // y el init lo detectará, seteando navigateTo = "feed"
                 _uiState.value = _uiState.value.copy(isSigningIn = false)
             } catch (e: Exception) {
                 _uiState.value = _uiState.value.copy(
