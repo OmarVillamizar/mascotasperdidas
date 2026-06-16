@@ -6,6 +6,7 @@ data class PetReportDto(
     val ownerUid: String = "",
     val ownerInitial: String = "",
     val ownerName: String = "",
+    val ownerPhone: String = "",
     val petName: String = "",
     val type: String = "LOST",
     val breed: String = "",

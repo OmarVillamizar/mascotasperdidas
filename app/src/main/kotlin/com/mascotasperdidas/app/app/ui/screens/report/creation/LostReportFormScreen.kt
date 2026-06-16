@@ -194,7 +194,7 @@ fun LostReportFormScreen(
                     value = state.ageApprox,
                     onValueChange = { onEvent(LostReportFormUiEvent.AgeChanged(it)) },
                     label = { Text(stringResource(R.string.edad_aprox)) },
-                    placeholder = { Text("Ej: 3 años, Cachorro, Adulto") },
+                    placeholder = { Text(stringResource(R.string.form_age_hint)) },
                     singleLine = true,
                     modifier = Modifier.fillMaxWidth(),
                 )
@@ -203,7 +203,7 @@ fun LostReportFormScreen(
                     value = state.color,
                     onValueChange = { onEvent(LostReportFormUiEvent.ColorChanged(it)) },
                     label = { Text(stringResource(R.string.color_predominante)) },
-                    placeholder = { Text("Ej: Dorado, Negro y blanco") },
+                    placeholder = { Text(stringResource(R.string.form_color_hint)) },
                     singleLine = true,
                     modifier = Modifier.fillMaxWidth(),
                 )
@@ -214,7 +214,7 @@ fun LostReportFormScreen(
                     value = state.description,
                     onValueChange = { onEvent(LostReportFormUiEvent.DescriptionChanged(it)) },
                     label = { Text(stringResource(R.string.descripcion_detallada)) },
-                    placeholder = { Text("Cicatrices, collar, comportamientos, microchip...") },
+                    placeholder = { Text(stringResource(R.string.form_description_hint)) },
                     minLines = 4,
                     modifier = Modifier.fillMaxWidth(),
                 )
@@ -224,8 +224,8 @@ fun LostReportFormScreen(
                 OutlinedTextField(
                     value = state.locationRef,
                     onValueChange = { onEvent(LostReportFormUiEvent.LocationChanged(it)) },
-                    label = { Text("Referencia de ubicación") },
-                    placeholder = { Text("Ej: Cerca del Parque Simón Bolívar") },
+                    label = { Text(stringResource(R.string.form_location_ref_label)) },
+                    placeholder = { Text(stringResource(R.string.form_location_ref_hint_lost)) },
                     singleLine = true,
                     modifier = Modifier.fillMaxWidth(),
                 )

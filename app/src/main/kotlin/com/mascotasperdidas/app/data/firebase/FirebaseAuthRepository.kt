@@ -27,6 +27,7 @@ import kotlin.coroutines.resumeWithException
 class FirebaseAuthRepository @Inject constructor(
     private val auth: FirebaseAuth,
     @ApplicationContext private val context: Context,
+    private val activityProvider: ActivityProvider,
 ) : AuthRepository {
 
     override fun observeAuthState(): Flow<AuthState> = callbackFlow {
@@ -75,9 +76,18 @@ class FirebaseAuthRepository @Inject constructor(
                 }
             }
 
+            val activity = activityProvider.current
+            if (activity == null) {
+                continuation.resumeWithException(
+                    IllegalStateException("No hay una actividad activa para la verificación telefónica"),
+                )
+                return@suspendCancellableCoroutine
+            }
+
             val options = PhoneAuthOptions.newBuilder(auth)
                 .setPhoneNumber(phone)
                 .setTimeout(60L, TimeUnit.SECONDS)
+                .setActivity(activity)
                 .setCallbacks(callbacks)
                 .build()
             PhoneAuthProvider.verifyPhoneNumber(options)

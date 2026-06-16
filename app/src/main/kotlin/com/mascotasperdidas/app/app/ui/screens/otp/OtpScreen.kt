@@ -3,6 +3,7 @@ package com.mascotasperdidas.app.app.ui.screens.otp
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -14,6 +15,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -57,6 +59,7 @@ fun OtpScreen(
                 phoneInput = state.phoneInput,
                 isVerifying = state.isVerifying,
                 canSendCode = state.canSendCode,
+                showPhoneError = state.showPhoneError,
                 onPhoneChanged = { onEvent(OtpUiEvent.PhoneChanged(it)) },
                 onSendCode = { onEvent(OtpUiEvent.SendCode) },
             )
@@ -87,6 +90,7 @@ private fun PhoneStep(
     phoneInput: String,
     isVerifying: Boolean,
     canSendCode: Boolean,
+    showPhoneError: Boolean,
     onPhoneChanged: (String) -> Unit,
     onSendCode: () -> Unit,
 ) {
@@ -97,19 +101,45 @@ private fun PhoneStep(
         modifier = Modifier.padding(bottom = 24.dp),
     )
 
-    OutlinedTextField(
-        value = phoneInput,
-        onValueChange = { newValue ->
-            // Solo dígitos y algunos caracteres de formato
-            val filtered = newValue.filter { it.isDigit() || it in "+() -" }
-            onPhoneChanged(filtered)
-        },
-        label = { Text(stringResource(R.string.otp_phone_label)) },
-        singleLine = true,
-        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Phone),
-        enabled = !isVerifying,
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier.fillMaxWidth(),
-    )
+    ) {
+        // Sealed, non-editable country code.
+        Surface(
+            shape = MaterialTheme.shapes.small,
+            color = MaterialTheme.colorScheme.surfaceVariant,
+            modifier = Modifier.height(56.dp),
+        ) {
+            Text(
+                text = stringResource(R.string.otp_country_code),
+                style = MaterialTheme.typography.titleMedium,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                modifier = Modifier.padding(horizontal = 16.dp, vertical = 16.dp),
+            )
+        }
+        Spacer(Modifier.width(8.dp))
+        OutlinedTextField(
+            value = phoneInput,
+            onValueChange = onPhoneChanged,
+            label = { Text(stringResource(R.string.otp_phone_label)) },
+            singleLine = true,
+            isError = showPhoneError,
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Phone),
+            enabled = !isVerifying,
+            modifier = Modifier.weight(1f),
+        )
+    }
+    if (showPhoneError) {
+        Text(
+            text = stringResource(R.string.otp_phone_invalid),
+            style = MaterialTheme.typography.bodySmall,
+            color = MaterialTheme.colorScheme.error,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 4.dp),
+        )
+    }
     Button(
         onClick = onSendCode,
         enabled = canSendCode && !isVerifying,

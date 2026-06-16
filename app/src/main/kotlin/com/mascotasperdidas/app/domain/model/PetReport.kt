@@ -5,6 +5,7 @@ data class PetReport(
     val ownerUid: String,
     val ownerInitial: String,
     val ownerName: String = "",
+    val ownerPhone: String = "",
     val petName: String,
     val type: ReportType,
     val breed: String,

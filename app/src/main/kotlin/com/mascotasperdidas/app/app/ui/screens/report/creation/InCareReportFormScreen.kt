@@ -168,8 +168,8 @@ fun InCareReportFormScreen(
                 OutlinedTextField(
                     value = state.breed,
                     onValueChange = { onEvent(InCareReportFormUiEvent.BreedChanged(it)) },
-                    label = { Text("Raza (si la conoces)") },
-                    placeholder = { Text("Ej: Labrador, Siamés, Mestizo...") },
+                    label = { Text(stringResource(R.string.form_breed_label)) },
+                    placeholder = { Text(stringResource(R.string.form_breed_hint)) },
                     singleLine = true,
                     modifier = Modifier.fillMaxWidth(),
                 )
@@ -249,7 +249,7 @@ fun InCareReportFormScreen(
                     value = state.notes,
                     onValueChange = { onEvent(InCareReportFormUiEvent.NotesChanged(it)) },
                     label = { Text(stringResource(R.string.notas)) },
-                    placeholder = { Text("Cualquier detalle importante sobre su estado") },
+                    placeholder = { Text(stringResource(R.string.form_notes_hint)) },
                     minLines = 3,
                     modifier = Modifier.fillMaxWidth(),
                 )
@@ -271,7 +271,7 @@ fun InCareReportFormScreen(
                 OutlinedTextField(
                     value = state.locationRef,
                     onValueChange = { onEvent(InCareReportFormUiEvent.LocationRefChanged(it)) },
-                    label = { Text("Referencia de ubicación") },
+                    label = { Text(stringResource(R.string.form_location_ref_label)) },
                     singleLine = true,
                     modifier = Modifier.fillMaxWidth(),
                 )

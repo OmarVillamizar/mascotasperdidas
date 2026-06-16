@@ -7,7 +7,17 @@
       "Bash(Remove-Item -Force copier.yaml -ErrorAction SilentlyContinue)",
       "Bash(Remove-Item -Force requirements.txt -ErrorAction SilentlyContinue)",
       "PowerShell(Get-ChildItem -Recurse \"D:\\\\MOVILES\\\\hexagonal-architecture-kotlin-template\\\\app\" -Exclude \".gradle\",\"build\" | Where-Object { -not $_.FullName.Contains\\(\"\\\\.git\\\\\"\\) } | Select-Object FullName | Sort-Object FullName)",
-      "PowerShell(Get-ChildItem -Recurse -File \"D:\\\\MOVILES\\\\hexagonal-architecture-kotlin-template\\\\app\" | ForEach-Object { $_.FullName.Replace\\(\"D:\\\\MOVILES\\\\hexagonal-architecture-kotlin-template\\\\\", \"\"\\) } | Sort-Object)"
+      "PowerShell(Get-ChildItem -Recurse -File \"D:\\\\MOVILES\\\\hexagonal-architecture-kotlin-template\\\\app\" | ForEach-Object { $_.FullName.Replace\\(\"D:\\\\MOVILES\\\\hexagonal-architecture-kotlin-template\\\\\", \"\"\\) } | Sort-Object)",
+      "PowerShell(.\\\\gradlew.bat :app:compileDebugKotlin -q --console=plain 2>&1 | Select-Object -Last 60)",
+      "PowerShell(graphify update *)",
+      "mcp__plugin_engram_engram__mem_save",
+      "Bash(graphify query *)",
+      "Bash(./gradlew compileDebugKotlin testDebugUnitTest -q)",
+      "Bash(./gradlew testDebugUnitTest)",
+      "Bash(./gradlew testDebugUnitTest assembleDebug -q)",
+      "Bash(./gradlew assembleDebug)",
+      "Bash(graphify update *)",
+      "Bash(./gradlew compileDebugKotlin testDebugUnitTest assembleDebug)"
     ]
   }
 }

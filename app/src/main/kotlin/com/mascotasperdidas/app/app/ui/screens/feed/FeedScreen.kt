@@ -1,5 +1,6 @@
 package com.mascotasperdidas.app.app.ui.screens.feed
 
+import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -13,6 +14,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
@@ -24,15 +26,22 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.mascotasperdidas.app.R
 import com.mascotasperdidas.app.app.theme.MascotasPerdidasTheme
 import com.mascotasperdidas.app.app.ui.components.AppTopBar
+import com.mascotasperdidas.app.app.ui.components.ContactOptionsDialog
 import com.mascotasperdidas.app.app.ui.components.LocalDrawerOpener
 import com.mascotasperdidas.app.app.ui.components.PetCard
 import com.mascotasperdidas.app.domain.model.PetReport
@@ -50,12 +59,15 @@ fun FeedScreen(
     modifier: Modifier = Modifier,
 ) {
     val openDrawer = LocalDrawerOpener.current
+    val context = LocalContext.current
+    var contactTarget by remember { mutableStateOf<PetReport?>(null) }
+    val noPhoneMsg = stringResource(R.string.contact_no_phone)
     Scaffold(
         topBar = {
             AppTopBar(
                 title = stringResource(R.string.feed_title),
                 onMenuClick = openDrawer ?: {},
-                userInitial = "?",
+                userInitial = state.currentUserInitial,
                 photoUrl = null,
                 onAvatarClick = {},
             )
@@ -147,7 +159,7 @@ fun FeedScreen(
                         contentAlignment = Alignment.Center,
                     ) {
                         Text(
-                            text = state.emptyMessage.ifBlank { "No hay publicaciones" },
+                            text = state.emptyMessage.ifBlank { stringResource(R.string.feed_empty) },
                             style = MaterialTheme.typography.bodyLarge,
                             color = MaterialTheme.colorScheme.onSurfaceVariant,
                         )
@@ -166,8 +178,14 @@ fun FeedScreen(
                                 onMoreInfoClick = {
                                     onNavigateToReportDetail(report.id, report.type.name)
                                 },
-                                onContactClick = { onEvent(FeedUiEvent.ContactClicked(report.id)) },
-                                onDeleteClick = { onEvent(FeedUiEvent.DeleteReport(report.id)) },
+                                onContactClick = {
+                                    if (report.ownerPhone.isBlank()) {
+                                        Toast.makeText(context, noPhoneMsg, Toast.LENGTH_SHORT).show()
+                                    } else {
+                                        contactTarget = report
+                                    }
+                                },
+                                onDeleteClick = { onEvent(FeedUiEvent.DeleteRequested(report)) },
                             )
                         }
                     }
@@ -182,6 +200,35 @@ fun FeedScreen(
                     modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
                 )
             }
+        }
+
+        if (state.reportPendingDelete != null) {
+            AlertDialog(
+                onDismissRequest = { onEvent(FeedUiEvent.DismissDelete) },
+                title = { Text(stringResource(R.string.feed_dialog_delete_title)) },
+                text = { Text(stringResource(R.string.feed_dialog_delete_msg)) },
+                confirmButton = {
+                    TextButton(onClick = { onEvent(FeedUiEvent.ConfirmDelete) }) {
+                        Text(
+                            text = stringResource(R.string.confirmar),
+                            color = MaterialTheme.colorScheme.error,
+                        )
+                    }
+                },
+                dismissButton = {
+                    TextButton(onClick = { onEvent(FeedUiEvent.DismissDelete) }) {
+                        Text(stringResource(R.string.cancelar))
+                    }
+                },
+            )
+        }
+
+        contactTarget?.let { target ->
+            ContactOptionsDialog(
+                phone = target.ownerPhone,
+                contactName = target.ownerName.ifBlank { target.petName },
+                onDismiss = { contactTarget = null },
+            )
         }
     }
 }

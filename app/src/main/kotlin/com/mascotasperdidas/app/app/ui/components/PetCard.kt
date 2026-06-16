@@ -13,6 +13,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.outlined.Delete
+import androidx.compose.material.icons.outlined.Pets
 import androidx.compose.material3.AssistChip
 import androidx.compose.material3.AssistChipDefaults
 import androidx.compose.material3.Button
@@ -33,6 +34,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
@@ -42,6 +44,7 @@ import coil.compose.AsyncImage
 import com.mascotasperdidas.app.R
 import com.mascotasperdidas.app.app.theme.MascotasPerdidasTheme
 import com.mascotasperdidas.app.app.util.petImageModel
+import com.mascotasperdidas.app.app.util.petRecencyLabel
 import com.mascotasperdidas.app.domain.model.PetReport
 import com.mascotasperdidas.app.domain.model.ReportType
 
@@ -101,7 +104,7 @@ fun PetCard(
                             DropdownMenuItem(
                                 text = {
                                     Text(
-                                        text = "Eliminar",
+                                        text = stringResource(R.string.eliminar),
                                         color = MaterialTheme.colorScheme.error,
                                     )
                                 },
@@ -125,10 +128,14 @@ fun PetCard(
             Spacer(Modifier.height(12.dp))
 
             // ── Pet image ─────────────────────────────────────────────
+            val petPlaceholder = rememberVectorPainter(Icons.Outlined.Pets)
             AsyncImage(
                 model = petImageModel(report.imageUrl),
                 contentDescription = stringResource(R.string.content_desc_pet_image),
                 contentScale = ContentScale.Crop,
+                placeholder = petPlaceholder,
+                error = petPlaceholder,
+                fallback = petPlaceholder,
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(180.dp)
@@ -159,7 +166,7 @@ fun PetCard(
                     onClick = {},
                     label = {
                         Text(
-                            text = report.recencyLabel,
+                            text = petRecencyLabel(report.createdAtEpochMs),
                             style = MaterialTheme.typography.labelMedium,
                         )
                     },

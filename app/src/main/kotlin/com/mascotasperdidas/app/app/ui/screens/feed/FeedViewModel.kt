@@ -73,7 +73,12 @@ class FeedViewModel @Inject constructor(
 
         viewModelScope.launch {
             observeCurrentUser().collect { user ->
-                _uiState.update { it.copy(currentUserUid = user?.uid) }
+                _uiState.update {
+                    it.copy(
+                        currentUserUid = user?.uid,
+                        currentUserInitial = user?.displayName?.firstOrNull()?.uppercase() ?: "?",
+                    )
+                }
             }
         }
     }
@@ -88,17 +93,24 @@ class FeedViewModel @Inject constructor(
                 _query.value = event.query
                 _uiState.update { it.copy(query = event.query) }
             }
-            is FeedUiEvent.DeleteReport -> {
+            is FeedUiEvent.DeleteRequested -> {
+                _uiState.update { it.copy(reportPendingDelete = event.report) }
+            }
+            FeedUiEvent.DismissDelete -> {
+                _uiState.update { it.copy(reportPendingDelete = null) }
+            }
+            FeedUiEvent.ConfirmDelete -> {
+                val report = _uiState.value.reportPendingDelete ?: return
                 viewModelScope.launch {
+                    _uiState.update { it.copy(reportPendingDelete = null) }
                     try {
-                        deleteReport(event.id)
+                        deleteReport(report.id)
                     } catch (e: Exception) {
                         _uiState.update { it.copy(error = "Error al eliminar publicación") }
                     }
                 }
             }
             is FeedUiEvent.ReportClicked -> { /* handled via onNavigateToReportDetail in Screen */ }
-            is FeedUiEvent.ContactClicked -> { /* future */ }
         }
     }
 }

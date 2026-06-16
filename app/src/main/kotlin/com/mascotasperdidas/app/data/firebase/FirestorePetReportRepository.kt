@@ -76,6 +76,7 @@ class FirestorePetReportRepository @Inject constructor(
                 ownerUid = ownerUid,
                 ownerInitial = "M",
                 ownerName = "María García",
+                ownerPhone = "+573001112233",
                 petName = "Max",
                 type = "LOST",
                 breed = "Golden Retriever",
@@ -95,6 +96,7 @@ class FirestorePetReportRepository @Inject constructor(
                 ownerUid = ownerUid,
                 ownerInitial = "L",
                 ownerName = "Luis Morales",
+                ownerPhone = "+573004445566",
                 petName = "Luna",
                 type = "FOUND_SIGHTING",
                 breed = "Siamés",
@@ -114,6 +116,7 @@ class FirestorePetReportRepository @Inject constructor(
                 ownerUid = ownerUid,
                 ownerInitial = "R",
                 ownerName = "Rosa Quintero",
+                ownerPhone = "+573007778899",
                 petName = "Rocky",
                 type = "FOUND_IN_CARE",
                 breed = "Bulldog Francés",
@@ -156,6 +159,10 @@ class FirestorePetReportRepository @Inject constructor(
         val docRef = firestore.collection("pet_reports").document()
         val dto = report.toDto().copy(
             ownerUid = uid,
+            // Contact phone (E.164) for WhatsApp / call. Prefer the user's stored
+            // profile phone (report.ownerPhone); auth.currentUser.phoneNumber is
+            // only populated once real OTP links the number (future feature).
+            ownerPhone = report.ownerPhone.ifBlank { auth.currentUser?.phoneNumber ?: "" },
             imageUrl = primaryBase64,
             additionalPhotos = emptyList(),
         )
@@ -163,8 +170,15 @@ class FirestorePetReportRepository @Inject constructor(
     }
 
     override suspend fun searchReports(query: String, type: ReportType): List<PetReport> {
+        // The "Avistadas" tab merges FOUND_SIGHTING + FOUND_IN_CARE in the live feed;
+        // mirror that here so search does not silently exclude in-care reports.
+        val types = if (type == ReportType.FOUND_SIGHTING) {
+            listOf(ReportType.FOUND_SIGHTING.name, ReportType.FOUND_IN_CARE.name)
+        } else {
+            listOf(type.name)
+        }
         val snapshot = firestore.collection("pet_reports")
-            .whereEqualTo("type", type.name)
+            .whereIn("type", types)
             .get()
             .await()
 

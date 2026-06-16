@@ -70,9 +70,6 @@ class ReportDetailViewModel @Inject constructor(
     fun onEvent(event: ReportDetailUiEvent) {
         when (event) {
             ReportDetailUiEvent.NavigateBack -> viewModelScope.launch { _navigateBack.emit(Unit) }
-            ReportDetailUiEvent.ContactOwner -> _uiState.update {
-                it.copy(contactSnackbar = "Contacto disponible próximamente")
-            }
             ReportDetailUiEvent.DeleteReport -> _uiState.update { it.copy(showDeleteDialog = true) }
             ReportDetailUiEvent.DismissDelete -> _uiState.update { it.copy(showDeleteDialog = false) }
             ReportDetailUiEvent.ConfirmDelete -> {

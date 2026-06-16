@@ -61,7 +61,7 @@ fun SplashScreen(
         )
         Button(
             onClick = { onEvent(SplashUiEvent.ContinueWithGoogle) },
-            enabled = !state.isCheckingAuth,
+            enabled = !state.isCheckingAuth && !state.isSigningIn,
             modifier = Modifier.padding(top = 32.dp),
             shape = RoundedCornerShape(24.dp),
             colors = ButtonDefaults.buttonColors(

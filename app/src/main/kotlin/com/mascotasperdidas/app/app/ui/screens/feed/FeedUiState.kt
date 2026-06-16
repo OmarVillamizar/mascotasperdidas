@@ -9,6 +9,8 @@ data class FeedUiState(
     val reports: List<PetReport> = emptyList(),
     val isLoading: Boolean = false,
     val currentUserUid: String? = null,
+    val currentUserInitial: String = "?",
+    val reportPendingDelete: PetReport? = null,
     val error: String? = null,
 ) {
     val showFilterBanner: Boolean get() = query.isNotBlank()

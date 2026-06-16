@@ -51,7 +51,6 @@ class SettingsViewModel @Inject constructor(
             SettingsUiEvent.ToggleLostNearby -> toggleLostNearby()
             SettingsUiEvent.ToggleFoundNearby -> toggleFoundNearby()
             SettingsUiEvent.ToggleSightings -> toggleSightings()
-            SettingsUiEvent.ManagePermissions -> { /* navegación vía callback */ }
             SettingsUiEvent.SignOut -> performSignOut()
             SettingsUiEvent.ShowDeleteDialog -> {
                 _uiState.update { it.copy(showDeleteDialog = true) }

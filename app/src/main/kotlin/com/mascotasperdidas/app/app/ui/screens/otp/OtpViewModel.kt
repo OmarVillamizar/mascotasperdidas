@@ -35,7 +35,9 @@ class OtpViewModel @Inject constructor(
                 if (user != null) {
                     currentName = user.displayName
                     if (user.phoneNumber.isNotBlank()) {
-                        _uiState.update { it.copy(phoneInput = user.phoneNumber) }
+                        // Stored numbers are E.164 (+57...); show only the national digits.
+                        val national = user.phoneNumber.filter { it.isDigit() }.takeLast(10)
+                        _uiState.update { it.copy(phoneInput = national) }
                     }
                 }
             } catch (_: Exception) {
@@ -47,7 +49,8 @@ class OtpViewModel @Inject constructor(
     fun onEvent(event: OtpUiEvent) {
         when (event) {
             is OtpUiEvent.PhoneChanged -> {
-                _uiState.update { it.copy(phoneInput = event.phone, error = null) }
+                val digits = event.phone.filter { it.isDigit() }.take(10)
+                _uiState.update { it.copy(phoneInput = digits, error = null) }
             }
             OtpUiEvent.SendCode -> sendCode()
             is OtpUiEvent.DigitChanged -> {
@@ -63,7 +66,7 @@ class OtpViewModel @Inject constructor(
         viewModelScope.launch {
             _uiState.update { it.copy(isVerifying = true, error = null) }
             try {
-                val phone = _uiState.value.phoneInput.trim()
+                val phone = _uiState.value.e164Phone
                 val verificationId = requestPhoneOtp(phone)
                 _uiState.update {
                     it.copy(verificationId = verificationId, isVerifying = false)
@@ -84,8 +87,8 @@ class OtpViewModel @Inject constructor(
                 val vid = _uiState.value.verificationId
                     ?: throw IllegalStateException("Verification ID missing")
                 verifyPhoneOtp(vid, code)
-                // Actualizar teléfono del usuario tras verificación exitosa
-                val phone = _uiState.value.phoneInput.trim()
+                // Actualizar teléfono del usuario tras verificación exitosa (E.164)
+                val phone = _uiState.value.e164Phone
                 updateUserProfile(currentName, phone)
                 _uiState.update { it.copy(isVerifying = false, isVerified = true) }
                 // Navegación manejada vía LaunchedEffect en AppNavHost

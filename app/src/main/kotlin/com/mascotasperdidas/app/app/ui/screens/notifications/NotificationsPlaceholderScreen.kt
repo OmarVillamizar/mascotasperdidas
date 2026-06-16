@@ -7,7 +7,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import com.mascotasperdidas.app.R
 import com.mascotasperdidas.app.app.theme.MascotasPerdidasTheme
 
 @Composable
@@ -17,7 +19,7 @@ fun NotificationsPlaceholderScreen(modifier: Modifier = Modifier) {
         contentAlignment = Alignment.Center,
     ) {
         Text(
-            text = "Próximamente",
+            text = stringResource(R.string.proximamente),
             style = MaterialTheme.typography.headlineSmall,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
         )

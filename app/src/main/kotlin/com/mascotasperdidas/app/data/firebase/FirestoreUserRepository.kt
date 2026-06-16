@@ -51,7 +51,7 @@ class FirestoreUserRepository @Inject constructor(
                         displayName = user.displayName ?: "",
                         email = user.email ?: "",
                         phoneNumber = user.phoneNumber ?: "",
-                        phoneVerified = true, // sin OTP en MVP
+                        phoneVerified = !user.phoneNumber.isNullOrBlank(),
                         photoUrl = user.photoUrl?.toString(),
                         createdAt = Timestamp.now(),
                     )
@@ -92,10 +92,12 @@ class FirestoreUserRepository @Inject constructor(
 
     override suspend fun updateProfile(name: String, phone: String) {
         currentUid?.let { uid ->
+            // Phone is a plain field while OTP is disabled — do NOT touch
+            // phoneVerified here. Real OTP will set phoneVerified = true on a
+            // dedicated verification path (future feature).
             val updates = mapOf<String, Any>(
                 "displayName" to name,
                 "phoneNumber" to phone,
-                "phoneVerified" to (phone.isNotBlank()),
             )
             firestore.collection("users").document(uid).update(updates).await()
         }

@@ -13,6 +13,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.outlined.Delete
+import androidx.compose.material.icons.outlined.Pets
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ElevatedCard
@@ -28,11 +29,14 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
+import com.mascotasperdidas.app.R
 import com.mascotasperdidas.app.app.theme.MascotasPerdidasTheme
 import com.mascotasperdidas.app.app.util.petImageModel
 import com.mascotasperdidas.app.domain.model.PetReport
@@ -56,10 +60,14 @@ fun MyReportItem(
             modifier = Modifier.padding(12.dp),
             verticalAlignment = Alignment.CenterVertically,
         ) {
+            val petPlaceholder = rememberVectorPainter(Icons.Outlined.Pets)
             AsyncImage(
                 model = petImageModel(report.imageUrl),
                 contentDescription = null,
                 contentScale = ContentScale.Crop,
+                placeholder = petPlaceholder,
+                error = petPlaceholder,
+                fallback = petPlaceholder,
                 modifier = Modifier
                     .size(64.dp)
                     .clip(RoundedCornerShape(8.dp)),
@@ -93,7 +101,7 @@ fun MyReportItem(
                     DropdownMenuItem(
                         text = {
                             Text(
-                                text = "Eliminar",
+                                text = stringResource(R.string.eliminar),
                                 color = MaterialTheme.colorScheme.error,
                             )
                         },

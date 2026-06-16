@@ -11,8 +11,6 @@ import com.mascotasperdidas.app.data.image.ImageCompressor
 import com.mascotasperdidas.app.data.image.ImageTooLargeException
 import com.mascotasperdidas.app.domain.model.PetReport
 import com.mascotasperdidas.app.domain.model.ReportType
-import io.mockk.coEvery
-import io.mockk.coVerify
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.slot
@@ -58,6 +56,7 @@ class FirestorePetReportRepositoryTest {
         // Default: authenticated user
         every { auth.currentUser } returns firebaseUser
         every { firebaseUser.uid } returns "uid-test"
+        every { firebaseUser.phoneNumber } returns "+573001112233"
 
         // Default Firestore collection / doc wiring
         every { firestore.collection("pet_reports") } returns collection

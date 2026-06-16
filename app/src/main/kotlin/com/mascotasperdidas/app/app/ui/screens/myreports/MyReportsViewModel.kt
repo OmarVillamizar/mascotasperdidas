@@ -55,8 +55,12 @@ class MyReportsViewModel @Inject constructor(
             MyReportsUiEvent.ConfirmDelete -> {
                 val report = _uiState.value.reportToDelete ?: return
                 viewModelScope.launch {
-                    deleteReport(report.id)
                     _uiState.update { it.copy(reportToDelete = null) }
+                    try {
+                        deleteReport(report.id)
+                    } catch (e: Exception) {
+                        _uiState.update { it.copy(error = "Error al eliminar. Intenta de nuevo.") }
+                    }
                 }
             }
 

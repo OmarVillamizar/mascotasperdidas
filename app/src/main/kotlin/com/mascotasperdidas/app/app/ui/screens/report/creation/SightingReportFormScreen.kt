@@ -220,8 +220,8 @@ fun SightingReportFormScreen(
                 OutlinedTextField(
                     value = state.locationRef,
                     onValueChange = { onEvent(SightingReportFormUiEvent.LocationRefChanged(it)) },
-                    label = { Text("Referencia de ubicación") },
-                    placeholder = { Text("Ej: Cerca del Parque Central") },
+                    label = { Text(stringResource(R.string.form_location_ref_label)) },
+                    placeholder = { Text(stringResource(R.string.form_location_ref_hint_sighting)) },
                     singleLine = true,
                     modifier = Modifier.fillMaxWidth(),
                 )
@@ -231,8 +231,8 @@ fun SightingReportFormScreen(
                 OutlinedTextField(
                     value = state.description,
                     onValueChange = { onEvent(SightingReportFormUiEvent.DescriptionChanged(it)) },
-                    label = { Text("Añade detalles") },
-                    placeholder = { Text("Añade detalles que puedan ayudar a identificar al animal...") },
+                    label = { Text(stringResource(R.string.form_add_details_label)) },
+                    placeholder = { Text(stringResource(R.string.form_add_details_hint)) },
                     minLines = 3,
                     modifier = Modifier.fillMaxWidth(),
                 )

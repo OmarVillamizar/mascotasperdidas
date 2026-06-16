@@ -3,6 +3,7 @@ package com.mascotasperdidas.app.app.ui.screens.report.creation
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.mascotasperdidas.app.R
 import com.mascotasperdidas.app.domain.model.PetReport
 import com.mascotasperdidas.app.domain.model.ReportType
 import com.mascotasperdidas.app.domain.port.`in`.CreateReport
@@ -49,10 +50,12 @@ class InCareReportFormViewModel @Inject constructor(
                 val updated = _uiState.value.photos.toMutableList().also { it.removeAt(event.index) }
                 _uiState.update { it.copy(photos = updated) }
             }
-            is InCareReportFormUiEvent.SpeciesSelected -> _uiState.update { it.copy(
-                species = event.value,
-                speciesError = false
-            ) }
+            is InCareReportFormUiEvent.SpeciesSelected -> _uiState.update {
+                it.copy(
+                    species = event.value,
+                    speciesError = false
+                )
+            }
             is InCareReportFormUiEvent.SizeSelected -> _uiState.update { it.copy(size = event.value) }
             is InCareReportFormUiEvent.BreedChanged -> _uiState.update { it.copy(breed = event.value) }
             is InCareReportFormUiEvent.GenderSelected -> _uiState.update { it.copy(gender = event.value) }
@@ -94,6 +97,15 @@ class InCareReportFormViewModel @Inject constructor(
             _uiState.update { it.copy(isPublishing = true) }
             try {
                 val user = observeCurrentUser().firstOrNull()
+                if (user == null) {
+                    _uiState.update {
+                        it.copy(
+                            isPublishing = false,
+                            error = appContext.getString(R.string.error_no_session),
+                        )
+                    }
+                    return@launch
+                }
                 val imageBytesList = state.photos.mapNotNull { uri ->
                     withContext(Dispatchers.IO) {
                         appContext.contentResolver.openInputStream(uri)?.use { it.readBytes() }
@@ -101,9 +113,10 @@ class InCareReportFormViewModel @Inject constructor(
                 }
                 val report = PetReport(
                     id = "",
-                    ownerUid = user?.uid ?: "anon",
-                    ownerInitial = user?.displayName?.firstOrNull()?.uppercase() ?: "?",
-                    ownerName = user?.displayName ?: "",
+                    ownerUid = user.uid,
+                    ownerInitial = user.displayName.firstOrNull()?.uppercase() ?: "?",
+                    ownerName = user.displayName,
+                    ownerPhone = user.phoneNumber,
                     petName = "Bajo mi cuidado",
                     type = ReportType.FOUND_IN_CARE,
                     breed = state.breed.trim(),

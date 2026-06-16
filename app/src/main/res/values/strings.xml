@@ -14,13 +14,15 @@
     <string name="profile_label_name">Nombre</string>
     <string name="profile_label_phone">Teléfono</string>
     <string name="profile_btn_save">Guardar</string>
+    <string name="profile_btn_save_phone">Guardar teléfono</string>
     <string name="profile_btn_change_phone">Cambiar número telefónico</string>
+    <string name="continuar">Continuar</string>
 
     <!-- OTP -->
     <string name="otp_title">Verificación de Teléfono Celular</string>
     <string name="otp_subtitle">Enviamos un código de 6 dígitos por SMS al teléfono que digitaste</string>
     <string name="otp_phone_hint">Ingresa tu número de teléfono</string>
-    <string name="otp_phone_label">Teléfono</string>
+    <string name="otp_phone_label">Número de celular</string>
     <string name="otp_btn_send">Enviar código</string>
     <string name="otp_btn_confirm">Confirmar</string>
 
@@ -81,6 +83,20 @@
 
     <!-- Generic -->
     <string name="error_generic">Ocurrió un error. Inténtalo de nuevo.</string>
+    <string name="error_no_session">Debes iniciar sesión para publicar un reporte.</string>
+    <string name="error_eliminar">Error al eliminar. Intenta de nuevo.</string>
+
+    <!-- Feed delete confirmation -->
+    <string name="feed_dialog_delete_title">Eliminar publicación</string>
+    <string name="feed_dialog_delete_msg">¿Estás seguro de que deseas eliminar esta publicación? Esta acción no se puede deshacer.</string>
+
+    <!-- Profile phone verification -->
+    <string name="profile_phone_verified">Verificado</string>
+    <string name="profile_phone_unverified">Sin verificar</string>
+
+    <!-- Permissions runtime state -->
+    <string name="permissions_granted">Concedido</string>
+    <string name="permissions_open_settings">Abrir ajustes de la app</string>
     <string name="content_desc_avatar">Avatar de usuario</string>
     <string name="content_desc_menu">Abrir menú</string>
     <string name="content_desc_pet_image">Imagen de la mascota</string>
@@ -132,6 +148,13 @@
     <string name="bajo_mi_cuidado">Bajo mi cuidado</string>
     <string name="mas_informacion">Más Información</string>
     <string name="contactar">CONTACTAR</string>
+    <string name="contact_title">Contactar a %1$s</string>
+    <string name="contact_whatsapp">WhatsApp</string>
+    <string name="contact_call">Llamar</string>
+    <string name="contact_connecting_whatsapp">Conectando con WhatsApp…</string>
+    <string name="contact_no_phone">Este usuario no dejó un número de contacto</string>
+    <string name="otp_country_code">+57</string>
+    <string name="otp_phone_invalid">Número inválido. Debe tener 10 dígitos y empezar por 3.</string>
     <string name="aplicar_filtros">Aplicar Filtros</string>
     <string name="radio_busqueda">Radio de búsqueda (km)</string>
     <string name="perdidos_label">Perdidos</string>
@@ -165,4 +188,46 @@
     <string name="cargando">Cargando…</string>
     <string name="sin_reportes">Sin reportes aún</string>
     <string name="sin_avistamientos">Sin avistamientos encontrados</string>
+
+    <!-- Common -->
+    <string name="comun_si">Sí</string>
+    <string name="comun_no">No</string>
+
+    <!-- Form hints / placeholders -->
+    <string name="form_breed_label">Raza (si la conoces)</string>
+    <string name="form_breed_hint">Ej: Labrador, Siamés, Mestizo…</string>
+    <string name="form_notes_hint">Cualquier detalle importante sobre su estado</string>
+    <string name="form_location_ref_label">Referencia de ubicación</string>
+    <string name="form_age_hint">Ej: 3 años, Cachorro, Adulto</string>
+    <string name="form_color_hint">Ej: Dorado, Negro y blanco</string>
+    <string name="form_description_hint">Cicatrices, collar, comportamientos, microchip…</string>
+    <string name="form_location_ref_hint_lost">Ej: Cerca del Parque Simón Bolívar</string>
+    <string name="form_location_ref_hint_sighting">Ej: Cerca del Parque Central</string>
+    <string name="form_add_details_label">Añade detalles</string>
+    <string name="form_add_details_hint">Añade detalles que puedan ayudar a identificar al animal…</string>
+
+    <!-- Notifications placeholder -->
+    <string name="proximamente">Próximamente</string>
+
+    <!-- Feed empty -->
+    <string name="feed_empty">No hay publicaciones</string>
+
+    <!-- Report detail -->
+    <string name="detail_not_found">No se encontró el reporte</string>
+    <string name="detail_additional_photo">Foto adicional %1$d</string>
+    <string name="attr_color">Color</string>
+    <string name="attr_estado">Estado</string>
+    <string name="attr_collar">Collar</string>
+    <string name="attr_microchip">Microchip</string>
+
+    <!-- Sightings for pet -->
+    <string name="avistamientos_count">%1$d avistamiento(s)</string>
+
+    <!-- Recency (computed at display time) -->
+    <string name="recency_now">Ahora</string>
+    <string name="recency_today">Hoy</string>
+    <string name="recency_yesterday">Ayer</string>
+    <string name="recency_days_ago">Hace %1$d días</string>
+    <string name="recency_weeks_ago">Hace %1$d semanas</string>
+    <string name="recency_months_ago">Hace %1$d meses</string>
 </resources>

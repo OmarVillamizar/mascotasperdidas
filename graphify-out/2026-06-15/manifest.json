@@ -1,0 +1,1847 @@
+{
+  ".atl/.skill-registry.cache.json": {
+    "mtime": 1781221217.7211077,
+    "ast_hash": "d81c220241f3a2db60998aaa2bab0b32",
+    "semantic_hash": ""
+  },
+  ".claude/mcp/engram.json": {
+    "mtime": 1781220012.2424748,
+    "ast_hash": "37ae303a8441dd4de177b41cf147635b",
+    "semantic_hash": ""
+  },
+  ".claude/settings.json": {
+    "mtime": 1781221162.3396506,
+    "ast_hash": "91ec0da37efedc8cf95f3600407f4f07",
+    "semantic_hash": ""
+  },
+  ".claude/settings.local.json": {
+    "mtime": 1781565787.0713825,
+    "ast_hash": "afaf30629419785cd2e43d7a4e02e266",
+    "semantic_hash": ""
+  },
+  ".config/opencode/opencode.json": {
+    "mtime": 1781220185.192995,
+    "ast_hash": "bf2eb7c32ebfa6046b6802ce334e55bd",
+    "semantic_hash": ""
+  },
+  ".config/opencode/package.json": {
+    "mtime": 1781220015.0108263,
+    "ast_hash": "860e5bdcc59d8ef8a128fe998cd150e7",
+    "semantic_hash": ""
+  },
+  ".config/opencode/plugins/background-agents.ts": {
+    "mtime": 1781220013.1480541,
+    "ast_hash": "00995ec7966ed3c17fc45f750e0ae38f",
+    "semantic_hash": ""
+  },
+  ".config/opencode/plugins/model-variants.ts": {
+    "mtime": 1781220013.1508286,
+    "ast_hash": "60d7b2a15021238cfe91561387a13473",
+    "semantic_hash": ""
+  },
+  ".gemini/settings.json": {
+    "mtime": 1781220012.9533026,
+    "ast_hash": "7f2eed37222295fc2bf30cf2df0a5a8e",
+    "semantic_hash": ""
+  },
+  "app/build.gradle.kts": {
+    "mtime": 1781219273.797965,
+    "ast_hash": "9c7d97511b0def730ae6762dfe8bdd4b",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/MainActivity.kt": {
+    "mtime": 1778902805.7038958,
+    "ast_hash": "81d35b43c31c95fe777c7d1ff9e58561",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/MascotasPerdidasApp.kt": {
+    "mtime": 1781564667.3972912,
+    "ast_hash": "bc2b1286782d310fc41846365fb6d341",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/di/FirebaseModule.kt": {
+    "mtime": 1781219273.799478,
+    "ast_hash": "60d6ec09a4f21c65b5191f7416e270d0",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/di/RepositoryModule.kt": {
+    "mtime": 1781219273.8014848,
+    "ast_hash": "929cc4031b4ef15cd2013532c730cc79",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/di/UseCaseModule.kt": {
+    "mtime": 1778950355.099711,
+    "ast_hash": "26c51f66e5e3f96681fdbb56958d5545",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/navigation/AppNavHost.kt": {
+    "mtime": 1781565629.1595042,
+    "ast_hash": "0e296c8924ee2267083acad7247c3b13",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/navigation/Routes.kt": {
+    "mtime": 1780440268.8154428,
+    "ast_hash": "6036e1ede5cc6b99275609b498cce114",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/theme/Color.kt": {
+    "mtime": 1780440268.8164496,
+    "ast_hash": "79605d1ad493d9deaadac79fe271043f",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/theme/Theme.kt": {
+    "mtime": 1780437071.3239822,
+    "ast_hash": "f3b5fa009a145bfe9f781c964ebcc56e",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/theme/Type.kt": {
+    "mtime": 1778901528.1482892,
+    "ast_hash": "d8f19a48b9cddb934ed7475601db6ba2",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/ui/components/AppBottomNavigationBar.kt": {
+    "mtime": 1780437560.9332993,
+    "ast_hash": "1f841b3a920e77b87f9093cf9c61abad",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/ui/components/AppDrawer.kt": {
+    "mtime": 1778902909.499449,
+    "ast_hash": "e7e30c4d8269f92db6e888e800e15e55",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/ui/components/AppTopBar.kt": {
+    "mtime": 1778902872.29312,
+    "ast_hash": "6b0052d83d88644677d518cf89600fc7",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/ui/components/AttributesGrid.kt": {
+    "mtime": 1780438135.4594479,
+    "ast_hash": "7008761233d6e3fa3c02396053cb6f16",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/ui/components/CareUrgency.kt": {
+    "mtime": 1780438093.672777,
+    "ast_hash": "5c0b6e0fed856bc8fab279f49ed66c4e",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/ui/components/ColorSwatchSelector.kt": {
+    "mtime": 1780438156.207331,
+    "ast_hash": "9442a8b4eb0bd640b3a3cc43c0b975d3",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/ui/components/DrawerShell.kt": {
+    "mtime": 1780440268.8164496,
+    "ast_hash": "7dbc335e7df6bbc5367544ac25ef3015",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/ui/components/FormSectionHeader.kt": {
+    "mtime": 1780438097.198538,
+    "ast_hash": "d3e71db9b296266a9da507d85264efb2",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/ui/components/HeroImage.kt": {
+    "mtime": 1781557416.947204,
+    "ast_hash": "a984d390e9bfa1ce9d57da1872d6eb8c",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/ui/components/LocationMapPicker.kt": {
+    "mtime": 1780445263.3212972,
+    "ast_hash": "c2a56f1e118a1954232c1784d9d136bb",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/ui/components/MapBottomBar.kt": {
+    "mtime": 1780438125.1556675,
+    "ast_hash": "136bdd9ad74793d5dda94a6c8e1b803f",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/ui/components/MiniMapView.kt": {
+    "mtime": 1780438109.724449,
+    "ast_hash": "617a53edd4af3bf72e2bbf87c938dd68",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/ui/components/MultiSelectChipGroup.kt": {
+    "mtime": 1780438148.6553643,
+    "ast_hash": "87493ffc9052a640e3f51d6705903dad",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/ui/components/MyReportItem.kt": {
+    "mtime": 1781559576.6497912,
+    "ast_hash": "70f6ca260a368c36803237f6fadf9659",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/ui/components/OsmMapView.kt": {
+    "mtime": 1780445239.88993,
+    "ast_hash": "c1070b33e06f9112313d73e4891c2e57",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/ui/components/PetCard.kt": {
+    "mtime": 1781559563.0066435,
+    "ast_hash": "bd8d1da00817494a904e2b26e897a82c",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/ui/components/PhotoPickerRow.kt": {
+    "mtime": 1780438165.2243247,
+    "ast_hash": "5418e2e62b84df4ae09ba44b81fef2f3",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/ui/components/SectionLabel.kt": {
+    "mtime": 1780438100.5436425,
+    "ast_hash": "a4157d384d1eafa02f3d1f874bd7d6c1",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/ui/components/SelectionWizardStep.kt": {
+    "mtime": 1780438178.6658027,
+    "ast_hash": "3b3dac90bfcb14ba59d65af544a7f6b9",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/ui/components/SightingItem.kt": {
+    "mtime": 1780438218.0690627,
+    "ast_hash": "9ee1314cf7d1fc61705ed3ef7d4a4c87",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/ui/components/SingleSelectChipGroup.kt": {
+    "mtime": 1780438143.782403,
+    "ast_hash": "2b2172a3834fb2ff7dfbcac48b870107",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/ui/components/StatusChip.kt": {
+    "mtime": 1780437079.2864447,
+    "ast_hash": "406e51a44324c8c05802b4631495b5d9",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/ui/components/StickyContactFooter.kt": {
+    "mtime": 1781564834.7067578,
+    "ast_hash": "5ddfe02dbf773a3a1b00cf8aa745a3c1",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/ui/components/UrgencySelector.kt": {
+    "mtime": 1780440268.8174489,
+    "ast_hash": "194cea6ee212aadc4fbac3635316f60f",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/ui/components/UserAvatar.kt": {
+    "mtime": 1780437086.770842,
+    "ast_hash": "0d0c3fb8412cfb2180218b08744ae569",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/ui/screens/feed/FeedScreen.kt": {
+    "mtime": 1781559632.7228107,
+    "ast_hash": "a23c385f0613909b4455bd6961d1cba4",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/ui/screens/feed/FeedUiEvent.kt": {
+    "mtime": 1781557282.1178658,
+    "ast_hash": "5400c26628bb15d279804ab7fddde7ca",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/ui/screens/feed/FeedUiState.kt": {
+    "mtime": 1781557275.1857789,
+    "ast_hash": "111b6c40629a6f8af2646190dc795237",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/ui/screens/feed/FeedViewModel.kt": {
+    "mtime": 1781557296.2119513,
+    "ast_hash": "83436223da785212632d82d72be05ade",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/ui/screens/main/MainScaffold.kt": {
+    "mtime": 1781565595.7820175,
+    "ast_hash": "2dea9aee722265d0f83532c2ba54fdf7",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/ui/screens/main/MainViewModel.kt": {
+    "mtime": 1781557208.3504343,
+    "ast_hash": "4fed093e58cc6e8cc604683ef33e1c02",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/ui/screens/map/MapScreen.kt": {
+    "mtime": 1781219273.8260546,
+    "ast_hash": "8b0b1f439b1499b66dd7086a3cb776ec",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/ui/screens/map/MapUiEvent.kt": {
+    "mtime": 1781219273.8270612,
+    "ast_hash": "ca2f9526be1a29ade750090dea8f17a0",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/ui/screens/map/MapUiState.kt": {
+    "mtime": 1780439902.5913246,
+    "ast_hash": "ab9f7511aa1df24c72a0bed697c64b89",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/ui/screens/map/MapViewModel.kt": {
+    "mtime": 1781219273.8295698,
+    "ast_hash": "b22c79bdfb01b3e7f7ed3985e8846c06",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/ui/screens/myreports/MyReportsScreen.kt": {
+    "mtime": 1781557354.0993905,
+    "ast_hash": "a751b04ff845f94e691a32261eb84bbd",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/ui/screens/myreports/MyReportsUiEvent.kt": {
+    "mtime": 1780440456.6526496,
+    "ast_hash": "a6d94a329e98ec5eaf3224fc1c975747",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/ui/screens/myreports/MyReportsUiState.kt": {
+    "mtime": 1780440454.655366,
+    "ast_hash": "acfe4ab0192c06386ad517a0ae0aa0e3",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/ui/screens/myreports/MyReportsViewModel.kt": {
+    "mtime": 1781557334.1422858,
+    "ast_hash": "3d595b94298a8fe1a68799c7c547b3ab",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/ui/screens/notifications/NotificationsPlaceholderScreen.kt": {
+    "mtime": 1781559628.0647123,
+    "ast_hash": "7a09ce545a2096795ff4bcbdb318b025",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/ui/screens/otp/OtpScreen.kt": {
+    "mtime": 1781564740.0391307,
+    "ast_hash": "faceb984970d31908ac7cbb11c5e6f71",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/ui/screens/otp/OtpUiEvent.kt": {
+    "mtime": 1778904124.2233455,
+    "ast_hash": "f9adce57b8cf93684b5c673dc4122cf5",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/ui/screens/otp/OtpUiState.kt": {
+    "mtime": 1781564686.088247,
+    "ast_hash": "9b69fe5b7abbc27120db81917d26ad0c",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/ui/screens/otp/OtpViewModel.kt": {
+    "mtime": 1781564709.2229,
+    "ast_hash": "619fb79209486dcc9d4e0fb236fbab45",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/ui/screens/permissions/PermissionsScreen.kt": {
+    "mtime": 1781557496.734189,
+    "ast_hash": "00a83237b64b76f9f1a90f74c339c124",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/ui/screens/permissions/PermissionsViewModel.kt": {
+    "mtime": 1778904152.7632127,
+    "ast_hash": "759720df71676a88bc03df8be0191139",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/ui/screens/profile/ProfileScreen.kt": {
+    "mtime": 1781565573.1196184,
+    "ast_hash": "a17c6db8f742d1403634b6b34aa25680",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/ui/screens/profile/ProfileUiEvent.kt": {
+    "mtime": 1781565526.8939662,
+    "ast_hash": "051b240f1ac0e53579f67e748f21fa91",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/ui/screens/profile/ProfileUiState.kt": {
+    "mtime": 1781565523.0686557,
+    "ast_hash": "4642f555ff9ddf2b9c3f887736a6ad2b",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/ui/screens/profile/ProfileViewModel.kt": {
+    "mtime": 1781565542.0689647,
+    "ast_hash": "d4e21aec5a0dea0a8a0dd53edfaf7388",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/ui/screens/report/confirmed/ReportConfirmedScreen.kt": {
+    "mtime": 1780439669.7268987,
+    "ast_hash": "f08cefdebe2da0c45624dfb54630ecf6",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/ui/screens/report/creation/FoundSubTypeScreen.kt": {
+    "mtime": 1780439043.8916678,
+    "ast_hash": "bbf364d9865850cc7bacc08cfee986ad",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/ui/screens/report/creation/InCareReportFormScreen.kt": {
+    "mtime": 1781559665.353041,
+    "ast_hash": "3a1120afadbab59ee3499018962b0c09",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/ui/screens/report/creation/InCareReportFormUiEvent.kt": {
+    "mtime": 1780439151.6554227,
+    "ast_hash": "70ed6840cdb00c6c7553ddfc63390330",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/ui/screens/report/creation/InCareReportFormUiState.kt": {
+    "mtime": 1780439142.3377004,
+    "ast_hash": "2aa50d5fc2156662e1d758cb8c53d7a8",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/ui/screens/report/creation/InCareReportFormViewModel.kt": {
+    "mtime": 1781565650.5172293,
+    "ast_hash": "e44b7c7aa347d3000c3cdcd1763a0180",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/ui/screens/report/creation/LostReportFormScreen.kt": {
+    "mtime": 1781559679.719182,
+    "ast_hash": "c347cf3036cf262eb81d10663aa3d687",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/ui/screens/report/creation/LostReportFormUiEvent.kt": {
+    "mtime": 1780444476.842988,
+    "ast_hash": "b0de5b73ef27765259ec5c1f16b8b5b0",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/ui/screens/report/creation/LostReportFormUiState.kt": {
+    "mtime": 1780444410.445659,
+    "ast_hash": "d8935ab90a25c6be320b334040bcb8df",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/ui/screens/report/creation/LostReportFormViewModel.kt": {
+    "mtime": 1781565635.44079,
+    "ast_hash": "0afb9d0cad599b7c821b1ed775eae168",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/ui/screens/report/creation/NewReportTypeScreen.kt": {
+    "mtime": 1780439035.5694382,
+    "ast_hash": "21d975d282f3a8ee38b4d27327762d43",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/ui/screens/report/creation/SightingReportFormScreen.kt": {
+    "mtime": 1781559686.2705452,
+    "ast_hash": "64567ef8b32b6c86132da37a1345d19a",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/ui/screens/report/creation/SightingReportFormUiEvent.kt": {
+    "mtime": 1780439119.0711303,
+    "ast_hash": "bbd85f2b1e05741416507342c505b630",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/ui/screens/report/creation/SightingReportFormUiState.kt": {
+    "mtime": 1780439114.3012638,
+    "ast_hash": "3103c527d68942410034533d75944978",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/ui/screens/report/creation/SightingReportFormViewModel.kt": {
+    "mtime": 1781565654.5421135,
+    "ast_hash": "d66f6aef3017abbce64a0af16d824160",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/ui/screens/report/detail/ReportDetailScreen.kt": {
+    "mtime": 1781564869.7451022,
+    "ast_hash": "e7c655f04820a558eba744bf6c011dda",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/ui/screens/report/detail/ReportDetailUiEvent.kt": {
+    "mtime": 1781564875.9021478,
+    "ast_hash": "245f835c252fc093b1fd37aa813b2318",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/ui/screens/report/detail/ReportDetailUiState.kt": {
+    "mtime": 1780438549.1569197,
+    "ast_hash": "d9f80780d10b8ac289690d81cb9f4bcd",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/ui/screens/report/detail/ReportDetailViewModel.kt": {
+    "mtime": 1781564881.541489,
+    "ast_hash": "5afb51da75e923264b42d7943df598ca",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/ui/screens/settings/SettingsScreen.kt": {
+    "mtime": 1780440268.8217294,
+    "ast_hash": "35181573396dd24d76e29b584fd77c46",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/ui/screens/settings/SettingsUiEvent.kt": {
+    "mtime": 1781559770.8720505,
+    "ast_hash": "1827b6bdb0afcddb240576f67861b280",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/ui/screens/settings/SettingsUiState.kt": {
+    "mtime": 1778905262.3109813,
+    "ast_hash": "b4f4eb5310a6af485375430df3de5df2",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/ui/screens/settings/SettingsViewModel.kt": {
+    "mtime": 1781559778.1411083,
+    "ast_hash": "8ece642cc28e80d3e4b9ef2605db419f",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/ui/screens/sightings/SightingsForPetScreen.kt": {
+    "mtime": 1781559717.549013,
+    "ast_hash": "bb8c57da98bc0807eda3516376ef0e75",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/ui/screens/sightings/SightingsForPetUiEvent.kt": {
+    "mtime": 1780440787.237592,
+    "ast_hash": "83cd820e3463a7f99299a34f918abbbc",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/ui/screens/sightings/SightingsForPetUiState.kt": {
+    "mtime": 1780440785.507572,
+    "ast_hash": "cff39a97799ffee41bb7f4735c825c3f",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/ui/screens/sightings/SightingsForPetViewModel.kt": {
+    "mtime": 1780440797.4174442,
+    "ast_hash": "5999f55fbfe6aa3bf02e59bf90fe62d7",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/ui/screens/splash/SplashScreen.kt": {
+    "mtime": 1781557158.106596,
+    "ast_hash": "9eb048fbbcb9d842e856f4479709d804",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/ui/screens/splash/SplashUiEvent.kt": {
+    "mtime": 1778903394.6109166,
+    "ast_hash": "f01eecf23607e96396f93b0ef53bd6f2",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/ui/screens/splash/SplashUiState.kt": {
+    "mtime": 1778939893.4458952,
+    "ast_hash": "bd40810de191f7d1d542f94bad49c434",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/ui/screens/splash/SplashViewModel.kt": {
+    "mtime": 1780440268.8227289,
+    "ast_hash": "955be0af2ddc9ab0fe9756539e8a5fe4",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/util/AvatarColorUtils.kt": {
+    "mtime": 1780437089.529402,
+    "ast_hash": "c93e97ac707fae11a48e4a5f4f76b6d6",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/util/MapPinUtils.kt": {
+    "mtime": 1780438089.1860135,
+    "ast_hash": "9b4210b07bf7b97200082bd4a6f5d3f8",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/util/PermissionUtils.kt": {
+    "mtime": 1780440268.8237298,
+    "ast_hash": "93e47bb3054c58543b8d8e3b4c865758",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/util/PetImageModel.kt": {
+    "mtime": 1781223839.0789866,
+    "ast_hash": "4872921176e329b09f1f315091acfcb9",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/data/datastore/PrefsDataStore.kt": {
+    "mtime": 1780440268.8237298,
+    "ast_hash": "defe879118c0c44d35f2153769732f55",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/data/dto/NotificationPrefsDto.kt": {
+    "mtime": 1778938901.2283568,
+    "ast_hash": "43999b458a3eb0e4a1724b7b2ef1ba0d",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/data/dto/PetReportDto.kt": {
+    "mtime": 1781564748.68324,
+    "ast_hash": "728f6bb1b00ddc327e0ce8dd479c1bcc",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/data/dto/UserDto.kt": {
+    "mtime": 1778938907.5059977,
+    "ast_hash": "323812a95ebda990d4f62792d687477a",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/data/fake/FakeAuthRepository.kt": {
+    "mtime": 1778902174.564855,
+    "ast_hash": "cfc982d98cfa16c6d13cb08fff7aedf0",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/data/fake/FakePetReportRepository.kt": {
+    "mtime": 1780437058.1325378,
+    "ast_hash": "6252d8b95547b7339e989e9addbd5cc5",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/data/fake/FakeUserRepository.kt": {
+    "mtime": 1778905933.8424275,
+    "ast_hash": "d58c9b6aa91a6f7641a6f99929f0cedd",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/data/firebase/FirebaseAuthRepository.kt": {
+    "mtime": 1781564677.438061,
+    "ast_hash": "4dbe092c6b815098f16ca8f233077978",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/data/firebase/FirestorePetReportRepository.kt": {
+    "mtime": 1781565663.6467934,
+    "ast_hash": "e1d319f7aaf89520a82d3cb1909a2215",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/data/firebase/FirestoreUserRepository.kt": {
+    "mtime": 1781565673.462957,
+    "ast_hash": "3439c8fd239adbb762aa8db63c25c794",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/data/image/Base64ImageCodec.kt": {
+    "mtime": 1781223697.8669639,
+    "ast_hash": "c16072aab343e380aa75d0c218f0fafa",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/data/image/ImageCompressor.kt": {
+    "mtime": 1781223712.7728896,
+    "ast_hash": "62294e4fc5ef3f365f56e483fa417e98",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/data/image/ImageTooLargeException.kt": {
+    "mtime": 1781223703.1536632,
+    "ast_hash": "1bc85572cd22738811be3e90c9c61497",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/data/mapper/PetReportMapper.kt": {
+    "mtime": 1781564756.3840344,
+    "ast_hash": "1f6fbdc3f1a2d088cdc39f34983be080",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/data/mapper/UserMapper.kt": {
+    "mtime": 1778938928.7857814,
+    "ast_hash": "d65d04e694284f3c1038f1a73160bab9",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/domain/model/AuthState.kt": {
+    "mtime": 1778900928.2637775,
+    "ast_hash": "8fe775a3f2afd709c4e45ef28230c0d4",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/domain/model/NotificationPrefs.kt": {
+    "mtime": 1778900930.946159,
+    "ast_hash": "3556b3539a9cd593eae2f98d188e56ed",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/domain/model/PetReport.kt": {
+    "mtime": 1781564744.7921672,
+    "ast_hash": "19b2d7d9bd6ccc0762f31130c3438d36",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/domain/model/ReportType.kt": {
+    "mtime": 1780436994.0698137,
+    "ast_hash": "b75ac51763b577cc7acf4a6affc72273",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/domain/model/User.kt": {
+    "mtime": 1778900929.2564282,
+    "ast_hash": "fecdb6fcf4b6ff1fc98615f4c3633ccf",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/domain/port/in/CreateReport.kt": {
+    "mtime": 1780437000.7961495,
+    "ast_hash": "c5f34f0e86f1fd1bf61732bdda1df020",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/domain/port/in/DeleteAccount.kt": {
+    "mtime": 1778900954.8128097,
+    "ast_hash": "81c65ecc20e4598fe0c9587485a0ce46",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/domain/port/in/DeleteReport.kt": {
+    "mtime": 1778950335.1991532,
+    "ast_hash": "41e2cbac8e8605dace4d7f9181688957",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/domain/port/in/ObserveCurrentUser.kt": {
+    "mtime": 1778900950.8745265,
+    "ast_hash": "1a99d9a21ae4e8a01800833463c06530",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/domain/port/in/ObserveReports.kt": {
+    "mtime": 1778900956.401201,
+    "ast_hash": "701aa2493c2a3a881b4038dd16c208de",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/domain/port/in/RequestPhoneOtp.kt": {
+    "mtime": 1778900948.6731539,
+    "ast_hash": "ae48747507697627e6a145b8e6cabfeb",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/domain/port/in/SearchReports.kt": {
+    "mtime": 1778900958.6187434,
+    "ast_hash": "2198fca599494aefa8df9e224e43bb75",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/domain/port/in/SignInWithGoogle.kt": {
+    "mtime": 1778900947.5466518,
+    "ast_hash": "c5ae8a594fb3fe432df9af97762d2e19",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/domain/port/in/SignOut.kt": {
+    "mtime": 1778900954.0225556,
+    "ast_hash": "6c8123d631c02769f622dfa7bfee364a",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/domain/port/in/UpdateNotificationPrefs.kt": {
+    "mtime": 1778900952.8021564,
+    "ast_hash": "a54a4028c011521357a4cf7cb824c74b",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/domain/port/in/UpdateUserProfile.kt": {
+    "mtime": 1778900951.6893592,
+    "ast_hash": "5f3df3272abe8a0d1394860a1d6cc5e9",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/domain/port/in/VerifyPhoneOtp.kt": {
+    "mtime": 1778900949.4465432,
+    "ast_hash": "e5cf3856fd41625f82eb1d442f11166d",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/domain/usecase/CreateReportImpl.kt": {
+    "mtime": 1780437003.4500706,
+    "ast_hash": "0be4e4444582e4f5d0ba439cfcde5200",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/domain/usecase/DeleteAccountImpl.kt": {
+    "mtime": 1778900977.423164,
+    "ast_hash": "54256931f1d46dd2b909377a165b123b",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/domain/usecase/DeleteReportImpl.kt": {
+    "mtime": 1778950336.636656,
+    "ast_hash": "53de5c2da7db9f941421d5d20a37584d",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/domain/usecase/ObserveCurrentUserImpl.kt": {
+    "mtime": 1778900968.9569514,
+    "ast_hash": "4ed5182610586b5538927b0545d0b844",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/domain/usecase/ObserveReportsImpl.kt": {
+    "mtime": 1778900978.1716094,
+    "ast_hash": "8a68459fd6714a9c34d418091007f063",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/domain/usecase/RequestPhoneOtpImpl.kt": {
+    "mtime": 1778900965.194196,
+    "ast_hash": "b412b01e61b125710af2b471dd10fb8d",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/domain/usecase/SearchReportsImpl.kt": {
+    "mtime": 1778900981.7948184,
+    "ast_hash": "b9442fa64a6815fc9be7cfb619eef223",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/domain/usecase/SignInWithGoogleImpl.kt": {
+    "mtime": 1778900963.684889,
+    "ast_hash": "fbb4088eb7aaebe94927606c35652d4b",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/domain/usecase/SignOutImpl.kt": {
+    "mtime": 1778900973.9403274,
+    "ast_hash": "6d85f06abaa370eca8a93980e8501f79",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/domain/usecase/UpdateNotificationPrefsImpl.kt": {
+    "mtime": 1778900972.3922026,
+    "ast_hash": "ae52b96dd796e1281518c533eee25a9c",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/domain/usecase/UpdateUserProfileImpl.kt": {
+    "mtime": 1778900970.5023098,
+    "ast_hash": "a004b0dc88d639826bae26566691cd39",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/domain/usecase/VerifyPhoneOtpImpl.kt": {
+    "mtime": 1778900967.072254,
+    "ast_hash": "ca1232a310c955a480f0b23c8f738b06",
+    "semantic_hash": ""
+  },
+  "app/src/test/java/com/mascotasperdidas/app/data/firebase/FirestorePetReportRepositoryTest.kt": {
+    "mtime": 1781565190.183758,
+    "ast_hash": "01b2042d74e4aa033f506ab60922c98c",
+    "semantic_hash": ""
+  },
+  "app/src/test/java/com/mascotasperdidas/app/data/image/Base64ImageCodecTest.kt": {
+    "mtime": 1781223757.7990568,
+    "ast_hash": "285c2e03284b16d02574cf1032bb36a5",
+    "semantic_hash": ""
+  },
+  "build.gradle.kts": {
+    "mtime": 1778900033.4436343,
+    "ast_hash": "14ba1bfe52a0f42a765e6f2d1b0dbb9e",
+    "semantic_hash": ""
+  },
+  "gradlew": {
+    "mtime": 1778899160.6465292,
+    "ast_hash": "72486d728b09c965a67cd854f3601d14",
+    "semantic_hash": ""
+  },
+  "renovate.json": {
+    "mtime": 1778899160.6475284,
+    "ast_hash": "01ce641b4afd9acd245bdcbc5aa4a3f5",
+    "semantic_hash": ""
+  },
+  "settings.gradle.kts": {
+    "mtime": 1778900033.3631861,
+    "ast_hash": "8c4dd261ae5f463f5291ab20f924a05a",
+    "semantic_hash": ""
+  },
+  ".atl/skill-registry.md": {
+    "mtime": 1781221217.686697,
+    "ast_hash": "9a4c6aac6ba0d0af1462c8e4bcfc7bf8",
+    "semantic_hash": ""
+  },
+  ".claude/CLAUDE.md": {
+    "mtime": 1781221162.3366194,
+    "ast_hash": "d2106c0a799c3ce9efb58915b20aab57",
+    "semantic_hash": ""
+  },
+  ".claude/agents/jd-fix-agent.md": {
+    "mtime": 1781220013.0791485,
+    "ast_hash": "67523f6f3ec901f7fb69c9b04d5f265e",
+    "semantic_hash": ""
+  },
+  ".claude/agents/jd-judge-a.md": {
+    "mtime": 1781220013.081877,
+    "ast_hash": "1d91aef1e68aaa9915bb4adccc871ca0",
+    "semantic_hash": ""
+  },
+  ".claude/agents/jd-judge-b.md": {
+    "mtime": 1781220013.0840156,
+    "ast_hash": "1aa8adc275e218d92903c3b52448b046",
+    "semantic_hash": ""
+  },
+  ".claude/agents/sdd-apply.md": {
+    "mtime": 1781220013.0868692,
+    "ast_hash": "9e4b36a49c2aa5df64f6e58903171ef6",
+    "semantic_hash": ""
+  },
+  ".claude/agents/sdd-archive.md": {
+    "mtime": 1781220013.0894024,
+    "ast_hash": "e21737535353a6f2970ec892abcef45d",
+    "semantic_hash": ""
+  },
+  ".claude/agents/sdd-design.md": {
+    "mtime": 1781220013.0922017,
+    "ast_hash": "234ea33f313fbbfbe30bfe8dbe579a0f",
+    "semantic_hash": ""
+  },
+  ".claude/agents/sdd-explore.md": {
+    "mtime": 1781220013.0938816,
+    "ast_hash": "5bbd67b52aeb9ee7ed7514bb77fda774",
+    "semantic_hash": ""
+  },
+  ".claude/agents/sdd-init.md": {
+    "mtime": 1781220013.0966268,
+    "ast_hash": "22be2673bcdb4e1b8a5c0c6801119109",
+    "semantic_hash": ""
+  },
+  ".claude/agents/sdd-onboard.md": {
+    "mtime": 1781220013.099577,
+    "ast_hash": "8874f4e16f04da6a001f5b235ba2238e",
+    "semantic_hash": ""
+  },
+  ".claude/agents/sdd-propose.md": {
+    "mtime": 1781220013.1021862,
+    "ast_hash": "9c78a76ecc50b9f9fdf541f4fee55ca6",
+    "semantic_hash": ""
+  },
+  ".claude/agents/sdd-spec.md": {
+    "mtime": 1781220013.1050415,
+    "ast_hash": "ce3cccec38b556f1dc7f486190d90b67",
+    "semantic_hash": ""
+  },
+  ".claude/agents/sdd-tasks.md": {
+    "mtime": 1781220013.1079257,
+    "ast_hash": "38565f6f37c54a8764a9653e379b2d3a",
+    "semantic_hash": ""
+  },
+  ".claude/agents/sdd-verify.md": {
+    "mtime": 1781220013.1101513,
+    "ast_hash": "19a4d17d68f3d22365cee9538c87c630",
+    "semantic_hash": ""
+  },
+  ".claude/commands/sdd-apply.md": {
+    "mtime": 1781220012.9842916,
+    "ast_hash": "e4cc3690ee11b97f15de2b1dbba8ef90",
+    "semantic_hash": ""
+  },
+  ".claude/commands/sdd-archive.md": {
+    "mtime": 1781220012.9864001,
+    "ast_hash": "2d5c73b6a8351ddffd813f2cfbaeff0e",
+    "semantic_hash": ""
+  },
+  ".claude/commands/sdd-continue.md": {
+    "mtime": 1781220012.9891636,
+    "ast_hash": "14f762923d3e942ae0e0d946c5a20e19",
+    "semantic_hash": ""
+  },
+  ".claude/commands/sdd-explore.md": {
+    "mtime": 1781220012.9918838,
+    "ast_hash": "d17a0d204c1886c58c41d46934cf53eb",
+    "semantic_hash": ""
+  },
+  ".claude/commands/sdd-ff.md": {
+    "mtime": 1781220012.9945598,
+    "ast_hash": "622cbd0ae072dd4386cfcb7d1915dcac",
+    "semantic_hash": ""
+  },
+  ".claude/commands/sdd-init.md": {
+    "mtime": 1781220012.997491,
+    "ast_hash": "da2eae3785c155a1aee12226066fcf41",
+    "semantic_hash": ""
+  },
+  ".claude/commands/sdd-new.md": {
+    "mtime": 1781220013.0002756,
+    "ast_hash": "84a4719f81c3188850ada26c40baa87a",
+    "semantic_hash": ""
+  },
+  ".claude/commands/sdd-onboard.md": {
+    "mtime": 1781220013.0025887,
+    "ast_hash": "bd624e46be754f54f0afbce82324060d",
+    "semantic_hash": ""
+  },
+  ".claude/commands/sdd-status.md": {
+    "mtime": 1781220013.0048902,
+    "ast_hash": "bd00da979badf5fcfd5c85d4ee4140cc",
+    "semantic_hash": ""
+  },
+  ".claude/commands/sdd-verify.md": {
+    "mtime": 1781220013.0070496,
+    "ast_hash": "b199904db1034a26e57d6e89266742a0",
+    "semantic_hash": ""
+  },
+  ".claude/output-styles/gentleman.md": {
+    "mtime": 1781220009.9186697,
+    "ast_hash": "474aab5e44eb6414d2657e360621b261",
+    "semantic_hash": ""
+  },
+  ".claude/skills/_shared/SKILL.md": {
+    "mtime": 1781220013.010484,
+    "ast_hash": "c475c025bdf7fd66223b63f76627b1ca",
+    "semantic_hash": ""
+  },
+  ".claude/skills/_shared/engram-convention.md": {
+    "mtime": 1781220013.0161917,
+    "ast_hash": "a063f8534a59150b3718bed7adf1da75",
+    "semantic_hash": ""
+  },
+  ".claude/skills/_shared/openspec-convention.md": {
+    "mtime": 1781220013.0192056,
+    "ast_hash": "f61d3927f997b6b3d596357c79934b11",
+    "semantic_hash": ""
+  },
+  ".claude/skills/_shared/persistence-contract.md": {
+    "mtime": 1781220013.0131273,
+    "ast_hash": "e52d0514131b3e5e328cd0d877c026cb",
+    "semantic_hash": ""
+  },
+  ".claude/skills/_shared/sdd-phase-common.md": {
+    "mtime": 1781220013.0217104,
+    "ast_hash": "e30e5ba775d779a621f1ca0f2e2f6421",
+    "semantic_hash": ""
+  },
+  ".claude/skills/_shared/sdd-status-contract.md": {
+    "mtime": 1781220013.0250218,
+    "ast_hash": "1daecd7b613e7834597853991fbd7b76",
+    "semantic_hash": ""
+  },
+  ".claude/skills/_shared/skill-resolver.md": {
+    "mtime": 1781220013.0280185,
+    "ast_hash": "0dbc73e8bea0592f3ba0a20a4d0185ce",
+    "semantic_hash": ""
+  },
+  ".claude/skills/branch-pr/SKILL.md": {
+    "mtime": 1781220015.2504866,
+    "ast_hash": "8ddecc8b0e3113c7e935f33687f6ce44",
+    "semantic_hash": ""
+  },
+  ".claude/skills/chained-pr/SKILL.md": {
+    "mtime": 1781220015.258536,
+    "ast_hash": "d474d447e6449bb9cae9bad89dd2bbcf",
+    "semantic_hash": ""
+  },
+  ".claude/skills/chained-pr/references/chaining-details.md": {
+    "mtime": 1781220015.260675,
+    "ast_hash": "82c3a49fdff90768cc40abda25aa8a10",
+    "semantic_hash": ""
+  },
+  ".claude/skills/cognitive-doc-design/SKILL.md": {
+    "mtime": 1781220015.263432,
+    "ast_hash": "bd4caf5e30f03407841346a1ef881c13",
+    "semantic_hash": ""
+  },
+  ".claude/skills/comment-writer/SKILL.md": {
+    "mtime": 1781220015.266149,
+    "ast_hash": "01654cdce647eff4801e8411297b74a8",
+    "semantic_hash": ""
+  },
+  ".claude/skills/go-testing/SKILL.md": {
+    "mtime": 1781220015.2397723,
+    "ast_hash": "5c4e262232abcce40ba6bf78417bb2b2",
+    "semantic_hash": ""
+  },
+  ".claude/skills/go-testing/references/examples.md": {
+    "mtime": 1781220015.243045,
+    "ast_hash": "771a399823a858e3232165d827e39d11",
+    "semantic_hash": ""
+  },
+  ".claude/skills/graphify/SKILL.md": {
+    "mtime": 1781221162.3345926,
+    "ast_hash": "27571c6fb41c9e1e2bde11a53c690892",
+    "semantic_hash": ""
+  },
+  ".claude/skills/graphify/references/add-watch.md": {
+    "mtime": 1781221146.9537642,
+    "ast_hash": "0df0589623217ca38a12bdcabfb42f4c",
+    "semantic_hash": ""
+  },
+  ".claude/skills/graphify/references/exports.md": {
+    "mtime": 1781221146.9537642,
+    "ast_hash": "7fb1a81aca17a462db70684a324fcfb0",
+    "semantic_hash": ""
+  },
+  ".claude/skills/graphify/references/extraction-spec.md": {
+    "mtime": 1781221146.9547658,
+    "ast_hash": "24808b03abfeaf5f6435bb69c0125b2c",
+    "semantic_hash": ""
+  },
+  ".claude/skills/graphify/references/github-and-merge.md": {
+    "mtime": 1781221146.9547658,
+    "ast_hash": "cde13df085e4c492aeb7ba298a996d0d",
+    "semantic_hash": ""
+  },
+  ".claude/skills/graphify/references/hooks.md": {
+    "mtime": 1781221146.9558344,
+    "ast_hash": "3f545db6ce646650bb9de588f5512a27",
+    "semantic_hash": ""
+  },
+  ".claude/skills/graphify/references/query.md": {
+    "mtime": 1781221146.9558344,
+    "ast_hash": "c2a8e798674a81b02aa9975f43023819",
+    "semantic_hash": ""
+  },
+  ".claude/skills/graphify/references/transcribe.md": {
+    "mtime": 1781221146.9558344,
+    "ast_hash": "70f6aa30d6211f3a2c7e9fc45479f50c",
+    "semantic_hash": ""
+  },
+  ".claude/skills/graphify/references/update.md": {
+    "mtime": 1781221146.956841,
+    "ast_hash": "0dad167a95bdb389f02fecffb60b1bc8",
+    "semantic_hash": ""
+  },
+  ".claude/skills/issue-creation/SKILL.md": {
+    "mtime": 1781220015.2531555,
+    "ast_hash": "0fc96aa6cc83d1313f92b127871f2945",
+    "semantic_hash": ""
+  },
+  ".claude/skills/judgment-day/SKILL.md": {
+    "mtime": 1781220013.073208,
+    "ast_hash": "9bbed81fc9ce722a18fa4652bae099bb",
+    "semantic_hash": ""
+  },
+  ".claude/skills/judgment-day/references/prompts-and-formats.md": {
+    "mtime": 1781220013.0764549,
+    "ast_hash": "8cfc7e7cf869ec306a8202a3337d8e5b",
+    "semantic_hash": ""
+  },
+  ".claude/skills/sdd-apply/SKILL.md": {
+    "mtime": 1781220013.0529873,
+    "ast_hash": "46dda41cd08dbef661c87cba04dcc8bb",
+    "semantic_hash": ""
+  },
+  ".claude/skills/sdd-apply/strict-tdd.md": {
+    "mtime": 1781220013.0556235,
+    "ast_hash": "c66d65c60997ca269dd77290f8070102",
+    "semantic_hash": ""
+  },
+  ".claude/skills/sdd-archive/SKILL.md": {
+    "mtime": 1781220013.0670366,
+    "ast_hash": "d086d799190e443dc8f1ad17ac7a41ae",
+    "semantic_hash": ""
+  },
+  ".claude/skills/sdd-design/SKILL.md": {
+    "mtime": 1781220013.0471194,
+    "ast_hash": "fdfdc51e629fc5a8d5c28d96f98277e5",
+    "semantic_hash": ""
+  },
+  ".claude/skills/sdd-explore/SKILL.md": {
+    "mtime": 1781220013.0375893,
+    "ast_hash": "f8f47d62e29f595b6226e3624bbf77b6",
+    "semantic_hash": ""
+  },
+  ".claude/skills/sdd-init/SKILL.md": {
+    "mtime": 1781220013.0314176,
+    "ast_hash": "c4dea1f50d72b2ddaf3944005a5bee2c",
+    "semantic_hash": ""
+  },
+  ".claude/skills/sdd-init/references/init-details.md": {
+    "mtime": 1781220013.0342016,
+    "ast_hash": "9044b4574e50780abf1fe32cdec03e27",
+    "semantic_hash": ""
+  },
+  ".claude/skills/sdd-onboard/SKILL.md": {
+    "mtime": 1781220013.0697436,
+    "ast_hash": "58e6c625bc970305b8b0bec6d3929199",
+    "semantic_hash": ""
+  },
+  ".claude/skills/sdd-propose/SKILL.md": {
+    "mtime": 1781220013.040726,
+    "ast_hash": "45d0e3ffff77cd984894b2fc2c07ebb5",
+    "semantic_hash": ""
+  },
+  ".claude/skills/sdd-spec/SKILL.md": {
+    "mtime": 1781220013.0440822,
+    "ast_hash": "52a452f321a308fe6b7243a98536b2b6",
+    "semantic_hash": ""
+  },
+  ".claude/skills/sdd-tasks/SKILL.md": {
+    "mtime": 1781220013.0503254,
+    "ast_hash": "b35dfa24375ae62ddb0b0e40a0a252b5",
+    "semantic_hash": ""
+  },
+  ".claude/skills/sdd-verify/SKILL.md": {
+    "mtime": 1781220013.0584486,
+    "ast_hash": "8d600fe7ed5015b20010b7c92f065076",
+    "semantic_hash": ""
+  },
+  ".claude/skills/sdd-verify/references/report-format.md": {
+    "mtime": 1781220013.061176,
+    "ast_hash": "c3c38058f86f4f49ba592ce6e6fa5b1e",
+    "semantic_hash": ""
+  },
+  ".claude/skills/sdd-verify/strict-tdd-verify.md": {
+    "mtime": 1781220013.0638852,
+    "ast_hash": "e6c5bd01cc538f0619edcec8e7df2562",
+    "semantic_hash": ""
+  },
+  ".claude/skills/skill-creator/SKILL.md": {
+    "mtime": 1781220015.2456777,
+    "ast_hash": "c772f605d8575f976e511ef192a6bea8",
+    "semantic_hash": ""
+  },
+  ".claude/skills/skill-improver/SKILL.md": {
+    "mtime": 1781220015.248364,
+    "ast_hash": "49999c37a2bf93dbe49b4f032b961a2f",
+    "semantic_hash": ""
+  },
+  ".claude/skills/skill-registry/SKILL.md": {
+    "mtime": 1781220015.255846,
+    "ast_hash": "807eb71e42dc55bff1276f3a8ce1eb72",
+    "semantic_hash": ""
+  },
+  ".claude/skills/work-unit-commits/SKILL.md": {
+    "mtime": 1781220015.268851,
+    "ast_hash": "5640258c87252a5a99a76a438c59c2bf",
+    "semantic_hash": ""
+  },
+  ".config/opencode/AGENTS.md": {
+    "mtime": 1781220012.6137507,
+    "ast_hash": "55c1d73f6632104a80a495e3dc42b360",
+    "semantic_hash": ""
+  },
+  ".config/opencode/commands/sdd-apply.md": {
+    "mtime": 1781220013.1155832,
+    "ast_hash": "9b1d6b72c0b4f08aab2401ca4ce7827c",
+    "semantic_hash": ""
+  },
+  ".config/opencode/commands/sdd-archive.md": {
+    "mtime": 1781220013.118348,
+    "ast_hash": "3d067fbf1d7f542bbda43cb487400907",
+    "semantic_hash": ""
+  },
+  ".config/opencode/commands/sdd-continue.md": {
+    "mtime": 1781220013.1214452,
+    "ast_hash": "6e9e22ceb9e72bc02607d0f2735d8bea",
+    "semantic_hash": ""
+  },
+  ".config/opencode/commands/sdd-explore.md": {
+    "mtime": 1781220013.123689,
+    "ast_hash": "ede67628d563f5edbe22d19077e2437d",
+    "semantic_hash": ""
+  },
+  ".config/opencode/commands/sdd-ff.md": {
+    "mtime": 1781220013.126542,
+    "ast_hash": "78743ec3ee78cb7acb7e6047a1dd2aa3",
+    "semantic_hash": ""
+  },
+  ".config/opencode/commands/sdd-init.md": {
+    "mtime": 1781220013.12878,
+    "ast_hash": "8932a871dbb63c24beaf82be19e42e22",
+    "semantic_hash": ""
+  },
+  ".config/opencode/commands/sdd-new.md": {
+    "mtime": 1781220013.1317809,
+    "ast_hash": "58a85001697e9f31fa5cfbc1032d6615",
+    "semantic_hash": ""
+  },
+  ".config/opencode/commands/sdd-onboard.md": {
+    "mtime": 1781220013.134345,
+    "ast_hash": "3e93d380b05d921ba93534187f23e5ed",
+    "semantic_hash": ""
+  },
+  ".config/opencode/commands/sdd-status.md": {
+    "mtime": 1781220013.13765,
+    "ast_hash": "bcb5832b805f64cb59c3471092518806",
+    "semantic_hash": ""
+  },
+  ".config/opencode/commands/sdd-verify.md": {
+    "mtime": 1781220013.1405816,
+    "ast_hash": "4b5770c001b4bbb7766767a55d70c882",
+    "semantic_hash": ""
+  },
+  ".config/opencode/skills/_shared/SKILL.md": {
+    "mtime": 1781220015.031003,
+    "ast_hash": "c475c025bdf7fd66223b63f76627b1ca",
+    "semantic_hash": ""
+  },
+  ".config/opencode/skills/_shared/engram-convention.md": {
+    "mtime": 1781220015.0358279,
+    "ast_hash": "a063f8534a59150b3718bed7adf1da75",
+    "semantic_hash": ""
+  },
+  ".config/opencode/skills/_shared/openspec-convention.md": {
+    "mtime": 1781220015.0384889,
+    "ast_hash": "f61d3927f997b6b3d596357c79934b11",
+    "semantic_hash": ""
+  },
+  ".config/opencode/skills/_shared/persistence-contract.md": {
+    "mtime": 1781220015.0336907,
+    "ast_hash": "e52d0514131b3e5e328cd0d877c026cb",
+    "semantic_hash": ""
+  },
+  ".config/opencode/skills/_shared/sdd-phase-common.md": {
+    "mtime": 1781220015.0411856,
+    "ast_hash": "e30e5ba775d779a621f1ca0f2e2f6421",
+    "semantic_hash": ""
+  },
+  ".config/opencode/skills/_shared/sdd-status-contract.md": {
+    "mtime": 1781220015.0433269,
+    "ast_hash": "1daecd7b613e7834597853991fbd7b76",
+    "semantic_hash": ""
+  },
+  ".config/opencode/skills/_shared/skill-resolver.md": {
+    "mtime": 1781220015.0460184,
+    "ast_hash": "0dbc73e8bea0592f3ba0a20a4d0185ce",
+    "semantic_hash": ""
+  },
+  ".config/opencode/skills/branch-pr/SKILL.md": {
+    "mtime": 1781220015.2823906,
+    "ast_hash": "8ddecc8b0e3113c7e935f33687f6ce44",
+    "semantic_hash": ""
+  },
+  ".config/opencode/skills/chained-pr/SKILL.md": {
+    "mtime": 1781220015.2906108,
+    "ast_hash": "d474d447e6449bb9cae9bad89dd2bbcf",
+    "semantic_hash": ""
+  },
+  ".config/opencode/skills/chained-pr/references/chaining-details.md": {
+    "mtime": 1781220015.2932856,
+    "ast_hash": "82c3a49fdff90768cc40abda25aa8a10",
+    "semantic_hash": ""
+  },
+  ".config/opencode/skills/cognitive-doc-design/SKILL.md": {
+    "mtime": 1781220015.2959514,
+    "ast_hash": "bd4caf5e30f03407841346a1ef881c13",
+    "semantic_hash": ""
+  },
+  ".config/opencode/skills/comment-writer/SKILL.md": {
+    "mtime": 1781220015.298608,
+    "ast_hash": "01654cdce647eff4801e8411297b74a8",
+    "semantic_hash": ""
+  },
+  ".config/opencode/skills/go-testing/SKILL.md": {
+    "mtime": 1781220015.2716389,
+    "ast_hash": "5c4e262232abcce40ba6bf78417bb2b2",
+    "semantic_hash": ""
+  },
+  ".config/opencode/skills/go-testing/references/examples.md": {
+    "mtime": 1781220015.2749012,
+    "ast_hash": "771a399823a858e3232165d827e39d11",
+    "semantic_hash": ""
+  },
+  ".config/opencode/skills/issue-creation/SKILL.md": {
+    "mtime": 1781220015.285056,
+    "ast_hash": "0fc96aa6cc83d1313f92b127871f2945",
+    "semantic_hash": ""
+  },
+  ".config/opencode/skills/judgment-day/SKILL.md": {
+    "mtime": 1781220015.0908675,
+    "ast_hash": "9bbed81fc9ce722a18fa4652bae099bb",
+    "semantic_hash": ""
+  },
+  ".config/opencode/skills/judgment-day/references/prompts-and-formats.md": {
+    "mtime": 1781220015.0947008,
+    "ast_hash": "8cfc7e7cf869ec306a8202a3337d8e5b",
+    "semantic_hash": ""
+  },
+  ".config/opencode/skills/sdd-apply/SKILL.md": {
+    "mtime": 1781220015.0716717,
+    "ast_hash": "46dda41cd08dbef661c87cba04dcc8bb",
+    "semantic_hash": ""
+  },
+  ".config/opencode/skills/sdd-apply/strict-tdd.md": {
+    "mtime": 1781220015.0739763,
+    "ast_hash": "c66d65c60997ca269dd77290f8070102",
+    "semantic_hash": ""
+  },
+  ".config/opencode/skills/sdd-archive/SKILL.md": {
+    "mtime": 1781220015.0854256,
+    "ast_hash": "d086d799190e443dc8f1ad17ac7a41ae",
+    "semantic_hash": ""
+  },
+  ".config/opencode/skills/sdd-design/SKILL.md": {
+    "mtime": 1781220015.0657275,
+    "ast_hash": "fdfdc51e629fc5a8d5c28d96f98277e5",
+    "semantic_hash": ""
+  },
+  ".config/opencode/skills/sdd-explore/SKILL.md": {
+    "mtime": 1781220015.0542853,
+    "ast_hash": "f8f47d62e29f595b6226e3624bbf77b6",
+    "semantic_hash": ""
+  },
+  ".config/opencode/skills/sdd-init/SKILL.md": {
+    "mtime": 1781220015.0487547,
+    "ast_hash": "c4dea1f50d72b2ddaf3944005a5bee2c",
+    "semantic_hash": ""
+  },
+  ".config/opencode/skills/sdd-init/references/init-details.md": {
+    "mtime": 1781220015.0514116,
+    "ast_hash": "9044b4574e50780abf1fe32cdec03e27",
+    "semantic_hash": ""
+  },
+  ".config/opencode/skills/sdd-onboard/SKILL.md": {
+    "mtime": 1781220015.0886607,
+    "ast_hash": "58e6c625bc970305b8b0bec6d3929199",
+    "semantic_hash": ""
+  },
+  ".config/opencode/skills/sdd-propose/SKILL.md": {
+    "mtime": 1781220015.0570867,
+    "ast_hash": "45d0e3ffff77cd984894b2fc2c07ebb5",
+    "semantic_hash": ""
+  },
+  ".config/opencode/skills/sdd-spec/SKILL.md": {
+    "mtime": 1781220015.0605335,
+    "ast_hash": "52a452f321a308fe6b7243a98536b2b6",
+    "semantic_hash": ""
+  },
+  ".config/opencode/skills/sdd-tasks/SKILL.md": {
+    "mtime": 1781220015.0684924,
+    "ast_hash": "b35dfa24375ae62ddb0b0e40a0a252b5",
+    "semantic_hash": ""
+  },
+  ".config/opencode/skills/sdd-verify/SKILL.md": {
+    "mtime": 1781220015.0772114,
+    "ast_hash": "8d600fe7ed5015b20010b7c92f065076",
+    "semantic_hash": ""
+  },
+  ".config/opencode/skills/sdd-verify/references/report-format.md": {
+    "mtime": 1781220015.0799422,
+    "ast_hash": "c3c38058f86f4f49ba592ce6e6fa5b1e",
+    "semantic_hash": ""
+  },
+  ".config/opencode/skills/sdd-verify/strict-tdd-verify.md": {
+    "mtime": 1781220015.08207,
+    "ast_hash": "e6c5bd01cc538f0619edcec8e7df2562",
+    "semantic_hash": ""
+  },
+  ".config/opencode/skills/skill-creator/SKILL.md": {
+    "mtime": 1781220015.277076,
+    "ast_hash": "c772f605d8575f976e511ef192a6bea8",
+    "semantic_hash": ""
+  },
+  ".config/opencode/skills/skill-improver/SKILL.md": {
+    "mtime": 1781220015.2797632,
+    "ast_hash": "49999c37a2bf93dbe49b4f032b961a2f",
+    "semantic_hash": ""
+  },
+  ".config/opencode/skills/skill-registry/SKILL.md": {
+    "mtime": 1781220015.2878802,
+    "ast_hash": "807eb71e42dc55bff1276f3a8ce1eb72",
+    "semantic_hash": ""
+  },
+  ".config/opencode/skills/work-unit-commits/SKILL.md": {
+    "mtime": 1781220015.3007398,
+    "ast_hash": "5640258c87252a5a99a76a438c59c2bf",
+    "semantic_hash": ""
+  },
+  ".copilot/skills/_shared/SKILL.md": {
+    "mtime": 1781220015.171445,
+    "ast_hash": "c475c025bdf7fd66223b63f76627b1ca",
+    "semantic_hash": ""
+  },
+  ".copilot/skills/_shared/engram-convention.md": {
+    "mtime": 1781220015.175424,
+    "ast_hash": "a063f8534a59150b3718bed7adf1da75",
+    "semantic_hash": ""
+  },
+  ".copilot/skills/_shared/openspec-convention.md": {
+    "mtime": 1781220015.1793053,
+    "ast_hash": "f61d3927f997b6b3d596357c79934b11",
+    "semantic_hash": ""
+  },
+  ".copilot/skills/_shared/persistence-contract.md": {
+    "mtime": 1781220015.1724465,
+    "ast_hash": "e52d0514131b3e5e328cd0d877c026cb",
+    "semantic_hash": ""
+  },
+  ".copilot/skills/_shared/sdd-phase-common.md": {
+    "mtime": 1781220015.1827917,
+    "ast_hash": "e30e5ba775d779a621f1ca0f2e2f6421",
+    "semantic_hash": ""
+  },
+  ".copilot/skills/_shared/sdd-status-contract.md": {
+    "mtime": 1781220015.186461,
+    "ast_hash": "1daecd7b613e7834597853991fbd7b76",
+    "semantic_hash": ""
+  },
+  ".copilot/skills/_shared/skill-resolver.md": {
+    "mtime": 1781220015.189201,
+    "ast_hash": "0dbc73e8bea0592f3ba0a20a4d0185ce",
+    "semantic_hash": ""
+  },
+  ".copilot/skills/branch-pr/SKILL.md": {
+    "mtime": 1781220015.3477008,
+    "ast_hash": "8ddecc8b0e3113c7e935f33687f6ce44",
+    "semantic_hash": ""
+  },
+  ".copilot/skills/chained-pr/SKILL.md": {
+    "mtime": 1781220015.3552155,
+    "ast_hash": "d474d447e6449bb9cae9bad89dd2bbcf",
+    "semantic_hash": ""
+  },
+  ".copilot/skills/chained-pr/references/chaining-details.md": {
+    "mtime": 1781220015.3578937,
+    "ast_hash": "82c3a49fdff90768cc40abda25aa8a10",
+    "semantic_hash": ""
+  },
+  ".copilot/skills/cognitive-doc-design/SKILL.md": {
+    "mtime": 1781220015.3605416,
+    "ast_hash": "bd4caf5e30f03407841346a1ef881c13",
+    "semantic_hash": ""
+  },
+  ".copilot/skills/comment-writer/SKILL.md": {
+    "mtime": 1781220015.3627577,
+    "ast_hash": "01654cdce647eff4801e8411297b74a8",
+    "semantic_hash": ""
+  },
+  ".copilot/skills/go-testing/SKILL.md": {
+    "mtime": 1781220015.3375635,
+    "ast_hash": "5c4e262232abcce40ba6bf78417bb2b2",
+    "semantic_hash": ""
+  },
+  ".copilot/skills/go-testing/references/examples.md": {
+    "mtime": 1781220015.3402605,
+    "ast_hash": "771a399823a858e3232165d827e39d11",
+    "semantic_hash": ""
+  },
+  ".copilot/skills/issue-creation/SKILL.md": {
+    "mtime": 1781220015.3498306,
+    "ast_hash": "0fc96aa6cc83d1313f92b127871f2945",
+    "semantic_hash": ""
+  },
+  ".copilot/skills/judgment-day/SKILL.md": {
+    "mtime": 1781220015.233866,
+    "ast_hash": "9bbed81fc9ce722a18fa4652bae099bb",
+    "semantic_hash": ""
+  },
+  ".copilot/skills/judgment-day/references/prompts-and-formats.md": {
+    "mtime": 1781220015.2365923,
+    "ast_hash": "8cfc7e7cf869ec306a8202a3337d8e5b",
+    "semantic_hash": ""
+  },
+  ".copilot/skills/sdd-apply/SKILL.md": {
+    "mtime": 1781220015.2139132,
+    "ast_hash": "46dda41cd08dbef661c87cba04dcc8bb",
+    "semantic_hash": ""
+  },
+  ".copilot/skills/sdd-apply/strict-tdd.md": {
+    "mtime": 1781220015.2165186,
+    "ast_hash": "c66d65c60997ca269dd77290f8070102",
+    "semantic_hash": ""
+  },
+  ".copilot/skills/sdd-archive/SKILL.md": {
+    "mtime": 1781220015.2270942,
+    "ast_hash": "d086d799190e443dc8f1ad17ac7a41ae",
+    "semantic_hash": ""
+  },
+  ".copilot/skills/sdd-design/SKILL.md": {
+    "mtime": 1781220015.207314,
+    "ast_hash": "fdfdc51e629fc5a8d5c28d96f98277e5",
+    "semantic_hash": ""
+  },
+  ".copilot/skills/sdd-explore/SKILL.md": {
+    "mtime": 1781220015.1982644,
+    "ast_hash": "f8f47d62e29f595b6226e3624bbf77b6",
+    "semantic_hash": ""
+  },
+  ".copilot/skills/sdd-init/SKILL.md": {
+    "mtime": 1781220015.1922915,
+    "ast_hash": "c4dea1f50d72b2ddaf3944005a5bee2c",
+    "semantic_hash": ""
+  },
+  ".copilot/skills/sdd-init/references/init-details.md": {
+    "mtime": 1781220015.1949942,
+    "ast_hash": "9044b4574e50780abf1fe32cdec03e27",
+    "semantic_hash": ""
+  },
+  ".copilot/skills/sdd-onboard/SKILL.md": {
+    "mtime": 1781220015.2305741,
+    "ast_hash": "58e6c625bc970305b8b0bec6d3929199",
+    "semantic_hash": ""
+  },
+  ".copilot/skills/sdd-propose/SKILL.md": {
+    "mtime": 1781220015.2014372,
+    "ast_hash": "45d0e3ffff77cd984894b2fc2c07ebb5",
+    "semantic_hash": ""
+  },
+  ".copilot/skills/sdd-spec/SKILL.md": {
+    "mtime": 1781220015.2046409,
+    "ast_hash": "52a452f321a308fe6b7243a98536b2b6",
+    "semantic_hash": ""
+  },
+  ".copilot/skills/sdd-tasks/SKILL.md": {
+    "mtime": 1781220015.2111518,
+    "ast_hash": "b35dfa24375ae62ddb0b0e40a0a252b5",
+    "semantic_hash": ""
+  },
+  ".copilot/skills/sdd-verify/SKILL.md": {
+    "mtime": 1781220015.2189732,
+    "ast_hash": "8d600fe7ed5015b20010b7c92f065076",
+    "semantic_hash": ""
+  },
+  ".copilot/skills/sdd-verify/references/report-format.md": {
+    "mtime": 1781220015.2216184,
+    "ast_hash": "c3c38058f86f4f49ba592ce6e6fa5b1e",
+    "semantic_hash": ""
+  },
+  ".copilot/skills/sdd-verify/strict-tdd-verify.md": {
+    "mtime": 1781220015.2238584,
+    "ast_hash": "e6c5bd01cc538f0619edcec8e7df2562",
+    "semantic_hash": ""
+  },
+  ".copilot/skills/skill-creator/SKILL.md": {
+    "mtime": 1781220015.3423703,
+    "ast_hash": "c772f605d8575f976e511ef192a6bea8",
+    "semantic_hash": ""
+  },
+  ".copilot/skills/skill-improver/SKILL.md": {
+    "mtime": 1781220015.3450434,
+    "ast_hash": "49999c37a2bf93dbe49b4f032b961a2f",
+    "semantic_hash": ""
+  },
+  ".copilot/skills/skill-registry/SKILL.md": {
+    "mtime": 1781220015.3525603,
+    "ast_hash": "807eb71e42dc55bff1276f3a8ce1eb72",
+    "semantic_hash": ""
+  },
+  ".copilot/skills/work-unit-commits/SKILL.md": {
+    "mtime": 1781220015.365718,
+    "ast_hash": "5640258c87252a5a99a76a438c59c2bf",
+    "semantic_hash": ""
+  },
+  ".gemini/GEMINI.md": {
+    "mtime": 1781220185.2061129,
+    "ast_hash": "575099ab8988555a924a0ae4d5e4248c",
+    "semantic_hash": ""
+  },
+  ".gemini/skills/_shared/SKILL.md": {
+    "mtime": 1781220015.1005664,
+    "ast_hash": "c475c025bdf7fd66223b63f76627b1ca",
+    "semantic_hash": ""
+  },
+  ".gemini/skills/_shared/engram-convention.md": {
+    "mtime": 1781220015.105908,
+    "ast_hash": "a063f8534a59150b3718bed7adf1da75",
+    "semantic_hash": ""
+  },
+  ".gemini/skills/_shared/openspec-convention.md": {
+    "mtime": 1781220015.109581,
+    "ast_hash": "f61d3927f997b6b3d596357c79934b11",
+    "semantic_hash": ""
+  },
+  ".gemini/skills/_shared/persistence-contract.md": {
+    "mtime": 1781220015.103266,
+    "ast_hash": "e52d0514131b3e5e328cd0d877c026cb",
+    "semantic_hash": ""
+  },
+  ".gemini/skills/_shared/sdd-phase-common.md": {
+    "mtime": 1781220015.112733,
+    "ast_hash": "e30e5ba775d779a621f1ca0f2e2f6421",
+    "semantic_hash": ""
+  },
+  ".gemini/skills/_shared/sdd-status-contract.md": {
+    "mtime": 1781220015.1158576,
+    "ast_hash": "1daecd7b613e7834597853991fbd7b76",
+    "semantic_hash": ""
+  },
+  ".gemini/skills/_shared/skill-resolver.md": {
+    "mtime": 1781220015.1180737,
+    "ast_hash": "0dbc73e8bea0592f3ba0a20a4d0185ce",
+    "semantic_hash": ""
+  },
+  ".gemini/skills/branch-pr/SKILL.md": {
+    "mtime": 1781220015.3147314,
+    "ast_hash": "8ddecc8b0e3113c7e935f33687f6ce44",
+    "semantic_hash": ""
+  },
+  ".gemini/skills/chained-pr/SKILL.md": {
+    "mtime": 1781220015.32313,
+    "ast_hash": "d474d447e6449bb9cae9bad89dd2bbcf",
+    "semantic_hash": ""
+  },
+  ".gemini/skills/chained-pr/references/chaining-details.md": {
+    "mtime": 1781220015.3261173,
+    "ast_hash": "82c3a49fdff90768cc40abda25aa8a10",
+    "semantic_hash": ""
+  },
+  ".gemini/skills/cognitive-doc-design/SKILL.md": {
+    "mtime": 1781220015.3287833,
+    "ast_hash": "bd4caf5e30f03407841346a1ef881c13",
+    "semantic_hash": ""
+  },
+  ".gemini/skills/comment-writer/SKILL.md": {
+    "mtime": 1781220015.3318288,
+    "ast_hash": "01654cdce647eff4801e8411297b74a8",
+    "semantic_hash": ""
+  },
+  ".gemini/skills/go-testing/SKILL.md": {
+    "mtime": 1781220015.3045747,
+    "ast_hash": "5c4e262232abcce40ba6bf78417bb2b2",
+    "semantic_hash": ""
+  },
+  ".gemini/skills/go-testing/references/examples.md": {
+    "mtime": 1781220015.3072684,
+    "ast_hash": "771a399823a858e3232165d827e39d11",
+    "semantic_hash": ""
+  },
+  ".gemini/skills/issue-creation/SKILL.md": {
+    "mtime": 1781220015.3177109,
+    "ast_hash": "0fc96aa6cc83d1313f92b127871f2945",
+    "semantic_hash": ""
+  },
+  ".gemini/skills/judgment-day/SKILL.md": {
+    "mtime": 1781220015.1582658,
+    "ast_hash": "9bbed81fc9ce722a18fa4652bae099bb",
+    "semantic_hash": ""
+  },
+  ".gemini/skills/judgment-day/references/prompts-and-formats.md": {
+    "mtime": 1781220015.1615794,
+    "ast_hash": "8cfc7e7cf869ec306a8202a3337d8e5b",
+    "semantic_hash": ""
+  },
+  ".gemini/skills/sdd-apply/SKILL.md": {
+    "mtime": 1781220015.1401367,
+    "ast_hash": "46dda41cd08dbef661c87cba04dcc8bb",
+    "semantic_hash": ""
+  },
+  ".gemini/skills/sdd-apply/strict-tdd.md": {
+    "mtime": 1781220015.1427572,
+    "ast_hash": "c66d65c60997ca269dd77290f8070102",
+    "semantic_hash": ""
+  },
+  ".gemini/skills/sdd-archive/SKILL.md": {
+    "mtime": 1781220015.1528993,
+    "ast_hash": "d086d799190e443dc8f1ad17ac7a41ae",
+    "semantic_hash": ""
+  },
+  ".gemini/skills/sdd-design/SKILL.md": {
+    "mtime": 1781220015.1348524,
+    "ast_hash": "fdfdc51e629fc5a8d5c28d96f98277e5",
+    "semantic_hash": ""
+  },
+  ".gemini/skills/sdd-explore/SKILL.md": {
+    "mtime": 1781220015.1268632,
+    "ast_hash": "f8f47d62e29f595b6226e3624bbf77b6",
+    "semantic_hash": ""
+  },
+  ".gemini/skills/sdd-init/SKILL.md": {
+    "mtime": 1781220015.1209042,
+    "ast_hash": "c4dea1f50d72b2ddaf3944005a5bee2c",
+    "semantic_hash": ""
+  },
+  ".gemini/skills/sdd-init/references/init-details.md": {
+    "mtime": 1781220015.1235225,
+    "ast_hash": "9044b4574e50780abf1fe32cdec03e27",
+    "semantic_hash": ""
+  },
+  ".gemini/skills/sdd-onboard/SKILL.md": {
+    "mtime": 1781220015.155558,
+    "ast_hash": "58e6c625bc970305b8b0bec6d3929199",
+    "semantic_hash": ""
+  },
+  ".gemini/skills/sdd-propose/SKILL.md": {
+    "mtime": 1781220015.129527,
+    "ast_hash": "45d0e3ffff77cd984894b2fc2c07ebb5",
+    "semantic_hash": ""
+  },
+  ".gemini/skills/sdd-spec/SKILL.md": {
+    "mtime": 1781220015.1321254,
+    "ast_hash": "52a452f321a308fe6b7243a98536b2b6",
+    "semantic_hash": ""
+  },
+  ".gemini/skills/sdd-tasks/SKILL.md": {
+    "mtime": 1781220015.1374779,
+    "ast_hash": "b35dfa24375ae62ddb0b0e40a0a252b5",
+    "semantic_hash": ""
+  },
+  ".gemini/skills/sdd-verify/SKILL.md": {
+    "mtime": 1781220015.1453524,
+    "ast_hash": "8d600fe7ed5015b20010b7c92f065076",
+    "semantic_hash": ""
+  },
+  ".gemini/skills/sdd-verify/references/report-format.md": {
+    "mtime": 1781220015.1480677,
+    "ast_hash": "c3c38058f86f4f49ba592ce6e6fa5b1e",
+    "semantic_hash": ""
+  },
+  ".gemini/skills/sdd-verify/strict-tdd-verify.md": {
+    "mtime": 1781220015.1501968,
+    "ast_hash": "e6c5bd01cc538f0619edcec8e7df2562",
+    "semantic_hash": ""
+  },
+  ".gemini/skills/skill-creator/SKILL.md": {
+    "mtime": 1781220015.309446,
+    "ast_hash": "c772f605d8575f976e511ef192a6bea8",
+    "semantic_hash": ""
+  },
+  ".gemini/skills/skill-improver/SKILL.md": {
+    "mtime": 1781220015.3121316,
+    "ast_hash": "49999c37a2bf93dbe49b4f032b961a2f",
+    "semantic_hash": ""
+  },
+  ".gemini/skills/skill-registry/SKILL.md": {
+    "mtime": 1781220015.3204823,
+    "ast_hash": "807eb71e42dc55bff1276f3a8ce1eb72",
+    "semantic_hash": ""
+  },
+  ".gemini/skills/work-unit-commits/SKILL.md": {
+    "mtime": 1781220015.334651,
+    "ast_hash": "5640258c87252a5a99a76a438c59c2bf",
+    "semantic_hash": ""
+  },
+  ".github/ISSUE_TEMPLATE/bug_report.md": {
+    "mtime": 1778899160.638484,
+    "ast_hash": "188fd8a11f28f0e50dc7cb27a22af1eb",
+    "semantic_hash": ""
+  },
+  ".github/ISSUE_TEMPLATE/feature_request.md": {
+    "mtime": 1778899160.638484,
+    "ast_hash": "2c95cb00ebd7546ccec06638cd813767",
+    "semantic_hash": ""
+  },
+  ".github/workflows/build.yml": {
+    "mtime": 1778899160.6399956,
+    "ast_hash": "39b4483915a732066a57a83dc96c1922",
+    "semantic_hash": ""
+  },
+  "AGENTS.md": {
+    "mtime": 1780436620.9896,
+    "ast_hash": "56adee9dda009c423f9f1e29c7fd8f96",
+    "semantic_hash": ""
+  },
+  "CLAUDE.md": {
+    "mtime": 1781221162.3381362,
+    "ast_hash": "ab24c4f01bfa785de95f0fd675ee776b",
+    "semantic_hash": ""
+  },
+  "DOCUMENTACION.md": {
+    "mtime": 1778900480.7843058,
+    "ast_hash": "ea1c21446e505d846986f85221174722",
+    "semantic_hash": ""
+  },
+  "FIREBASE.md": {
+    "mtime": 1778906363.895533,
+    "ast_hash": "fcbfc5b4fff5b6e34b47891629d35b4e",
+    "semantic_hash": ""
+  },
+  "KOTLIN.md": {
+    "mtime": 1780432481.8185768,
+    "ast_hash": "812c9743cfdd0589ab6aac724cc0c131",
+    "semantic_hash": ""
+  },
+  "PREVIO2.md": {
+    "mtime": 1779211005.3341923,
+    "ast_hash": "1d0363c0959711c0a15d5d470d780fc9",
+    "semantic_hash": ""
+  },
+  "README.md": {
+    "mtime": 1778899160.6410031,
+    "ast_hash": "5453aa78c6cc5f52a8c5c2bf85c2917e",
+    "semantic_hash": ""
+  },
+  "SECURITY.md": {
+    "mtime": 1778899160.6410031,
+    "ast_hash": "3634b1ffff5f5ab021b7db549fef6968",
+    "semantic_hash": ""
+  },
+  "detekt.yml": {
+    "mtime": 1780440255.6568577,
+    "ast_hash": "6a544d89275a830b6d8135dc4f846ec1",
+    "semantic_hash": ""
+  },
+  "docs/INSTRUCTIONS.md": {
+    "mtime": 1780435363.8901463,
+    "ast_hash": "feb7afe6fc276f2f84cf8354dbb54a61",
+    "semantic_hash": ""
+  },
+  "docs/OSMdroid.md": {
+    "mtime": 1780435016.742756,
+    "ast_hash": "2fa9d01c47a833a6ed54572f7a1bda86",
+    "semantic_hash": ""
+  },
+  "docs/Pantalla_12_13_14_ReportDetailScreen_TechDoc.md": {
+    "mtime": 1780435406.495471,
+    "ast_hash": "23a523548bec9667b25dd8f5ff7265df",
+    "semantic_hash": ""
+  },
+  "docs/Pantalla_15_16_17_18_ReportCreationWizard_TechDoc.md": {
+    "mtime": 1780435410.5729802,
+    "ast_hash": "66f1ff667cfd6a8766e83046805ba466",
+    "semantic_hash": ""
+  },
+  "docs/Pantalla_19_21_22_23_TechDoc.md": {
+    "mtime": 1780435415.7341902,
+    "ast_hash": "5b93c0a37346699dee154d963c603a9b",
+    "semantic_hash": ""
+  },
+  "docs/Pantalla_6_7_8_MapScreen_TechDoc.md": {
+    "mtime": 1780435382.6075852,
+    "ast_hash": "c4f0f96de4eb271a1fe36a168b34db44",
+    "semantic_hash": ""
+  },
+  "docs/TECHNICAL_CONTEXT.md": {
+    "mtime": 1780432674.421108,
+    "ast_hash": "92c7baf8bf98232181d3596eeddf8536",
+    "semantic_hash": ""
+  },
+  "docs/WORKPLAN.md": {
+    "mtime": 1780436107.894706,
+    "ast_hash": "e28bb6c4d5eaec9c488317395bef04ff",
+    "semantic_hash": ""
+  },
+  "roadmap.md": {
+    "mtime": 1778906547.1015189,
+    "ast_hash": "45d0f7306093126e8708d9cca3ff2238",
+    "semantic_hash": ""
+  },
+  "app/src/main/res/drawable/logo_msp.png": {
+    "mtime": 1778950701.8615644,
+    "ast_hash": "3018509e8da5f14c0a57266afd4d89c4",
+    "semantic_hash": ""
+  },
+  "assets/hexagonal-architecture.png": {
+    "mtime": 1778899160.642525,
+    "ast_hash": "4eaa399c9be9d9d184d4109410f6442d",
+    "semantic_hash": ""
+  },
+  "assets/testing-pyramid.jpg": {
+    "mtime": 1778899160.6435294,
+    "ast_hash": "38370320631495cca118ff008f2aff6a",
+    "semantic_hash": ""
+  },
+  "imagenesMSP/LogoGrandeCentrado_MSP.png": {
+    "mtime": 1775076610.4297023,
+    "ast_hash": "3018509e8da5f14c0a57266afd4d89c4",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/app/util/Recency.kt": {
+    "mtime": 1781559546.086363,
+    "ast_hash": "f8b298556b1c361db0485106b67c469c",
+    "semantic_hash": ""
+  },
+  "app/src/main/kotlin/com/mascotasperdidas/app/data/firebase/ActivityProvider.kt": {
+    "mtime": 1781564659.009307,
+    "ast_hash": "8949dd80ef1a4cd72f2110b401d0bde0",
+    "semantic_hash": ""
+  }
+}

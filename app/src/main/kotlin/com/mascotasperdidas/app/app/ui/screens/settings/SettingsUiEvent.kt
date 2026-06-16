@@ -4,7 +4,6 @@ sealed class SettingsUiEvent {
     object ToggleLostNearby : SettingsUiEvent()
     object ToggleFoundNearby : SettingsUiEvent()
     object ToggleSightings : SettingsUiEvent()
-    object ManagePermissions : SettingsUiEvent()
     object SignOut : SettingsUiEvent()
     object ShowDeleteDialog : SettingsUiEvent()
     object DismissDeleteDialog : SettingsUiEvent()

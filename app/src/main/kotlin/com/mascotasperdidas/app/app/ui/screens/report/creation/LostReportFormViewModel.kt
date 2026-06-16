@@ -3,6 +3,7 @@ package com.mascotasperdidas.app.app.ui.screens.report.creation
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.mascotasperdidas.app.R
 import com.mascotasperdidas.app.domain.model.PetReport
 import com.mascotasperdidas.app.domain.model.ReportType
 import com.mascotasperdidas.app.domain.port.`in`.CreateReport
@@ -49,17 +50,24 @@ class LostReportFormViewModel @Inject constructor(
                 _uiState.update { it.copy(photos = updated) }
             }
             is LostReportFormUiEvent.NameChanged -> _uiState.update { it.copy(name = event.value, nameError = false) }
-            is LostReportFormUiEvent.SpeciesSelected -> _uiState.update { it.copy(
-                species = event.value,
-                speciesError = false
-            ) }
+            is LostReportFormUiEvent.SpeciesSelected -> _uiState.update {
+                it.copy(
+                    species = event.value,
+                    speciesError = false
+                )
+            }
             is LostReportFormUiEvent.BreedChanged -> _uiState.update { it.copy(breed = event.value) }
             is LostReportFormUiEvent.GenderSelected -> _uiState.update { it.copy(gender = event.value) }
             is LostReportFormUiEvent.AgeChanged -> _uiState.update { it.copy(ageApprox = event.value) }
             is LostReportFormUiEvent.ColorChanged -> _uiState.update { it.copy(color = event.value) }
             is LostReportFormUiEvent.DescriptionChanged -> _uiState.update { it.copy(description = event.value) }
             is LostReportFormUiEvent.LocationChanged -> _uiState.update { it.copy(locationRef = event.value) }
-            is LostReportFormUiEvent.LocationPicked -> _uiState.update { it.copy(latitude = event.lat, longitude = event.lng) }
+            is LostReportFormUiEvent.LocationPicked -> _uiState.update {
+                it.copy(
+                    latitude = event.lat,
+                    longitude = event.lng
+                )
+            }
             LostReportFormUiEvent.PublishReport -> publishReport()
             LostReportFormUiEvent.ShowDiscardDialog -> _uiState.update { it.copy(showDiscardDialog = true) }
             LostReportFormUiEvent.DismissDiscardDialog -> _uiState.update { it.copy(showDiscardDialog = false) }
@@ -72,11 +80,11 @@ class LostReportFormViewModel @Inject constructor(
         val state = _uiState.value
         var hasError = false
         if (state.name.isBlank()) {
-            _uiState.update { it.copy(nameError = true) };
+            _uiState.update { it.copy(nameError = true) }
             hasError = true
         }
         if (state.species.isBlank()) {
-            _uiState.update { it.copy(speciesError = true) };
+            _uiState.update { it.copy(speciesError = true) }
             hasError = true
         }
         if (hasError) return
@@ -85,6 +93,15 @@ class LostReportFormViewModel @Inject constructor(
             _uiState.update { it.copy(isPublishing = true) }
             try {
                 val user = observeCurrentUser().firstOrNull()
+                if (user == null) {
+                    _uiState.update {
+                        it.copy(
+                            isPublishing = false,
+                            error = appContext.getString(R.string.error_no_session),
+                        )
+                    }
+                    return@launch
+                }
                 val imageBytesList = state.photos.mapNotNull { uri ->
                     withContext(Dispatchers.IO) {
                         appContext.contentResolver.openInputStream(uri)?.use { it.readBytes() }
@@ -92,9 +109,10 @@ class LostReportFormViewModel @Inject constructor(
                 }
                 val report = PetReport(
                     id = "",
-                    ownerUid = user?.uid ?: "anon",
-                    ownerInitial = user?.displayName?.firstOrNull()?.uppercase() ?: "?",
-                    ownerName = user?.displayName ?: "",
+                    ownerUid = user.uid,
+                    ownerInitial = user.displayName.firstOrNull()?.uppercase() ?: "?",
+                    ownerName = user.displayName,
+                    ownerPhone = user.phoneNumber,
                     petName = state.name.trim(),
                     type = ReportType.LOST,
                     breed = state.breed.trim(),

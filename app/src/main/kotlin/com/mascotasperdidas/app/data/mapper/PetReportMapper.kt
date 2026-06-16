@@ -10,6 +10,7 @@ fun PetReportDto.toDomain(documentId: String): PetReport = PetReport(
     ownerUid = ownerUid,
     ownerInitial = ownerInitial,
     ownerName = ownerName,
+    ownerPhone = ownerPhone,
     petName = petName,
     type = when (type) {
         "LOST" -> ReportType.LOST
@@ -47,6 +48,7 @@ fun PetReport.toDto(): PetReportDto = PetReportDto(
     ownerUid = ownerUid,
     ownerInitial = ownerInitial,
     ownerName = ownerName,
+    ownerPhone = ownerPhone,
     petName = petName,
     type = type.name,
     breed = breed,

@@ -21,20 +21,19 @@ class ProfileViewModel @Inject constructor(
     private val _uiState = MutableStateFlow(ProfileUiState())
     val uiState: StateFlow<ProfileUiState> = _uiState.asStateFlow()
 
-    private var currentPhone = ""
-
     init {
         viewModelScope.launch {
             try {
                 observeCurrentUser().collect { user ->
                     user?.let { u ->
-                        currentPhone = u.phoneNumber
                         _uiState.update {
                             it.copy(
                                 name = u.displayName,
-                                phone = u.phoneNumber,
+                                // Stored as E.164 (+57...); edit only national digits.
+                                phone = u.phoneNumber.filter { c -> c.isDigit() }.takeLast(10),
                                 email = u.email,
                                 photoUrl = u.photoUrl,
+                                phoneVerified = u.phoneVerified,
                                 error = null,
                             )
                         }
@@ -48,24 +47,32 @@ class ProfileViewModel @Inject constructor(
 
     fun onEvent(event: ProfileUiEvent) {
         when (event) {
-            is ProfileUiEvent.NameChanged -> {
+            is ProfileUiEvent.NameChanged ->
                 _uiState.update { it.copy(name = event.name, error = null) }
+            ProfileUiEvent.SaveName -> persist()
+            is ProfileUiEvent.PhoneChanged -> {
+                val digits = event.phone.filter { it.isDigit() }.take(10)
+                _uiState.update { it.copy(phone = digits, error = null) }
             }
-            ProfileUiEvent.SaveName -> saveName()
-            ProfileUiEvent.ChangePhoneClicked -> {
-                // Navegación manejada a nivel de Screen via onNavigateToOtp
-            }
+            ProfileUiEvent.SavePhone -> persist()
         }
     }
 
-    private fun saveName() {
+    /**
+     * Persists name + phone together. Phone is stored as a plain E.164 field
+     * (no OTP verification while OTP is disabled). updateProfile does not mark
+     * phoneVerified — that stays false until real OTP confirms the number.
+     */
+    private fun persist() {
+        val s = _uiState.value
+        if (!s.isPhoneValid) {
+            _uiState.update { it.copy(error = "Número inválido. 10 dígitos, empieza por 3.") }
+            return
+        }
         viewModelScope.launch {
             _uiState.update { it.copy(isSaving = true, error = null) }
             try {
-                updateUserProfile(
-                    name = _uiState.value.name.trim(),
-                    phone = currentPhone,
-                )
+                updateUserProfile(name = s.name.trim(), phone = s.e164Phone)
                 _uiState.update { it.copy(isSaving = false) }
             } catch (e: Exception) {
                 _uiState.update {

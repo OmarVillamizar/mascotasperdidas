@@ -1,7 +1,6 @@
 package com.mascotasperdidas.app.app.ui.screens.sightings
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -27,7 +26,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -39,6 +37,7 @@ import com.mascotasperdidas.app.app.ui.components.OsmMapView
 import com.mascotasperdidas.app.app.ui.components.OsmMarker
 import com.mascotasperdidas.app.app.ui.components.SightingItem
 import com.mascotasperdidas.app.app.util.createPinDrawable
+import com.mascotasperdidas.app.app.util.petRecencyLabel
 import com.mascotasperdidas.app.domain.model.PetReport
 import com.mascotasperdidas.app.domain.model.ReportType
 import org.osmdroid.util.GeoPoint
@@ -103,13 +102,13 @@ fun SightingsForPetScreen(
                                     .align(Alignment.TopStart)
                                     .padding(12.dp)
                                     .clip(CircleShape)
-                                    .background(Color.White.copy(alpha = 0.85f))
+                                    .background(MaterialTheme.colorScheme.surface.copy(alpha = 0.85f))
                                     .size(40.dp),
                             ) {
                                 Icon(
                                     imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                                     contentDescription = stringResource(R.string.cancelar),
-                                    tint = Color.Black,
+                                    tint = MaterialTheme.colorScheme.onSurface,
                                 )
                             }
 
@@ -119,22 +118,22 @@ fun SightingsForPetScreen(
                                     .align(Alignment.BottomStart)
                                     .padding(12.dp)
                                     .background(
-                                        Color.Black.copy(alpha = 0.5f),
+                                        MaterialTheme.colorScheme.scrim.copy(alpha = 0.5f),
                                         shape = MaterialTheme.shapes.small,
                                     )
                                     .padding(horizontal = 12.dp, vertical = 8.dp),
                             ) {
                                 Text(
-                                    text = "Avistamientos de ${pet?.petName.orEmpty()}",
+                                    text = "${stringResource(R.string.avistamientos_de)} ${pet?.petName.orEmpty()}",
                                     style = MaterialTheme.typography.titleMedium,
                                     fontWeight = FontWeight.Bold,
-                                    color = Color.White,
+                                    color = MaterialTheme.colorScheme.inverseOnSurface,
                                 )
                                 if (pet != null) {
                                     Text(
-                                        text = "${pet.breed} • ${pet.recencyLabel}",
+                                        text = "${pet.breed} • ${petRecencyLabel(pet.createdAtEpochMs)}",
                                         style = MaterialTheme.typography.bodySmall,
-                                        color = Color.White.copy(alpha = 0.8f),
+                                        color = MaterialTheme.colorScheme.inverseOnSurface.copy(alpha = 0.8f),
                                     )
                                 }
                             }
@@ -162,7 +161,7 @@ fun SightingsForPetScreen(
                     // ── Sightings count ───────────────────────────────
                     item(key = "count") {
                         Text(
-                            text = "${state.sightings.size} avistamiento(s)",
+                            text = stringResource(R.string.avistamientos_count, state.sightings.size),
                             style = MaterialTheme.typography.labelMedium,
                             color = MaterialTheme.colorScheme.onSurfaceVariant,
                             modifier = Modifier.padding(horizontal = 16.dp, vertical = 4.dp),

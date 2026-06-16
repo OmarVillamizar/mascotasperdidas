@@ -1,5 +1,6 @@
 package com.mascotasperdidas.app.app.ui.screens.report.detail
 
+import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -40,13 +41,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.mascotasperdidas.app.R
 import com.mascotasperdidas.app.app.theme.MascotasPerdidasTheme
-import com.mascotasperdidas.app.app.util.petImageModel
 import com.mascotasperdidas.app.app.ui.components.AttributesGrid
 import com.mascotasperdidas.app.app.ui.components.HeroImage
 import com.mascotasperdidas.app.app.ui.components.MiniMapView
@@ -54,6 +55,10 @@ import com.mascotasperdidas.app.app.ui.components.SectionLabel
 import com.mascotasperdidas.app.app.ui.components.StickyContactFooter
 import com.mascotasperdidas.app.app.ui.components.UserAvatar
 import com.mascotasperdidas.app.app.util.colorFromUid
+import com.mascotasperdidas.app.app.util.launchDialer
+import com.mascotasperdidas.app.app.util.launchWhatsApp
+import com.mascotasperdidas.app.app.util.petImageModel
+import com.mascotasperdidas.app.app.util.petRecencyLabel
 import com.mascotasperdidas.app.domain.model.PetReport
 import com.mascotasperdidas.app.domain.model.ReportType
 
@@ -104,8 +109,20 @@ fun ReportDetailScreen(
             )
         },
         bottomBar = {
-            if (!state.isOwner && state.report != null) {
-                StickyContactFooter(onContact = { onEvent(ReportDetailUiEvent.ContactOwner) })
+            val report = state.report
+            // Show contact actions whenever the report carries a phone (owner or not),
+            // so they are reachable from "Más información".
+            if (report != null && report.ownerPhone.isNotBlank()) {
+                val context = LocalContext.current
+                val phone = report.ownerPhone
+                val connectingMsg = stringResource(R.string.contact_connecting_whatsapp)
+                StickyContactFooter(
+                    onWhatsApp = {
+                        Toast.makeText(context, connectingMsg, Toast.LENGTH_SHORT).show()
+                        launchWhatsApp(context, phone)
+                    },
+                    onCall = { launchDialer(context, phone) },
+                )
             }
         },
         snackbarHost = { SnackbarHost(snackbarHostState) },
@@ -124,7 +141,7 @@ fun ReportDetailScreen(
                     contentAlignment = Alignment.Center,
                 ) {
                     Text(
-                        text = "No se encontró el reporte",
+                        text = stringResource(R.string.detail_not_found),
                         style = MaterialTheme.typography.bodyLarge,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                     )
@@ -191,7 +208,7 @@ private fun ReportDetailContent(
                     itemsIndexed(report.additionalPhotos) { index, url ->
                         AsyncImage(
                             model = petImageModel(url),
-                            contentDescription = "Foto adicional ${index + 1}",
+                            contentDescription = stringResource(R.string.detail_additional_photo, index + 1),
                             contentScale = ContentScale.Crop,
                             modifier = Modifier
                                 .size(90.dp)
@@ -204,26 +221,28 @@ private fun ReportDetailContent(
 
         // Attributes grid
         item {
+            val yes = stringResource(R.string.comun_si)
+            val no = stringResource(R.string.comun_no)
             val attrs = when (report.type) {
                 ReportType.LOST -> listOfNotNull(
-                    "Especie" to report.species.ifBlank { "-" },
-                    "Sexo" to report.gender.ifBlank { "-" },
-                    "Edad aprox." to report.ageApprox.ifBlank { "-" },
-                    "Color" to report.color.ifBlank { "-" },
+                    stringResource(R.string.especie) to report.species.ifBlank { "-" },
+                    stringResource(R.string.sexo) to report.gender.ifBlank { "-" },
+                    stringResource(R.string.edad_aprox) to report.ageApprox.ifBlank { "-" },
+                    stringResource(R.string.attr_color) to report.color.ifBlank { "-" },
                 )
                 ReportType.FOUND_SIGHTING -> listOfNotNull(
-                    "Especie" to report.species.ifBlank { "-" },
-                    "Tamaño" to report.size.ifBlank { "-" },
-                    "Estado" to (report.statuses.firstOrNull() ?: report.physicalStatus.firstOrNull() ?: "-"),
-                    "Collar" to report.collarColor.ifBlank { "-" },
+                    stringResource(R.string.especie) to report.species.ifBlank { "-" },
+                    stringResource(R.string.tamano) to report.size.ifBlank { "-" },
+                    stringResource(R.string.attr_estado) to (report.statuses.firstOrNull() ?: report.physicalStatus.firstOrNull() ?: "-"),
+                    stringResource(R.string.attr_collar) to report.collarColor.ifBlank { "-" },
                 )
                 ReportType.FOUND_IN_CARE -> listOfNotNull(
-                    "Especie" to report.species.ifBlank { "-" },
-                    "Tamaño" to report.size.ifBlank { "-" },
-                    "Estado" to (report.physicalStatus.firstOrNull() ?: "-"),
-                    "Collar" to report.collarColor.ifBlank { "-" },
-                    "Edad aprox." to report.ageApprox.ifBlank { "-" },
-                    "Microchip" to report.microchip.ifBlank { "-" },
+                    stringResource(R.string.especie) to report.species.ifBlank { "-" },
+                    stringResource(R.string.tamano) to report.size.ifBlank { "-" },
+                    stringResource(R.string.attr_estado) to (report.physicalStatus.firstOrNull() ?: "-"),
+                    stringResource(R.string.attr_collar) to (if (report.hasCollarPlate) yes else no),
+                    stringResource(R.string.edad_aprox) to report.ageApprox.ifBlank { "-" },
+                    stringResource(R.string.attr_microchip) to (if (report.hasMicrochip) yes else no),
                 )
             }
             AttributesGrid(
@@ -299,7 +318,7 @@ private fun ReportDetailContent(
                                 style = MaterialTheme.typography.titleSmall,
                             )
                             Text(
-                                text = report.recencyLabel,
+                                text = petRecencyLabel(report.createdAtEpochMs),
                                 style = MaterialTheme.typography.bodySmall,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                             )
